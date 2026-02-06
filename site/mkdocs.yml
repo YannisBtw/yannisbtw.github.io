@@ -2,4 +2,4 @@ site_name: Сайт Ломаченко Яна
 site_url: https://yannisbtw.github.io/
 nav:
   - Home: index.md
-  - Home: about.md
+  - About Me: about.md
