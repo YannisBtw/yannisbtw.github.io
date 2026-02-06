@@ -3,6 +3,6 @@ site_url: https://yannisbtw.github.io/
 nav:
   - Home: index.md
   - About Me: about.md
-
+  - Projects: projects.md
 theme:
     name: dracula
