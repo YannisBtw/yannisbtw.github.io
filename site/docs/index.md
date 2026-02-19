@@ -17,7 +17,7 @@
 
 ## Быстрые ссылки
 
-- 💻 GitHub: https://github.com/your-github  
+- 💻 GitHub: https://github.com/YannisBtw
 - 🎓 Университет: ИТМО  
 - 🧠 Направление: нейротехнологии и программирование
 
