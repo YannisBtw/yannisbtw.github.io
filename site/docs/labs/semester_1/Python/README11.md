@@ -2,7 +2,7 @@
 
 Учебный таск-трекер (TODO App) на Django: регистрация/авторизация, полный CRUD по задачам и пользователям, SQLite и Bootstrap 5.
 
-Видеодемонстрация сайта: https://www.awesomescreenshot.com/video/47416892?key=33a39975a4d530ac53be43a26d79a7dc
+[Видеодемонстрация сайта](https://www.awesomescreenshot.com/video/47416892?key=33a39975a4d530ac53be43a26d79a7dc)
 
 ## Команда
 - Команда "Кимпинтяо"

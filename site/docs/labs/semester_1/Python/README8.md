@@ -331,11 +331,11 @@ def get_currencies(
 
 # **5. Примеры работы приложения**
 
-![img.png](static/main.png)
-![img_1.png](static/currencies.png)
-![img_2.png](static/users.png)
-![img_3.png](static/author.png)
-![img.png](static/logs.png)
+![img.png](static_8/main.png)
+![img_1.png](static_8/currencies.png)
+![img_2.png](static_8/users.png)
+![img_3.png](static_8/author.png)
+![img.png](static_8/logs.png)
 
 ---
 
@@ -528,7 +528,7 @@ self.assertEqual(response.status_code, 200)
 
 Вывод консоли после запуска:
 
-![img.png](static/tests.png)
+![img.png](static_8/tests.png)
 
 
 Это означает:

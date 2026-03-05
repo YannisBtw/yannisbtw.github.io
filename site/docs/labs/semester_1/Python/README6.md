@@ -57,7 +57,7 @@ right_leaf(root) = root ** 2
 
 ### График
 
-![Figure_1.png](Figure_1.png)
+![Figure_1.png](Figure_1.6.png)
 
 **Рисунок 1.** Зависимость времени построения дерева от его высоты.
 

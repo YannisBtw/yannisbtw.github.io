@@ -169,19 +169,19 @@ DELETE FROM currency WHERE id = ?;
 
 ### **5.1. Главная страница ( / )**
 
-![main.png](static%2Fmain.png)
+![main.png](static_9/main.png)
 
 ### **5.2. Таблица валют ( /currencies )**
 
-![img_2.png](static/currencies.png)
+![img_2.png](static_9/currencies.png)
 
 ### **5.3. Профиль пользователя ( /user?id=1 )**
 
-![img_1.png](static/user_profile.png)
+![img_1.png](static_9/user_profile.png)
 
 ### **5.4. Пример Баз данных:*
-![img.png](static/db_1.png)
-![img_1.png](static/db_2.png)
+![img.png](static_9/db_1.png)
+![img_1.png](static_9/db_2.png)
 
 
 # **6. Примеры тестов с unittest.mock и результаты их выполнения**
@@ -224,7 +224,7 @@ def test_list_currencies(self):
 
 ## ✔ Пример вывода:
 
-![img.png](static/tests.png)
+![img.png](static_9/tests.png)
 
 ---
 
