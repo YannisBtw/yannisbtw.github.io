@@ -6,6 +6,7 @@ nav:
   - Проекты: projects.md
   - Лабораторные работы:
       - 1 семестр: labs/index.md
+      - 2 семестр: labs/index2.md
   - Контакты: contacts.md
 
 theme:
