@@ -97,7 +97,7 @@ yannisbtw.github.io
 ```bash
 git clone https://github.com/YannisBtw/yannisbtw.github.io
 cd yannisbtw.github.io
-````
+```
 
 ### 2. Создание виртуального окружения
 
