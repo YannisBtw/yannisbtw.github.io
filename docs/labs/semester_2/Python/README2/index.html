@@ -1,0 +1,402 @@
+<!doctype html>
+<html data-bs-theme="">
+    <head>
+                <title>Численные вычисления и анализ данных с использованием NumPy - Сайт Ломаченко Яна</title>
+
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            
+            <link rel="canonical" href="https://yannisbtw.github.io/labs/semester_2/Python/README2/">
+            
+
+            
+                <link  rel="icon" type="image/x-icon" href="../../../../assets/img/favicon.ico">
+            
+
+        <script>var base_url = '../../../..';</script>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+            <link rel="stylesheet" href="../../../../assets/css/bootstrap.min.css">
+            <link rel="stylesheet" href="../../../../assets/css/root.min.css">
+            <link rel="stylesheet" href="../../../../assets/css/main.min.css">
+            <link rel="stylesheet" href="../../../../assets/css/media.min.css">
+            <link rel="stylesheet" href="../../../../assets/css/mkdocstrings.min.css">
+                <script src="../../../../search/main.js"></script>
+
+            
+                
+            
+          
+    </head>
+
+    <body>
+        <div class="container py-3">
+            <header>
+                    <!-- block header -->
+<nav class="navbar navbar-expand-xl border-bottom">
+    <div class="container-fluid">
+        
+
+        
+            <span class=" fs-4 title-color site-name" id="component-site-name" style="text-transform: uppercase;">Сайт Ломаченко Яна</span>
+        
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMenu"
+            aria-controls="navbarsMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse flex-column ml-auto" id="navbarsMenu">
+            <ul class="navbar-nav">
+
+                <!-- block menu -->
+                <li class="nav-item">
+                    <!-- block menu -->
+    
+        <li class="nav-item" id="component-menu">
+            <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../..">[Главная]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../../about/">[Обо мне]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../../projects/">[Проекты]</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="
+                            nav-link dropdown-toggle text-decoration-none" href="#" data-bs-toggle="dropdown">[Лабораторные работы]</a>
+                            <ul class="dropdown-menu">
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../" class="dropdown-item text-decoration-none ">1 семестр</a>
+    </li>
+<!-- endblock -->
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../index2/" class="dropdown-item text-decoration-none ">2 семестр</a>
+    </li>
+<!-- endblock -->
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../../contacts/">[Контакты]</a>
+                        </li>
+            </ul>
+        </li>
+<!-- endblock -->
+                </li>
+                <!-- endblock -->
+
+                <!-- block search -->
+                <li class="nav-item">
+                    <a class="collapsed" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <div class="md-search-icon">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </div>
+                    </a>
+                </li>
+                <!--  endblock -->
+
+                <!-- block source -->
+                <li class="nav-item">
+                    
+                </li>
+                <!--  endblock -->
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--  endblock -->
+            </header>
+
+            <main><!-- block search -->
+<div class="collapse" id="collapseExample">
+    <div role="search" class="search-box">
+        <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+            <input type="text" name="q" class="search-query"
+            placeholder="Search docs" title="Type search term here" />
+        </form>
+    </div>
+</div>
+<!-- endblock -->
+
+                
+                        <!-- block content -->
+<section class="container post" id="component-content">
+    <article>
+        <header>
+            
+                <h1 class=" title" id="component-title">Численные вычисления и анализ данных с использованием NumPy</h1>
+            
+        </header>
+        <p><h1 id="numpy">Численные вычисления и анализ данных с использованием NumPy</h1>
+<h3 id="_1">Ссылка на отчет</h3>
+<p>Отчет по лабораторной работе размещен на личном сайте-портфолио и на Github:</p>
+<p><strong>https://yannisbtw.github.io/labs/semester_2/Python/README2/</strong></p>
+<hr />
+<h1 id="_2">Описание задачи</h1>
+<p>Цель лабораторной работы — изучить возможности библиотеки <strong>NumPy</strong> для выполнения численных вычислений и анализа данных.</p>
+<p>В рамках лабораторной работы необходимо было реализовать функции для:</p>
+<ul>
+<li>создания и преобразования массивов</li>
+<li>выполнения векторных операций</li>
+<li>выполнения матричных операций</li>
+<li>статистического анализа данных</li>
+<li>визуализации результатов</li>
+</ul>
+<p>Все операции должны выполняться <strong>без использования циклов</strong>, используя <strong>векторизацию NumPy</strong>.</p>
+<p>Код должен соответствовать требованиям:</p>
+<ul>
+<li>PEP-8 — стиль кода</li>
+<li>PEP-484 — аннотации типов</li>
+<li>PEP-257 — документация</li>
+<li>успешное прохождение тестов <code>pytest</code></li>
+</ul>
+<hr />
+<h1 id="_3">Структура проекта</h1>
+<pre><code>numpy_lab/
+│
+├── main.py
+├── test.py
+├── data/
+│ └── students_scores.csv
+└── plots/
+</code></pre>
+<hr />
+<h1 id="_4">Данные</h1>
+<p>Используется CSV-файл с результатами экзаменов студентов.</p>
+<pre><code>math,physics,informatics
+78,81,90
+85,89,88
+92,94,95
+70,75,72
+88,84,91
+95,99,98
+60,65,70
+73,70,68
+84,86,85
+90,93,92
+</code></pre>
+<hr />
+<h1 id="_5">Используемые технологии</h1>
+<p>В лабораторной работе использовались следующие библиотеки:</p>
+<ul>
+<li><strong>NumPy</strong> — численные вычисления</li>
+<li><strong>Pandas</strong> — загрузка данных из CSV</li>
+<li><strong>Matplotlib</strong> — построение графиков</li>
+<li><strong>Seaborn</strong> — визуализация корреляций</li>
+<li><strong>PyTest</strong> — тестирование функций</li>
+</ul>
+<hr />
+<h1 id="_6">Реализация задач</h1>
+<h2 id="1">1. Создание и обработка массивов</h2>
+<p>На первом этапе были реализованы функции для создания и преобразования массивов.</p>
+<p>Использованные функции NumPy:</p>
+<ul>
+<li><code>np.arange()</code></li>
+<li><code>np.random.rand()</code></li>
+<li><code>reshape()</code></li>
+<li><code>transpose()</code></li>
+</ul>
+<p>Пример реализации:</p>
+<pre><code class="language-python">def create_vector():
+    return np.arange(10)
+</code></pre>
+<h2 id="2">2. Векторные операции</h2>
+<p>Были реализованы следующие операции:</p>
+<ul>
+<li>
+<p>сложение векторов</p>
+</li>
+<li>
+<p>умножение вектора на скаляр</p>
+</li>
+<li>
+<p>поэлементное умножение</p>
+</li>
+<li>
+<p>скалярное произведение</p>
+</li>
+</ul>
+<p>Пример:</p>
+<pre><code>def vector_add(a, b):
+    return a + b
+</code></pre>
+<p>Благодаря векторизации NumPy операции выполняются значительно быстрее, чем при использовании циклов.</p>
+<h2 id="3">3. Матричные операции</h2>
+<ul>
+<li>
+<p>В рамках лабораторной работы были реализованы операции линейной алгебры:</p>
+</li>
+<li>
+<p>умножение матриц</p>
+</li>
+<li>
+<p>вычисление определителя</p>
+</li>
+<li>
+<p>нахождение обратной матрицы</p>
+</li>
+<li>
+<p>решение системы линейных уравнений</p>
+</li>
+</ul>
+<p>Для этого использовался модуль:</p>
+<pre><code>numpy.linalg
+</code></pre>
+<p>Пример:</p>
+<pre><code>def matrix_multiply(a, b):
+    return a @ b
+</code></pre>
+<h2 id="4">4. Статистический анализ</h2>
+<p>Для анализа данных были вычислены следующие показатели:</p>
+<ul>
+<li>
+<p>среднее значение</p>
+</li>
+<li>
+<p>медиана</p>
+</li>
+<li>
+<p>стандартное отклонение</p>
+</li>
+<li>
+<p>минимальное значение</p>
+</li>
+<li>
+<p>максимальное значение</p>
+</li>
+<li>
+<p>25 и 75 перцентили</p>
+</li>
+</ul>
+<p>Использованные функции NumPy:</p>
+<pre><code>np.mean
+np.median
+np.std
+np.min
+np.max
+np.percentile
+</code></pre>
+<p>Также была реализована min-max нормализация данных.</p>
+<p>Формула нормализации:</p>
+<pre><code>(x - min) / (max - min)
+</code></pre>
+<p>Вот <strong>аккуратно отформатированный Markdown-фрагмент для README</strong>. Я исправил структуру, списки и добавил блоки кода — так он будет выглядеть профессионально на GitHub и в MkDocs.</p>
+<h2 id="5">5. Визуализация данных</h2>
+<p>Для визуализации результатов использовались библиотеки <strong>Matplotlib</strong> и <strong>Seaborn</strong>.</p>
+<p>Были построены следующие графики:</p>
+<h3 id="_7">Гистограмма распределения оценок</h3>
+<p>Показывает распределение оценок студентов.</p>
+<p><img alt="heatmap.png" src="../plots/heatmap.png" /></p>
+<h3 id="_8">Тепловая карта корреляции</h3>
+<p>Показывает корреляцию между оценками по различным предметам.
+<img alt="histogram.png" src="../plots/histogram.png" /></p>
+<h3 id="_9">Линейный график</h3>
+<p>Показывает зависимость оценки по математике от номера студента.
+<img alt="histogram.png" src="../plots/line_plot.png" /></p>
+<hr />
+<h1 id="_10">Нюансы реализации</h1>
+<p>При выполнении лабораторной работы возникло несколько особенностей.</p>
+<h3 id="numpy_1">Векторизация NumPy</h3>
+<p>NumPy позволяет выполнять операции над массивами <strong>без использования циклов</strong>, что значительно ускоряет вычисления.</p>
+<h3 id="_11">Типы данных</h3>
+<p>Некоторые функции NumPy возвращают тип <code>numpy.float64</code>.<br />
+Для корректной работы тестов значения иногда приводились к типу <code>float</code>.</p>
+<h3 id="_12">Сохранение графиков</h3>
+<p>Перед сохранением графиков необходимо убедиться, что папка <code>plots</code> существует:</p>
+<pre><code class="language-python">os.makedirs(&quot;plots&quot;, exist_ok=True)
+````
+
+### Тестирование
+
+Все функции проверялись с помощью **pytest**.
+
+```bash
+pytest -v
+</code></pre>
+<p>Все тесты успешно проходят.
+<img alt="img.png" src="../plots/img.png" /></p>
+<hr />
+<h1 id="_13">Запуск проекта</h1>
+<h2 id="_14">Создание виртуального окружения</h2>
+<pre><code class="language-bash">python -m venv numpy_env
+</code></pre>
+<h2 id="_15">Активация окружения</h2>
+<h3 id="windows">Windows</h3>
+<pre><code class="language-bash">numpy_env\Scripts\activate
+</code></pre>
+<h3 id="linux-mac">Linux / Mac</h3>
+<pre><code class="language-bash">source numpy_env/bin/activate
+</code></pre>
+<h2 id="_16">Установка зависимостей</h2>
+<pre><code class="language-bash">pip install numpy matplotlib seaborn pandas pytest
+</code></pre>
+<h2 id="_17">Запуск тестов</h2>
+<pre><code class="language-bash">pytest -v
+</code></pre>
+<hr />
+<h1 id="_18">Вывод</h1>
+<p>В ходе лабораторной работы были изучены основные возможности библиотеки <strong>NumPy</strong> для выполнения численных вычислений и анализа данных.</p>
+<p>Были реализованы следующие операции:</p>
+<ul>
+<li>работа с массивами</li>
+<li>векторные операции</li>
+<li>операции линейной алгебры</li>
+<li>статистический анализ</li>
+<li>визуализация данных</li>
+</ul>
+<p>Использование <strong>векторизации NumPy</strong> позволяет писать компактный и эффективный код и значительно ускоряет вычисления при работе с большими массивами данных.</p>
+<p>Выполнил студент Ломаченко Ян (505115, P3120)
+Ссылка на сайт: https://yannisbtw.github.io/</p></p>
+    </article>
+</section>
+<!-- endblock -->
+                
+                
+            </main>
+
+            
+                    <!-- block preview -->
+<!-- endblock -->
+            
+
+            
+                    <!-- block footer -->
+<footer class="pt-4 my-md-5 pt-md-5 border-top" id="component-footer">
+    <div class="row">
+        <div class="col-12 col-md">
+                <!-- block copyright -->
+
+    <small class="d-block mb-3">
+        Made with
+        <a href="https://github.com/FernandoCelmer/mkdocs-simple-blog" target="_blank" rel="noopener">
+            Simple Blog for MkDocs
+        </a>
+    </small>
+
+<!-- endblock -->
+        </div>
+    </div>
+</footer>
+<!-- endblock -->
+            
+        </div>
+
+            <script src="../../../../assets/js/jquery-3.3.1.slim.min.js""></script>
+            <script src="../../../../assets/js/bootstrap.bundle.min.js""></script>
+            <script src="../../../../assets/js/main.min.js""></script>
+                <script src="../../../../search/main.js" defer></script>
+
+    </body>
+
+</html>
