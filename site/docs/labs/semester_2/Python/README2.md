@@ -1,8 +1,7 @@
-### Ссылка на отчет
+title: Численные вычисления и анализ данных с использованием NumPy
+##  Отчет
+Отчет по лабораторной работе размещен на [личном сайте-портфолио](https://yannisbtw.github.io/labs/semester_2/Python/README2/) и на [Github](https://github.com/YannisBtw/ITMO_Python-2.0/tree/main/lab_02)
 
-Отчет по лабораторной работе размещен на личном сайте-портфолио и на Github:
-
-**https://yannisbtw.github.io/labs/semester_2/Python/README2/**
 
 ---
 
