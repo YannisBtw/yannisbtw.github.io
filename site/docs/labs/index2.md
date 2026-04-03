@@ -7,4 +7,5 @@
 ###### Python:
 - [Лабораторная 1](semester_2/Python/README1.md)
 - [Лабораторная 2](semester_2/Python/README2.md)
-- [Лабораторная 4](semester_2/Python/README4)
+- [Лабораторная 3](semester_2/Python/README3.md)
+- [Лабораторная 4](semester_2/Python/README4.md)
