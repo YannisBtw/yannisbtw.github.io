@@ -1,0 +1,343 @@
+<!doctype html>
+<html data-bs-theme="">
+    <head>
+                <title>Credit Scoring Classification Project - Сайт Ломаченко Яна</title>
+
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            
+            <link rel="canonical" href="https://yannisbtw.github.io/labs/semester_2/Python/README4/">
+            
+
+            
+                <link  rel="icon" type="image/x-icon" href="../../../../assets/img/favicon.ico">
+            
+
+        <script>var base_url = '../../../..';</script>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+            <link rel="stylesheet" href="../../../../assets/css/bootstrap.min.css">
+            <link rel="stylesheet" href="../../../../assets/css/root.min.css">
+            <link rel="stylesheet" href="../../../../assets/css/main.min.css">
+            <link rel="stylesheet" href="../../../../assets/css/media.min.css">
+            <link rel="stylesheet" href="../../../../assets/css/mkdocstrings.min.css">
+                <script src="../../../../search/main.js"></script>
+
+            
+                
+            
+          
+    </head>
+
+    <body>
+        <div class="container py-3">
+            <header>
+                    <!-- block header -->
+<nav class="navbar navbar-expand-xl border-bottom">
+    <div class="container-fluid">
+        
+
+        
+            <span class=" fs-4 title-color site-name" id="component-site-name" style="text-transform: uppercase;">Сайт Ломаченко Яна</span>
+        
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMenu"
+            aria-controls="navbarsMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse flex-column ml-auto" id="navbarsMenu">
+            <ul class="navbar-nav">
+
+                <!-- block menu -->
+                <li class="nav-item">
+                    <!-- block menu -->
+    
+        <li class="nav-item" id="component-menu">
+            <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../..">[Главная]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../../about/">[Обо мне]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../../projects/">[Проекты]</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="
+                            nav-link dropdown-toggle text-decoration-none" href="#" data-bs-toggle="dropdown">[Лабораторные работы]</a>
+                            <ul class="dropdown-menu">
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../" class="dropdown-item text-decoration-none ">1 семестр</a>
+    </li>
+<!-- endblock -->
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../index2/" class="dropdown-item text-decoration-none ">2 семестр</a>
+    </li>
+<!-- endblock -->
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../../contacts/">[Контакты]</a>
+                        </li>
+            </ul>
+        </li>
+<!-- endblock -->
+                </li>
+                <!-- endblock -->
+
+                <!-- block search -->
+                <li class="nav-item">
+                    <a class="collapsed" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <div class="md-search-icon">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </div>
+                    </a>
+                </li>
+                <!--  endblock -->
+
+                <!-- block source -->
+                <li class="nav-item">
+                    
+                </li>
+                <!--  endblock -->
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--  endblock -->
+            </header>
+
+            <main><!-- block search -->
+<div class="collapse" id="collapseExample">
+    <div role="search" class="search-box">
+        <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+            <input type="text" name="q" class="search-query"
+            placeholder="Search docs" title="Type search term here" />
+        </form>
+    </div>
+</div>
+<!-- endblock -->
+
+                
+                        <!-- block content -->
+<section class="container post" id="component-content">
+    <article>
+        <header>
+            
+                <h1 class=" title" id="component-title">Credit Scoring Classification Project</h1>
+            
+        </header>
+        <p><p><a href="https://colab.research.google.com/drive/1BfnTuE2dMM6VCg1nPvyO9eLjyErpTWoP?usp=sharing">Ссылка на борд в GoogleColab</a></p>
+<h2 id="_1">📌 Описание проекта</h2>
+<p>В данном проекте решается задача бинарной классификации — прогнозирование вероятности дефолта клиента (просрочки платежа) на основе его финансовых характеристик.</p>
+<p>Целевая переменная:</p>
+<ul>
+<li><strong>SeriousDlqin2yrs</strong> — наличие серьёзной просрочки (1 — да, 0 — нет)</li>
+</ul>
+<hr />
+<h2 id="_2">🎯 Цель работы</h2>
+<ul>
+<li>Исследовать различные алгоритмы классификации</li>
+<li>Построить модель с наилучшим качеством (метрика ROC-AUC)</li>
+<li>Проанализировать влияние признаков и preprocessing</li>
+<li>Оценить возможность достижения ROC-AUC ≥ 0.9</li>
+</ul>
+<hr />
+<h2 id="_3">📁 Данные</h2>
+<p>Датасет содержит информацию о клиентах:</p>
+<ul>
+<li>доход (MonthlyIncome)</li>
+<li>долговая нагрузка (DebtRatio)</li>
+<li>возраст (age)</li>
+<li>количество кредитов</li>
+<li>количество просрочек (30–59, 60–89, 90+ дней)</li>
+<li>количество иждивенцев</li>
+</ul>
+<p>Особенности данных:</p>
+<ul>
+<li>сильный дисбаланс классов (~1:14)</li>
+<li>наличие выбросов</li>
+<li>пропущенные значения</li>
+</ul>
+<hr />
+<h2 id="_4">⚙️ Предобработка данных</h2>
+<p>Были выполнены следующие шаги:</p>
+<h3 id="_5">🔹 Обработка пропусков</h3>
+<ul>
+<li>MonthlyIncome → заполнение медианой</li>
+<li>NumberOfDependents → заполнение нулём</li>
+</ul>
+<h3 id="_6">🔹 Обработка выбросов</h3>
+<ul>
+<li>Ограничение экстремальных значений (clip)</li>
+<li>Приведение признаков к адекватным диапазонам</li>
+</ul>
+<h3 id="feature-engineering">🔹 Feature Engineering</h3>
+<p>Созданы новые признаки:</p>
+<ul>
+<li>бинарные признаки просрочек</li>
+<li>суммарные просрочки</li>
+<li>логарифмы (доход, долг)</li>
+<li>взаимодействия признаков</li>
+<li>нормализованные показатели (долг/доход и т.д.)</li>
+</ul>
+<hr />
+<h2 id="_7">🤖 Использованные модели</h2>
+<p>Были протестированы следующие алгоритмы:</p>
+<ul>
+<li>Logistic Regression</li>
+<li>Random Forest</li>
+<li>LightGBM</li>
+<li>(опционально) kNN, SVM</li>
+</ul>
+<hr />
+<h2 id="_8">📈 Результаты</h2>
+<table>
+<thead>
+<tr>
+<th>Модель</th>
+<th>ROC-AUC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Logistic Regression</td>
+<td>~0.66</td>
+</tr>
+<tr>
+<td>Random Forest</td>
+<td>~0.84</td>
+</tr>
+<tr>
+<td>LightGBM</td>
+<td>~0.85–0.86</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_9">🧠 Анализ результатов</h2>
+<ul>
+<li>Простые модели (Logistic Regression) показали низкое качество</li>
+<li>Ансамблевые методы (Random Forest, Gradient Boosting) значительно лучше</li>
+<li>Наилучший результат показал <strong>LightGBM</strong></li>
+</ul>
+<p>📌 Вывод:</p>
+<blockquote>
+<p>Ансамблевые методы являются наиболее эффективными для задач классификации табличных данных.</p>
+</blockquote>
+<hr />
+<h2 id="_10">⚠️ Ограничения модели</h2>
+<p>Дальнейшее улучшение качества затруднено из-за:</p>
+<ul>
+<li>малого числа признаков (~10)</li>
+<li>сильного дисбаланса классов</li>
+<li>перекрытия распределений классов</li>
+<li>наличия шума и выбросов</li>
+</ul>
+<p>👉 Предполагаемый потолок качества: <strong>ROC-AUC ≈ 0.86–0.89</strong></p>
+<hr />
+<h2 id="_11">🚀 Как улучшить модель</h2>
+<ul>
+<li>добавить новые признаки (feature engineering)</li>
+<li>использовать более сложные ансамбли</li>
+<li>применить более продвинутые методы обработки данных</li>
+<li>попробовать CatBoost / XGBoost</li>
+</ul>
+<hr />
+<h2 id="-">🌐 Интеграция с веб-сервисом</h2>
+<p>Модель может быть интегрирована в веб-приложение:</p>
+<h3 id="_12">Шаги:</h3>
+<ol>
+<li>Обучить модель</li>
+<li>Сохранить модель (<code>joblib</code> / <code>pickle</code>)</li>
+<li>Создать API (Flask / FastAPI)</li>
+<li>Загрузить модель при старте</li>
+<li>Реализовать endpoint <code>/predict</code></li>
+<li>Принимать JSON → делать предсказание → возвращать результат</li>
+</ol>
+<hr />
+<h2 id="_13">🛠️ Используемые библиотеки</h2>
+<ul>
+<li>pandas</li>
+<li>numpy</li>
+<li>scikit-learn</li>
+<li>lightgbm</li>
+<li>matplotlib</li>
+</ul>
+<hr />
+<h2 id="_14">▶️ Запуск проекта</h2>
+<ol>
+<li>Установить зависимости:</li>
+</ol>
+<pre><code class="language-bash">pip install -r requirements.txt
+</code></pre>
+<ol>
+<li>Запустить ноутбук:</li>
+</ol>
+<pre><code class="language-bash">jupyter notebook
+</code></pre>
+<hr />
+<h2 id="_15">📌 Итог</h2>
+<p>В ходе работы:</p>
+<ul>
+<li>исследованы различные алгоритмы классификации</li>
+<li>подтверждено преимущество ансамблевых методов</li>
+<li>показано, что качество модели ограничено данными</li>
+<li>сделан вывод о необходимости feature engineering</li>
+</ul>
+<hr />
+<h2 id="_16">👨‍💻 Автор</h2>
+<p>Ломаченко Ян (595115, P3120)</p></p>
+    </article>
+</section>
+<!-- endblock -->
+                
+                
+            </main>
+
+            
+                    <!-- block preview -->
+<!-- endblock -->
+            
+
+            
+                    <!-- block footer -->
+<footer class="pt-4 my-md-5 pt-md-5 border-top" id="component-footer">
+    <div class="row">
+        <div class="col-12 col-md">
+                <!-- block copyright -->
+
+    <small class="d-block mb-3">
+        Made with
+        <a href="https://github.com/FernandoCelmer/mkdocs-simple-blog" target="_blank" rel="noopener">
+            Simple Blog for MkDocs
+        </a>
+    </small>
+
+<!-- endblock -->
+        </div>
+    </div>
+</footer>
+<!-- endblock -->
+            
+        </div>
+
+            <script src="../../../../assets/js/jquery-3.3.1.slim.min.js""></script>
+            <script src="../../../../assets/js/bootstrap.bundle.min.js""></script>
+            <script src="../../../../assets/js/main.min.js""></script>
+                <script src="../../../../search/main.js" defer></script>
+
+    </body>
+
+</html>

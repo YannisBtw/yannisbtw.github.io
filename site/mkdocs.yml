@@ -11,3 +11,9 @@ nav:
 
 theme:
     name: simple-blog
+
+plugins:
+  - search
+  - codeinclude:
+      title_mode: none
+      block_throw: false

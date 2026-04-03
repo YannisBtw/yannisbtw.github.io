@@ -4,9 +4,14 @@ title: Статический сайт-портфолио (MkDocs)
 
 ## Ссылки
 
-[Репозиторий проекта](https://github.com/YannisBtw/yannisbtw.github.io)
+[Репозиторий проекта на GitHub](https://github.com/YannisBtw/yannisbtw.github.io)
 
-[Опубликованный сайт](https://yannisbtw.github.io)
+[Опубликованный сайт на базе GitHub Pages](https://yannisbtw.github.io)
+
+[Репозиторий проекта на SourceCraft](https://sourcecraft.dev/shadowkreys/shadowkreys-sourcecraft-site)
+
+[Опубликованный сайт на базе SourceCraft Sites](https://shadowkreys.sourcecraft.site/shadowkreys-sourcecraft-site/)
+
 
 ---
 
