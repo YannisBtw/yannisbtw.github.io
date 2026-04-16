@@ -1,5 +1,8 @@
 title: 🏡 Прогнозирование стоимости недвижимости (House Price Prediction)
 
+[Ссылка на борд в GoogleColab](https://colab.research.google.com/drive/1saHDYmdRMorJKzAxilSathy6tC8B2IgB?usp=sharing)
+
+
 ## 📌 Описание проекта
 
 В рамках проекта была решена задача регрессии — предсказание стоимости недвижимости на основе характеристик объектов (площадь, количество комнат, геолокация и др.).
@@ -178,9 +181,8 @@ title: 🏡 Прогнозирование стоимости недвижимо
 
 ## 📎 Ссылки
 
-* 📓 Ноутбук с решением: https://colab.research.google.com/drive/1saHDYmdRMorJKzAxilSathy6tC8B2IgB?usp=sharing
-* 🌐 Описание: https://yannisbtw.github.io/labs/semester_2/Python/README5/ или https://shadowkreys.sourcecraft.site/shadowkreys-sourcecraft-site/labs/semester_2/Python/README5/
-
+* [📓 Ноутбук с решением](https://colab.research.google.com/drive/1saHDYmdRMorJKzAxilSathy6tC8B2IgB?usp=sharing)
+* 🌐 Описание на [GitHub](https://yannisbtw.github.io/labs/semester_2/Python/README5/) и на [SourceCraft](https://shadowkreys.sourcecraft.site/shadowkreys-sourcecraft-site/labs/semester_2/Python/README5/)
 ---
 
 ## 📌 Итог
