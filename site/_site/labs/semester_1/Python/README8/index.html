@@ -1,0 +1,720 @@
+<!doctype html>
+<html data-bs-theme="">
+    <head>
+                <title>Клиент-серверное приложение на Python с использованием Jinja2 - Сайт Ломаченко Яна</title>
+
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            
+            <link rel="canonical" href="https://yannisbtw.github.io/labs/semester_1/Python/README8/">
+            
+
+            
+                <link  rel="icon" type="image/x-icon" href="../../../../assets/img/favicon.ico">
+            
+
+        <script>var base_url = '../../../..';</script>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+            <link rel="stylesheet" href="../../../../assets/css/bootstrap.min.css">
+            <link rel="stylesheet" href="../../../../assets/css/root.min.css">
+            <link rel="stylesheet" href="../../../../assets/css/main.min.css">
+            <link rel="stylesheet" href="../../../../assets/css/media.min.css">
+            <link rel="stylesheet" href="../../../../assets/css/mkdocstrings.min.css">
+                <script src="../../../../search/main.js"></script>
+
+            
+                
+            
+          
+    </head>
+
+    <body>
+        <div class="container py-3">
+            <header>
+                    <!-- block header -->
+<nav class="navbar navbar-expand-xl border-bottom">
+    <div class="container-fluid">
+        
+
+        
+            <span class=" fs-4 title-color site-name" id="component-site-name" style="text-transform: uppercase;">Сайт Ломаченко Яна</span>
+        
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMenu"
+            aria-controls="navbarsMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse flex-column ml-auto" id="navbarsMenu">
+            <ul class="navbar-nav">
+
+                <!-- block menu -->
+                <li class="nav-item">
+                    <!-- block menu -->
+    
+        <li class="nav-item" id="component-menu">
+            <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../..">[Главная]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../../about/">[Обо мне]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../../projects/">[Проекты]</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="
+                            nav-link dropdown-toggle text-decoration-none" href="#" data-bs-toggle="dropdown">[Лабораторные работы]</a>
+                            <ul class="dropdown-menu">
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../" class="dropdown-item text-decoration-none ">1 семестр</a>
+    </li>
+<!-- endblock -->
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../index2/" class="dropdown-item text-decoration-none ">2 семестр</a>
+    </li>
+<!-- endblock -->
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../../contacts/">[Контакты]</a>
+                        </li>
+            </ul>
+        </li>
+<!-- endblock -->
+                </li>
+                <!-- endblock -->
+
+                <!-- block search -->
+                <li class="nav-item">
+                    <a class="collapsed" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <div class="md-search-icon">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </div>
+                    </a>
+                </li>
+                <!--  endblock -->
+
+                <!-- block source -->
+                <li class="nav-item">
+                    
+                </li>
+                <!--  endblock -->
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--  endblock -->
+            </header>
+
+            <main><!-- block search -->
+<div class="collapse" id="collapseExample">
+    <div role="search" class="search-box">
+        <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+            <input type="text" name="q" class="search-query"
+            placeholder="Search docs" title="Type search term here" />
+        </form>
+    </div>
+</div>
+<!-- endblock -->
+
+                
+                        <!-- block content -->
+<section class="container post" id="component-content">
+    <article>
+        <header>
+            
+                <h1 class=" title" id="component-title">Клиент-серверное приложение на Python с использованием Jinja2</h1>
+            
+        </header>
+        <p><p><strong>Студент:</strong> Ломаченко Ян Станиславович (505115)</p>
+<p><strong>Группа:</strong> P3120</p>
+<hr />
+<h1 id="1"><strong>1. Цель работы</strong></h1>
+<p>Целью лабораторной работы является разработка простого клиент-серверного приложения на Python <strong>без использования серверных фреймворков</strong>, с применением:</p>
+<ul>
+<li>Создать простое клиент-серверное приложение на Python без серверных фреймворков;</li>
+<li>Освоить работу с HTTPServer и маршрутизацию запросов;</li>
+<li>Применять шаблонизатор Jinja2 для отображения данных;</li>
+<li>Реализовать модели предметной области (User, Currency, UserCurrency, App, Author) с геттерами и сеттерами;</li>
+<li>Структурировать код в соответствии с архитектурой MVC;</li>
+<li>геттеров и сеттеров для валидации данных;</li>
+<li>Получать данные о курсах валют через функцию get_currencies и отображать их пользователям;</li>
+<li>Реализовать функциональность подписки пользователей на валюты и отображение динамики их изменения;</li>
+<li>Научиться создавать тесты для моделей и серверной логики.</li>
+</ul>
+<hr />
+<h1 id="2"><strong>2. Описание предметной области</strong></h1>
+<p>Приложение позволяет:</p>
+<ul>
+<li>просматривать актуальные курсы валют;</li>
+<li>отображать список пользователей;</li>
+<li>показывать, на какие валюты подписан конкретный пользователь;</li>
+<li>управлять моделью приложения и информацией об авторе.</li>
+</ul>
+<p>Используются следующие сущности:</p>
+<hr />
+<h2 id="21-author"><strong>2.1. Модель Author</strong></h2>
+<p>Описывает автора программного проекта.</p>
+<table>
+<thead>
+<tr>
+<th>Свойство</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>имя автора</td>
+</tr>
+<tr>
+<td><code>group</code></td>
+<td>учебная группа</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="22-app"><strong>2.2. Модель App</strong></h2>
+<p>Хранит информацию о приложении.</p>
+<table>
+<thead>
+<tr>
+<th>Свойство</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>название приложения</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td>версия</td>
+</tr>
+<tr>
+<td><code>author</code></td>
+<td>объект Author</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="23-user"><strong>2.3. Модель User</strong></h2>
+<p>Описывает пользователя приложения.</p>
+<table>
+<thead>
+<tr>
+<th>Свойство</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>уникальный идентификатор</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>имя пользователя</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="24-currency"><strong>2.4. Модель Currency</strong></h2>
+<p>Представляет валюту, полученную из API ЦБ РФ.</p>
+<table>
+<thead>
+<tr>
+<th>Свойство</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>уникальный ID</td>
+</tr>
+<tr>
+<td><code>num_code</code></td>
+<td>цифровой код валюты</td>
+</tr>
+<tr>
+<td><code>char_code</code></td>
+<td>символьный код</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>название валюты</td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td>текущий курс</td>
+</tr>
+<tr>
+<td><code>nominal</code></td>
+<td>номинал валюты</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="25-usercurrency"><strong>2.5. Модель UserCurrency</strong></h2>
+<p>Реализует связь «много ко многим» между User и Currency.</p>
+<table>
+<thead>
+<tr>
+<th>Свойство</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>subscription_id</code></td>
+<td>ID подписки</td>
+</tr>
+<tr>
+<td><code>user_id</code></td>
+<td>внешний ключ к User</td>
+</tr>
+<tr>
+<td><code>currency_id</code></td>
+<td>внешний ключ к Currency</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="3-mvc"><strong>3. Архитектура проекта (MVC)</strong></h1>
+<p>Проект структурирован по архитектурному принципу <strong>Model–View–Controller</strong>.</p>
+<hr />
+<h2 id="31"><strong>3.1. Структура папок</strong></h2>
+<pre><code>myapp/
+├── models/
+│   ├── __init__.py
+│   ├── author.py
+│   ├── app.py
+│   ├── user.py
+│   ├── currency.py
+│   └── user_currency.py
+├── templates/
+│   ├── index.html
+│   ├── author.html    
+│   ├── users.html
+│   └── currencies.html
+├── static/
+│   └── изображения
+├── utils/
+│   └── currencies_api.py
+├── tests/
+│   ├── test_models.py
+│   ├── test_currencies.py
+│   └── test_myapp_controller.py
+└── myapp.py
+</code></pre>
+<hr />
+<h2 id="32-mvc"><strong>3.2. Разделение ответственности (MVC)</strong></h2>
+<h3 id="models-models"><strong>Models (models/)</strong></h3>
+<p>Отвечают за хранение данных, геттеры, сеттеры, проверки типов, бизнес-логику.</p>
+<h3 id="views-templates"><strong>Views (templates/)</strong></h3>
+<p>HTML-шаблоны Jinja2.
+Содержат только отображение, без вычислительной логики.</p>
+<h3 id="controller-myapppy"><strong>Controller (myapp.py)</strong></h3>
+<p>HTTPServer + маршруты:</p>
+<ul>
+<li><code>/</code> — главная</li>
+<li><code>/users</code> — список пользователей</li>
+<li><code>/currencies</code> — список валют</li>
+<li><code>/author</code> — информация об авторе</li>
+</ul>
+<hr />
+<h1 id="4"><strong>4. Описание реализации</strong></h1>
+<hr />
+<h2 id="41"><strong>4.1. Реализация моделей</strong></h2>
+<p>Каждая модель хранит данные в приватных атрибутах (<code>__id</code>, <code>__name</code>) и предоставляет доступ через свойства.</p>
+<p>Пример сеттера:</p>
+<pre><code class="language-python">@value.setter
+def value(self, value):
+    if not isinstance(value, (int, float)):
+        raise TypeError(&quot;Курс валюты должен быть числом.&quot;)
+    if value &lt;= 0:
+        raise ValueError(&quot;Курс валюты должен быть положительным.&quot;)
+    self.__value = float(value)
+</code></pre>
+<p>Преимущества:</p>
+<ul>
+<li>защита от некорректных данных;</li>
+<li>строгая типизация;</li>
+<li>изоляция логики валидации.</li>
+</ul>
+<hr />
+<h2 id="42"><strong>4.2. Реализация сервера</strong></h2>
+<p>Используется стандартная библиотека:</p>
+<pre><code class="language-python">from http.server import HTTPServer, BaseHTTPRequestHandler
+</code></pre>
+<p>Парсинг параметров:</p>
+<pre><code class="language-python">from urllib.parse import urlparse, parse_qs
+</code></pre>
+<p>Пример маршрутизации:</p>
+<pre><code class="language-python">if path == &quot;/&quot;:
+    self.render_index()
+elif path == &quot;/users&quot;:
+    self.render_users()
+elif path.startswith(&quot;/user&quot;):
+    query = parse_qs(parsed.query)
+    self.render_user_page(query.get(&quot;id&quot;))
+</code></pre>
+<p>Контроллер вызывает рендер шаблона и отправляет HTML клиенту.</p>
+<hr />
+<h2 id="43-jinja2"><strong>4.3. Использование Jinja2</strong></h2>
+<p>Инициализация выполняется <strong>один раз</strong>:</p>
+<pre><code class="language-python">env = Environment(
+    loader=PackageLoader(&quot;myapp&quot;),
+    autoescape=select_autoescape()
+)
+</code></pre>
+<p>Преимущества:</p>
+<ul>
+<li>шаблоны загружаются из <code>myapp/templates</code>;</li>
+<li>Jinja2 кэширует шаблоны;</li>
+<li>повторный рендер работает быстро.</li>
+</ul>
+<p>Получение шаблона:</p>
+<pre><code class="language-python">template_index = env.get_template(&quot;index.html&quot;)
+</code></pre>
+<p>Рендер:</p>
+<pre><code class="language-python">html = template_index.render(
+    myapp=&quot;CurrenciesListApp&quot;,
+    author_name=author.name,
+    group=author.group
+)
+</code></pre>
+<hr />
+<h2 id="44-get_currencies"><strong>4.4. Интеграция get_currencies</strong></h2>
+<p>Функция из <code>utils/currencies_api.py</code>:</p>
+<pre><code class="language-python">def get_currencies(
+        currency_codes: Iterable[str],
+        url: str = &quot;https://www.cbr-xml-daily.ru/daily_json.js&quot;,
+        timeout: float = 5.0,
+) -&gt; dict[str, float]:
+    &quot;&quot;&quot;
+    Получить курсы указанных валют с API ЦБ РФ.
+
+    Параметры
+    ---------
+    currency_codes:
+        Итерируемый объект с символьными кодами валют
+        (например, ['USD', 'EUR']).
+    url:
+        URL API ЦБ РФ или тестовый URL.
+    timeout:
+        Таймаут HTTP-запроса в секундах.
+
+    Возвращает
+    ----------
+    dict[str, float]
+        Словарь вида {&quot;USD&quot;: 93.25, &quot;EUR&quot;: 101.7}.
+
+    Исключения
+    ----------
+    ConnectionError
+        Если API недоступен или произошла сетевая ошибка.
+    ValueError
+        Если ответ не удаётся распарсить как корректный JSON.
+    KeyError
+        Если отсутствует ключ &quot;Valute&quot; или указанная валюта.
+    TypeError
+        Если курс валюты имеет некорректный тип (не число).
+    &quot;&quot;&quot;
+    try:
+        response = requests.get(url, timeout=timeout)
+        response.raise_for_status()
+    except requests.exceptions.RequestException as e:
+        raise ConnectionError(f&quot;Ошибка при запросе к API: {e}&quot;) from e
+
+    try:
+        data = response.json()
+    except ValueError as e:
+        raise ValueError(&quot;Некорректный JSON в ответе API&quot;) from e
+
+    try:
+        valute_dict = data[&quot;Valute&quot;]
+    except KeyError as e:
+        raise KeyError('В ответе JSON отсутствует ключ &quot;Valute&quot;') from e
+
+    result: dict[str, float] = {}
+    for code in currency_codes:
+        try:
+            currency_info = valute_dict[code]
+        except KeyError as e:
+            raise KeyError(f&quot;Валюта {code!r} отсутствует в данных API&quot;) from e
+
+        value = currency_info.get(&quot;Value&quot;)
+        if not isinstance(value, (int, float)):
+            raise TypeError(f&quot;Курс валюты {code!r} имеет неверный тип:&quot;
+                            f&quot; {type(value).__name__}&quot;
+            )
+
+        result[code] = float(value)
+
+    return result
+</code></pre>
+<p>Сервер:</p>
+<ol>
+<li>вызывает функцию;</li>
+<li>создаёт объекты Currency;</li>
+<li>передаёт их в шаблон <code>currencies.html</code>.</li>
+</ol>
+<hr />
+<h1 id="5"><strong>5. Примеры работы приложения</strong></h1>
+<p><img alt="img.png" src="../static_8/main.png" />
+<img alt="img_1.png" src="../static_8/currencies.png" />
+<img alt="img_2.png" src="../static_8/users.png" />
+<img alt="img_3.png" src="../static_8/author.png" />
+<img alt="img.png" src="../static_8/logs.png" /></p>
+<hr />
+<h1 id="6"><strong>6. Тестирование</strong></h1>
+<p>Для проверки работоспособности были разработаны модульные тесты (unittest).</p>
+<hr />
+<h1 id="61"><strong>6.1 Тестирование моделей</strong></h1>
+<p>Тесты моделей находились в файле:</p>
+<pre><code>tests/test_models.py
+</code></pre>
+<p>Цель тестирования — убедиться, что:</p>
+<ul>
+<li>геттеры и сеттеры работают корректно,</li>
+<li>выполняется строгая проверка типов,</li>
+<li>при некорректных данных выбрасываются исключения <code>ValueError</code> и <code>TypeError</code>,</li>
+<li>корректные данные успешно создают экземпляры моделей.</li>
+</ul>
+<h2 id="author">✔ Тестирование модели Author</h2>
+<p>Проверялось:</p>
+<ul>
+<li>корректное создание объекта;</li>
+<li>валидация имени (минимум 2 символа);</li>
+<li>валидация группы;</li>
+<li>выброс исключений при неверных типах.</li>
+</ul>
+<p>Пример:</p>
+<pre><code class="language-python">with self.assertRaises(ValueError):
+    Author(name=&quot;&quot;, group=&quot;P3120&quot;)
+</code></pre>
+<hr />
+<h2 id="app">✔ Тестирование модели App</h2>
+<p>Проверялось:</p>
+<ul>
+<li>корректная привязка объекта Author;</li>
+<li>валидация имени и версии;</li>
+<li>проверка того, что в поле <code>author</code> допускается только объект класса Author.</li>
+</ul>
+<p>Пример:</p>
+<pre><code class="language-python">with self.assertRaises(ValueError):
+    app.author = &quot;не автор&quot;
+</code></pre>
+<hr />
+<h2 id="user">✔ Тестирование модели User</h2>
+<p>Проверялось:</p>
+<ul>
+<li>ID должен быть положительным целым числом;</li>
+<li>имя должно быть строкой и не пустой;</li>
+<li>выбрасываются ошибки при неправильных типах.</li>
+</ul>
+<p>Пример:</p>
+<pre><code class="language-python">with self.assertRaises(ValueError):
+    User(user_id=&quot;1&quot;, name=&quot;Имя&quot;)
+</code></pre>
+<hr />
+<h2 id="currency">✔ Тестирование модели Currency</h2>
+<p>Проверялось:</p>
+<ul>
+<li>корректность типов для числа, номинала, кодов;</li>
+<li>значение курса должно быть <strong>положительным числом</strong>;</li>
+<li>попытка передать строковое значение вызывает <code>ValueError</code>.</li>
+</ul>
+<p>Пример:</p>
+<pre><code class="language-python">with self.assertRaises(ValueError):
+    Currency(1, 840, &quot;USD&quot;, &quot;Доллар&quot;, -10, 1)
+</code></pre>
+<hr />
+<h2 id="usercurrency">✔ Тестирование модели UserCurrency</h2>
+<p>Так как в проекте UserCurrency реализована через три поля:</p>
+<pre><code class="language-python">subscription_id
+user_id
+currency_id
+</code></pre>
+<p>Проверялось:</p>
+<ul>
+<li>валидация каждого ID (целое и положительное),</li>
+<li>корректное создание объекта.</li>
+</ul>
+<p>Пример:</p>
+<pre><code class="language-python">uc = UserCurrency(subscription_id=1, user_id=1, currency_id=10)
+self.assertEqual(uc.subscription_id, 1)
+</code></pre>
+<p>Также тесты проверяли корректный выброс исключений:</p>
+<pre><code class="language-python">with self.assertRaises(ValueError):
+    UserCurrency(subscription_id=1, user_id=&quot;1&quot;, currency_id=10)
+</code></pre>
+<hr />
+<h1 id="62-get_currencies"><strong>6.2 Тестирование функции get_currencies</strong></h1>
+<p>Файл:</p>
+<pre><code>tests/test_currencies_api.py
+</code></pre>
+<p>Проверялось:</p>
+<h3 id="api">✔ получение корректных данных с API</h3>
+<p>Был выполнен запрос к сайту ЦБ РФ:</p>
+<pre><code class="language-python">rates = get_currencies([&quot;USD&quot;, &quot;EUR&quot;])
+self.assertIn(&quot;USD&quot;, rates)
+self.assertGreater(rates[&quot;USD&quot;], 0)
+</code></pre>
+<h3 id="_1">✔ выброс исключений при ошибках</h3>
+<ul>
+<li>несуществующий код валюты → KeyError</li>
+<li>неверный URL → ConnectionError</li>
+<li>некорректный JSON → ValueError</li>
+</ul>
+<p>Пример теста:</p>
+<pre><code class="language-python">with self.assertRaises(KeyError):
+    get_currencies([&quot;FAKE&quot;])
+</code></pre>
+<hr />
+<h1 id="63"><strong>6.3 Тестирование контроллера</strong></h1>
+<p>Файл:</p>
+<pre><code>tests/test_controller.py
+</code></pre>
+<p>Поскольку приложение использует <code>HTTPServer</code>, для тестов он запускался на временном порту:</p>
+<p>При тестировании проверялось, что сервер корректно отвечает на маршруты:</p>
+<table>
+<thead>
+<tr>
+<th>Маршрут</th>
+<th>Описание</th>
+<th>Ожидаемый статус</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/</code></td>
+<td>главная страница</td>
+<td>200</td>
+</tr>
+<tr>
+<td><code>/users</code></td>
+<td>список пользователей</td>
+<td>200</td>
+</tr>
+<tr>
+<td><code>/currencies</code></td>
+<td>курсы валют</td>
+<td>200</td>
+</tr>
+<tr>
+<td><code>/author</code></td>
+<td>информация об авторе</td>
+<td>200</td>
+</tr>
+</tbody>
+</table>
+<p>Пример теста:</p>
+<pre><code class="language-python">response = requests.get(&quot;http://localhost:8081/users&quot;)
+self.assertEqual(response.status_code, 200)
+</code></pre>
+<hr />
+<h1 id="64"><strong>6.4 Результаты тестирования</strong></h1>
+<p>Вывод консоли после запуска:</p>
+<p><img alt="img.png" src="../static_8/tests.png" /></p>
+<p>Это означает:</p>
+<ul>
+<li>все тесты моделей проходят успешно;</li>
+<li>API работает корректно;</li>
+<li>маршруты сервера доступны;</li>
+<li>исключения обрабатываются правильно;</li>
+<li>приложение полностью работоспособно.</li>
+</ul>
+<hr />
+<h1 id="_2">✔ Итог</h1>
+<p>Тестирование подтвердило:</p>
+<ul>
+<li>стабильность и корректность системных компонентов,</li>
+<li>правильную реализацию архитектуры MVC,</li>
+<li>корректность обработки запросов HTTPServer,</li>
+<li>надёжность валидации моделей,</li>
+<li>правильную интеграцию API ЦБ РФ.</li>
+</ul>
+<hr />
+<h1 id="7"><strong>7. Выводы</strong></h1>
+<p>В ходе лабораторной работы:</p>
+<ul>
+<li>Изучена работа HTTPServer и маршрутизация без фреймворков.</li>
+<li>Реализована архитектура MVC с чётким разделением ответственности.</li>
+<li>Созданы полноценные модели предметной области с геттерами и сеттерами.</li>
+<li>Освоена работа с Jinja2 и динамическим HTML.</li>
+<li>Осуществлена интеграция с внешним API ЦБ РФ.</li>
+<li>Реализована функциональность подписок пользователей на валюты.</li>
+<li>Проведено модульное тестирование моделей, API и контроллера.</li>
+</ul>
+<h3 id="_3"><strong>Основные трудности:</strong></h3>
+<ul>
+<li>корректная обработка query-параметров;</li>
+<li>работа с Jinja2 PackageLoader;</li>
+<li>необходимость строгой валидации моделей.</li>
+</ul>
+<h3 id="_4"><strong>Полученные навыки:</strong></h3>
+<ul>
+<li>разработка серверной логики на чистом Python;</li>
+<li>построение MVC-приложений;</li>
+<li>работа с шаблонизаторами;</li>
+<li>написание тестов;</li>
+<li>интеграция API в собственное приложение.</li>
+</ul></p>
+    </article>
+</section>
+<!-- endblock -->
+                
+                
+            </main>
+
+            
+                    <!-- block preview -->
+<!-- endblock -->
+            
+
+            
+                    <!-- block footer -->
+<footer class="pt-4 my-md-5 pt-md-5 border-top" id="component-footer">
+    <div class="row">
+        <div class="col-12 col-md">
+                <!-- block copyright -->
+
+    <small class="d-block mb-3">
+        Made with
+        <a href="https://github.com/FernandoCelmer/mkdocs-simple-blog" target="_blank" rel="noopener">
+            Simple Blog for MkDocs
+        </a>
+    </small>
+
+<!-- endblock -->
+        </div>
+    </div>
+</footer>
+<!-- endblock -->
+            
+        </div>
+
+            <script src="../../../../assets/js/jquery-3.3.1.slim.min.js""></script>
+            <script src="../../../../assets/js/bootstrap.bundle.min.js""></script>
+            <script src="../../../../assets/js/main.min.js""></script>
+                <script src="../../../../search/main.js" defer></script>
+
+    </body>
+
+</html>

@@ -1,0 +1,389 @@
+<!doctype html>
+<html data-bs-theme="">
+    <head>
+                <title>Методы оптимизации вычисления кода с помощью потоков, процессов, Cython, отпускания GIL - Сайт Ломаченко Яна</title>
+
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            
+            <link rel="canonical" href="https://yannisbtw.github.io/labs/semester_1/Python/README10/">
+            
+
+            
+                <link  rel="icon" type="image/x-icon" href="../../../../assets/img/favicon.ico">
+            
+
+        <script>var base_url = '../../../..';</script>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+            <link rel="stylesheet" href="../../../../assets/css/bootstrap.min.css">
+            <link rel="stylesheet" href="../../../../assets/css/root.min.css">
+            <link rel="stylesheet" href="../../../../assets/css/main.min.css">
+            <link rel="stylesheet" href="../../../../assets/css/media.min.css">
+            <link rel="stylesheet" href="../../../../assets/css/mkdocstrings.min.css">
+                <script src="../../../../search/main.js"></script>
+
+            
+                
+            
+          
+    </head>
+
+    <body>
+        <div class="container py-3">
+            <header>
+                    <!-- block header -->
+<nav class="navbar navbar-expand-xl border-bottom">
+    <div class="container-fluid">
+        
+
+        
+            <span class=" fs-4 title-color site-name" id="component-site-name" style="text-transform: uppercase;">Сайт Ломаченко Яна</span>
+        
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMenu"
+            aria-controls="navbarsMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse flex-column ml-auto" id="navbarsMenu">
+            <ul class="navbar-nav">
+
+                <!-- block menu -->
+                <li class="nav-item">
+                    <!-- block menu -->
+    
+        <li class="nav-item" id="component-menu">
+            <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../..">[Главная]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../../about/">[Обо мне]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../../projects/">[Проекты]</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="
+                            nav-link dropdown-toggle text-decoration-none" href="#" data-bs-toggle="dropdown">[Лабораторные работы]</a>
+                            <ul class="dropdown-menu">
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../" class="dropdown-item text-decoration-none ">1 семестр</a>
+    </li>
+<!-- endblock -->
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../index2/" class="dropdown-item text-decoration-none ">2 семестр</a>
+    </li>
+<!-- endblock -->
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../../contacts/">[Контакты]</a>
+                        </li>
+            </ul>
+        </li>
+<!-- endblock -->
+                </li>
+                <!-- endblock -->
+
+                <!-- block search -->
+                <li class="nav-item">
+                    <a class="collapsed" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <div class="md-search-icon">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </div>
+                    </a>
+                </li>
+                <!--  endblock -->
+
+                <!-- block source -->
+                <li class="nav-item">
+                    
+                </li>
+                <!--  endblock -->
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--  endblock -->
+            </header>
+
+            <main><!-- block search -->
+<div class="collapse" id="collapseExample">
+    <div role="search" class="search-box">
+        <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+            <input type="text" name="q" class="search-query"
+            placeholder="Search docs" title="Type search term here" />
+        </form>
+    </div>
+</div>
+<!-- endblock -->
+
+                
+                        <!-- block content -->
+<section class="container post" id="component-content">
+    <article>
+        <header>
+            
+                <h1 class=" title" id="component-title">Методы оптимизации вычисления кода с помощью потоков, процессов, Cython, отпускания GIL</h1>
+            
+        </header>
+        <p><h1 id="cython-gil">Методы оптимизации вычисления кода с помощью потоков, процессов, Cython, отпускания GIL</h1>
+<h2 id="_1">Цель</h2>
+<p>Исследовать методы оптимизации вычислительного кода, используя потоки, процессы, Cython и отпускание GIL, на основе сравнения времени вычисления численного интеграла методом прямоугольников.</p>
+<h2 id="1-python">Итерация 1 - чистый Python</h2>
+<ul>
+<li>Функция <code>integrate()</code> оформлена docstring (PEP 257) и аннотациями типов (PEP 484) - файл <code>integrate_base.py</code>.</li>
+<li>В docstring встроены примеры <code>doctest</code>.</li>
+<li>Добавлены unit-тесты (pytest и unittest) - каталог <code>tests/</code>.</li>
+<li>Замеры времени: <code>iteration1_pure_python.py</code> и общий прогон <code>bench_all.py</code>.</li>
+</ul>
+<h2 id="2-">Итерация 2 - потоки</h2>
+<ul>
+<li>Реализована функция <code>integrate_async()</code> (ThreadPoolExecutor) - файл <code>iteration2_threads.py</code>.</li>
+<li>Замеры для 2, 4, 6, 8 потоков.</li>
+</ul>
+<p>Вывод: для CPU-bound кода на чистом Python потоки почти не ускоряют вычисления из-за GIL.</p>
+<h2 id="3-">Итерация 3 - процессы</h2>
+<ul>
+<li>Реализована функция <code>integrate_async_processes()</code> (ProcessPoolExecutor) - файл <code>iteration3_processes.py</code>.</li>
+<li>Замеры для 2, 4, 6, 8 процессов.</li>
+</ul>
+<p>Вывод: процессы дают реальный параллелизм и ускорение, но имеют накладные расходы.</p>
+<h2 id="4-cython">Итерация 4 - профилирование и Cython</h2>
+<h3 id="_2">Профилирование</h3>
+<p>Файл <code>profile_integrate.py</code> строит профиль выполнения и сохраняет <code>profile.pstats</code>.</p>
+<h3 id="cython-">Cython-оптимизация</h3>
+<p>Модуль <code>cython_mod/integrate_cy.pyx</code> содержит:
+- <code>integrate_sin</code>, <code>integrate_cos</code>, <code>integrate_poly2</code> - C-level варианты (минимум взаимодействия с Python/C-API)
+- <code>integrate_pycall</code> - цикл ускорен, но вызов <code>f(x)</code> остается Python-вызовом в каждой итерации.</p>
+<h3 id="annotatetrue">annotate=True</h3>
+<p>Сборка с HTML-аннотацией:</p>
+<pre><code class="language-bash">CYTHON_ANNOTATE=1 python setup.py build_ext --inplace
+</code></pre>
+<h2 id="5-nogil">Итерация 5 - noGIL</h2>
+<p>Модуль <code>cython_mod/integrate_nogil.pyx</code>:
+- <code>integrate_sin_nogil</code> - отпускание GIL и распараллеливание через <code>prange</code> (OpenMP).
+- Замеры для 2, 4, 6 потоков и сравнение с процессами + чистый Python.</p>
+<h2 id="_3">Доп. вопрос: мьютексы/семафоры</h2>
+<p>Обычно не нужны:
+- каждая задача считает локальную сумму
+- итоговая сумма складывается после завершения задач
+- блокировки внутри цикла ухудшают производительность</p>
+<h2 id="python-314-gil">Доп. вопрос: Python 3.14 и GIL</h2>
+<p>В стандартном CPython по умолчанию используется GIL, поэтому вывод про потоки (итерация 2) сохраняется.
+Если используется экспериментальная сборка/режим без GIL, потоки могут начать ускорять CPU-bound код - тогда замеры нужно повторить.</p>
+<h2 id="1-3">Итерации 1-3</h2>
+<pre><code class="language-bash">python iteration1_pure_python.py
+python iteration2_threads.py
+python iteration3_processes.py
+</code></pre>
+<h2 id="doctest">Doctest</h2>
+<pre><code class="language-bash">python -m doctest -v integrate_base.py
+</code></pre>
+<h2 id="_4">Тесты</h2>
+<pre><code class="language-bash">pip install -r requirements.txt
+pytest -q
+# или
+python -m unittest tests/test_integrate_unittest.py -v
+</code></pre>
+<h2 id="_5">Профилирование</h2>
+<pre><code class="language-bash">python profile_integrate.py
+</code></pre>
+<h2 id="cython-4-5">Cython (итерации 4-5)</h2>
+<p>Установка:</p>
+<pre><code class="language-bash">pip install -r requirements.txt
+</code></pre>
+<p>Сборка:</p>
+<pre><code class="language-bash">python setup.py build_ext --inplace
+</code></pre>
+<p>Сборка с HTML-аннотацией:</p>
+<pre><code class="language-bash">CYTHON_ANNOTATE=1 python setup.py build_ext --inplace
+</code></pre>
+<p>Замеры:</p>
+<pre><code class="language-bash">python iteration4_cython_bench.py
+python iteration5_nogil_bench.py
+</code></pre>
+<h2 id="_6">Общий прогон замеров и таблица</h2>
+<pre><code class="language-bash">python bench_all.py
+</code></pre>
+<h1 id="_7">Результаты замеров</h1>
+<p>n_iter = 2000000</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">iteration</th>
+<th style="text-align: left;">method</th>
+<th style="text-align: left;">detail</th>
+<th style="text-align: right;">n_jobs</th>
+<th style="text-align: right;">n_iter</th>
+<th style="text-align: right;">sec</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">python</td>
+<td style="text-align: left;">baseline sin</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2000000</td>
+<td style="text-align: right;">0.0938391</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">threads</td>
+<td style="text-align: left;">ThreadPoolExecutor</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2000000</td>
+<td style="text-align: right;">0.0951086</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">threads</td>
+<td style="text-align: left;">ThreadPoolExecutor</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2000000</td>
+<td style="text-align: right;">0.0942634</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">threads</td>
+<td style="text-align: left;">ThreadPoolExecutor</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">2000000</td>
+<td style="text-align: right;">0.0950183</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">threads</td>
+<td style="text-align: left;">ThreadPoolExecutor</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">2000000</td>
+<td style="text-align: right;">0.0947595</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">processes</td>
+<td style="text-align: left;">ProcessPoolExecutor</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2000000</td>
+<td style="text-align: right;">0.403144</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">processes</td>
+<td style="text-align: left;">ProcessPoolExecutor</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2000000</td>
+<td style="text-align: right;">0.433724</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">processes</td>
+<td style="text-align: left;">ProcessPoolExecutor</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">2000000</td>
+<td style="text-align: right;">0.468149</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">processes</td>
+<td style="text-align: left;">ProcessPoolExecutor</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">2000000</td>
+<td style="text-align: right;">0.544832</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">cython</td>
+<td style="text-align: left;">C-level sin</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2000000</td>
+<td style="text-align: right;">0.00847953</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">cython</td>
+<td style="text-align: left;">loop + py-call sin</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2000000</td>
+<td style="text-align: right;">0.0535731</td>
+</tr>
+<tr>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">cython_nogil</td>
+<td style="text-align: left;">OpenMP prange sin</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2000000</td>
+<td style="text-align: right;">0.0083781</td>
+</tr>
+<tr>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">cython_nogil</td>
+<td style="text-align: left;">OpenMP prange sin</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2000000</td>
+<td style="text-align: right;">0.007756</td>
+</tr>
+<tr>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">cython_nogil</td>
+<td style="text-align: left;">OpenMP prange sin</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">2000000</td>
+<td style="text-align: right;">0.00487367</td>
+</tr>
+</tbody>
+</table></p>
+    </article>
+</section>
+<!-- endblock -->
+                
+                
+            </main>
+
+            
+                    <!-- block preview -->
+<!-- endblock -->
+            
+
+            
+                    <!-- block footer -->
+<footer class="pt-4 my-md-5 pt-md-5 border-top" id="component-footer">
+    <div class="row">
+        <div class="col-12 col-md">
+                <!-- block copyright -->
+
+    <small class="d-block mb-3">
+        Made with
+        <a href="https://github.com/FernandoCelmer/mkdocs-simple-blog" target="_blank" rel="noopener">
+            Simple Blog for MkDocs
+        </a>
+    </small>
+
+<!-- endblock -->
+        </div>
+    </div>
+</footer>
+<!-- endblock -->
+            
+        </div>
+
+            <script src="../../../../assets/js/jquery-3.3.1.slim.min.js""></script>
+            <script src="../../../../assets/js/bootstrap.bundle.min.js""></script>
+            <script src="../../../../assets/js/main.min.js""></script>
+                <script src="../../../../search/main.js" defer></script>
+
+    </body>
+
+</html>

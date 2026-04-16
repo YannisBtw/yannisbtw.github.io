@@ -1,0 +1,602 @@
+<!doctype html>
+<html data-bs-theme="">
+    <head>
+                <title>Логирование и обработка ошибок в Python - Сайт Ломаченко Яна</title>
+
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            
+            <link rel="canonical" href="https://yannisbtw.github.io/labs/semester_1/Python/README7/">
+            
+
+            
+                <link  rel="icon" type="image/x-icon" href="../../../../assets/img/favicon.ico">
+            
+
+        <script>var base_url = '../../../..';</script>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+            <link rel="stylesheet" href="../../../../assets/css/bootstrap.min.css">
+            <link rel="stylesheet" href="../../../../assets/css/root.min.css">
+            <link rel="stylesheet" href="../../../../assets/css/main.min.css">
+            <link rel="stylesheet" href="../../../../assets/css/media.min.css">
+            <link rel="stylesheet" href="../../../../assets/css/mkdocstrings.min.css">
+                <script src="../../../../search/main.js"></script>
+
+            
+                
+            
+          
+    </head>
+
+    <body>
+        <div class="container py-3">
+            <header>
+                    <!-- block header -->
+<nav class="navbar navbar-expand-xl border-bottom">
+    <div class="container-fluid">
+        
+
+        
+            <span class=" fs-4 title-color site-name" id="component-site-name" style="text-transform: uppercase;">Сайт Ломаченко Яна</span>
+        
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMenu"
+            aria-controls="navbarsMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse flex-column ml-auto" id="navbarsMenu">
+            <ul class="navbar-nav">
+
+                <!-- block menu -->
+                <li class="nav-item">
+                    <!-- block menu -->
+    
+        <li class="nav-item" id="component-menu">
+            <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../..">[Главная]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../../about/">[Обо мне]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../../projects/">[Проекты]</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="
+                            nav-link dropdown-toggle text-decoration-none" href="#" data-bs-toggle="dropdown">[Лабораторные работы]</a>
+                            <ul class="dropdown-menu">
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../" class="dropdown-item text-decoration-none ">1 семестр</a>
+    </li>
+<!-- endblock -->
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../index2/" class="dropdown-item text-decoration-none ">2 семестр</a>
+    </li>
+<!-- endblock -->
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../../contacts/">[Контакты]</a>
+                        </li>
+            </ul>
+        </li>
+<!-- endblock -->
+                </li>
+                <!-- endblock -->
+
+                <!-- block search -->
+                <li class="nav-item">
+                    <a class="collapsed" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <div class="md-search-icon">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </div>
+                    </a>
+                </li>
+                <!--  endblock -->
+
+                <!-- block source -->
+                <li class="nav-item">
+                    
+                </li>
+                <!--  endblock -->
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--  endblock -->
+            </header>
+
+            <main><!-- block search -->
+<div class="collapse" id="collapseExample">
+    <div role="search" class="search-box">
+        <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+            <input type="text" name="q" class="search-query"
+            placeholder="Search docs" title="Type search term here" />
+        </form>
+    </div>
+</div>
+<!-- endblock -->
+
+                
+                        <!-- block content -->
+<section class="container post" id="component-content">
+    <article>
+        <header>
+            
+                <h1 class=" title" id="component-title">Логирование и обработка ошибок в Python</h1>
+            
+        </header>
+        <p><hr />
+<h2 id="_1">🎯 Цели работы</h2>
+<ul>
+<li>освоить принципы разработки декораторов с параметрами;</li>
+<li>научиться разделять ответственность функций (бизнес-логика) и декораторов (сквозная логика);</li>
+<li>научиться обрабатывать исключения, возникающие при работе с внешними API;</li>
+<li>освоить логирование в разные типы потоков (sys.stdout, io.StringIO, logging);</li>
+<li>научиться тестировать функцию и поведение логирования.</li>
+</ul>
+<hr />
+<h2 id="1-logger">📌 1. Исходный код декоратора <code>logger</code></h2>
+<pre><code class="language-python">def logger(func: FuncType | None = None, *,
+           handle: LoggerOrStream = sys.stdout) -&gt; FuncType:
+    &quot;&quot;&quot;
+    Декоратор для логирования вызовов функций.
+
+    Поддерживает три варианта аргумента ``handle``:
+
+    1. Обычный поток вывода (по умолчанию): ``sys.stdout``.
+    2. Любой файловый поток (например, ``io.StringIO()``).
+    3. Объект ``logging.Logger``.
+
+    Вариант выбирается автоматически:
+
+    * если ``handle`` является экземпляром ``logging.Logger``,
+      то используются методы ``info()`` и ``error()``;
+    * иначе предполагается, что это файловый поток с методом ``write()``.
+
+    При вызове функции логируются:
+
+    * INFO: старт вызова + аргументы;
+    * INFO: успешное завершение + результат.
+
+    При возникновении исключения:
+
+    * ERROR: тип и текст исключения;
+    * исключение пробрасывается дальше без изменения типа.
+
+    Параметризуемый декоратор: может использоваться как
+    ``@logger`` и как ``@logger(handle=...)``.
+    &quot;&quot;&quot;
+
+    def _decorate(fn: FuncType) -&gt; FuncType:
+        if isinstance(handle, logging.Logger):
+            info = handle.info
+            error = handle.error
+        else:
+
+            def info(message: str) -&gt; None:
+                handle.write(f&quot;INFO: {message}\n&quot;)
+
+            def error(message: str) -&gt; None:
+                handle.write(f&quot;ERROR: {message}\n&quot;)
+
+        @functools.wraps(fn)
+        def wrapper(*args: Any, **kwargs: Any) -&gt; Any:
+            info(f&quot;Calling {fn.__name__} with args={args}, kwargs={kwargs}&quot;)
+            try:
+                result = fn(*args, **kwargs)
+            except Exception as e:
+                error(
+                    f&quot;Function {fn.__name__} raised {type(e).__name__}: {e}&quot;
+                )
+                raise
+            else:
+                info(f&quot;{fn.__name__} returned {result!r}&quot;)
+                return result
+
+        return wrapper
+
+    if func is None:
+        return _decorate
+    return _decorate(func)
+````
+
+Полный код см. в файле `logging_utils.py`.
+
+---
+
+## 📌 2. Исходный код функции `get_currencies`
+
+Функция содержит только бизнес-логику.
+Все исключения должны выбрасываться наружу, а логирование выполняет декоратор.
+
+```python
+def get_currencies(
+        currency_codes: Iterable[str],
+        url: str = &quot;https://www.cbr-xml-daily.ru/daily_json.js&quot;,
+        timeout: float = 5.0,
+) -&gt; dict[str, float]:
+    &quot;&quot;&quot;
+    Получить курсы указанных валют с API ЦБ РФ.
+
+    Параметры
+    ---------
+    currency_codes:
+        Итерируемый объект с символьными кодами валют
+         (например, ['USD', 'EUR']).
+    url:
+        URL API ЦБ РФ или тестовый URL.
+    timeout:
+        Таймаут HTTP-запроса в секундах.
+
+    Возвращает
+    ----------
+    dict[str, float]
+        Словарь вида {&quot;USD&quot;: 93.25, &quot;EUR&quot;: 101.7}.
+
+    Исключения
+    ----------
+    ConnectionError
+        Если API недоступен или произошла сетевая ошибка.
+    ValueError
+        Если ответ не удаётся распарсить как корректный JSON.
+    KeyError
+        Если отсутствует ключ ``&quot;Valute&quot;`` или указанная валюта.
+    TypeError
+        Если курс валюты имеет некорректный тип (не число).
+    &quot;&quot;&quot;
+    try:
+        response = requests.get(url, timeout=timeout)
+        response.raise_for_status()
+    except requests.exceptions.RequestException as e:
+        raise ConnectionError(f&quot;Ошибка при запросе к API: {e}&quot;) from e
+
+    try:
+        data = response.json()
+    except ValueError as e:
+        raise ValueError(&quot;Некорректный JSON в ответе API&quot;) from e
+
+    try:
+        valute_dict = data[&quot;Valute&quot;]
+    except KeyError as e:
+        raise KeyError('В ответе JSON отсутствует ключ &quot;Valute&quot;') from e
+
+    result: dict[str, float] = {}
+    for code in currency_codes:
+        try:
+            currency_info = valute_dict[code]
+        except KeyError as e:
+            raise KeyError(f&quot;Валюта {code!r} отсутствует в данных API&quot;) from e
+
+        value = currency_info.get(&quot;Value&quot;)
+        if not isinstance(value, (int, float)):
+            raise TypeError(
+                f&quot;Курс валюты {code!r} имеет неверный тип:&quot;
+                f&quot; {type(value).__name__}&quot;
+            )
+
+        result[code] = float(value)
+
+    return result
+</code></pre>
+<hr />
+<h2 id="3">📌 3. Демонстрационный пример: решение квадратного уравнения</h2>
+<p>Функция логирует:</p>
+<ul>
+<li><strong>INFO</strong> — начало/конец вызова (через декоратор);</li>
+<li><strong>WARNING</strong> — дискриминант &lt; 0;</li>
+<li><strong>ERROR / CRITICAL</strong> — некорректные параметры.</li>
+</ul>
+<pre><code class="language-python">@logger(handle=quad_logger)
+def solve_quadratic(a: float, b: float, c: float) -&gt; tuple[float, ...] | None:
+    &quot;&quot;&quot;
+    Решить квадратное уравнение ``a * x^2 + b * x + c = 0``.
+
+    Логирование:
+
+    * INFO — старт/конец (обрабатывается декоратором);
+    * WARNING — дискриминант &lt; 0 (нет действительных корней);
+    * ERROR/CRITICAL — некорректные данные
+      (через декоратор и дополнительно внутри функции).
+    &quot;&quot;&quot;
+
+    for name, value in zip((&quot;a&quot;, &quot;b&quot;, &quot;c&quot;), (a, b, c)):
+        if not isinstance(value, (int, float)):
+            quad_logger.critical(
+                f&quot;Parameter {name!r} must be numeric, got:&quot;
+                f&quot; {value!r} of type {type(value).__name__!r}&quot;)
+            raise TypeError(f&quot;Coefficient '{name}' must be numeric&quot;)
+
+    if a == 0 and b == 0:
+        quad_logger.critical(
+            &quot;Both coefficients a and b are zero — invalid equation&quot;)
+        raise ValueError(&quot;Both a and b cannot be zero at the same time&quot;)
+
+    if a == 0:
+        quad_logger.error(&quot;Coefficient 'a' is zero — equation is not quadratic&quot;)
+        raise ValueError(
+            &quot;Coefficient 'a' cannot be zero for quadratic equation&quot;)
+
+    d = b * b - 4 * a * c
+    quad_logger.debug(f&quot;Discriminant computed: {d}&quot;)
+
+    if d &lt; 0:
+        quad_logger.warning(&quot;Discriminant &lt; 0: no real roots&quot;)
+        return None
+
+    if d == 0:
+        x = -b / (2 * a)
+        return (x,)
+
+    x1 = (-b + math.sqrt(d)) / (2 * a)
+    x2 = (-b - math.sqrt(d)) / (2 * a)
+    return x1, x2
+
+
+def demo() -&gt; None:
+    &quot;&quot;&quot;Небольшая демонстрация работы функций при запуске файла напрямую.&quot;&quot;&quot;
+    print(&quot;== Демонстрация logged_get_currencies (stdout) ==&quot;)
+    try:
+        rates = logged_get_currencies([&quot;USD&quot;, &quot;EUR&quot;])
+        print(&quot;Курсы:&quot;, rates)
+    except Exception as e:
+        print(&quot;Ошибка при получении курсов:&quot;, e)
+
+    print(
+        &quot;\n== Демонстрация file_logged_get_currencies (лог в currency.log) ==&quot;)
+    try:
+        rates = file_logged_get_currencies([&quot;USD&quot;, &quot;EUR&quot;])
+        print(&quot;Курсы:&quot;, rates)
+        print(&quot;Подробности см. в файле currency.log&quot;)
+    except Exception as e:
+        print(&quot;Ошибка при получении курсов:&quot;, e)
+
+    print(&quot;\n== Демонстрация solve_quadratic (лог в quadratic.log) ==&quot;)
+    try:
+        print(&quot;Корни  x^2 - 3x + 2:&quot;, solve_quadratic(1, -3, 2))
+        print(&quot;Корни  x^2 + 1 = 0:&quot;, solve_quadratic(1, 0, 1))
+    except Exception as e:
+        print(&quot;Ошибка при решении квадратного уравнения:&quot;, e)
+</code></pre>
+<hr />
+<h2 id="4">📌 4. Примеры логов</h2>
+<h3 id="41-stdout">✔ 4.1 Логирование в stdout</h3>
+<p><em>(Скриншот из демонстрации)</em></p>
+<p><img alt="img.png" src="../demo.png" /></p>
+<hr />
+<h3 id="42">✔ 4.2 Логирование в тестах</h3>
+<p><img alt="img_2.png" src="../tests_log.png" /></p>
+<hr />
+<h2 id="5">📌 5. Тестирование</h2>
+<p>Тесты находятся в файле <code>tests.py</code>.</p>
+<h3 id="51-get_currencies">✔ 5.1 Тесты функции <code>get_currencies</code></h3>
+<p>Проверяют:</p>
+<ul>
+<li>корректность полученного курса;</li>
+<li>выброс <code>KeyError</code> для отсутствующей валюты;</li>
+<li>выброс <code>ConnectionError</code> при неверном URL.</li>
+</ul>
+<pre><code class="language-python">class TestGetCurrencies(unittest.TestCase):
+    &quot;&quot;&quot;Тесты бизнес-логики функции get_currencies.&quot;&quot;&quot;
+
+    def test_real_usd_rate(self) -&gt; None:
+        &quot;&quot;&quot;Проверяем, что курс USD возвращается и имеет разумное значение.&quot;&quot;&quot;
+        data = get_currencies([&quot;USD&quot;])
+        self.assertIn(&quot;USD&quot;, data)
+        self.assertIsInstance(data[&quot;USD&quot;], float)
+        self.assertGreaterEqual(data[&quot;USD&quot;], 0.0)
+        self.assertLessEqual(data[&quot;USD&quot;], MAX_RATE_VALUE)
+
+    def test_missing_currency_raises_key_error(self) -&gt; None:
+        &quot;&quot;&quot;Неизвестная валюта должна вызывать KeyError.&quot;&quot;&quot;
+        with self.assertRaises(KeyError):
+            get_currencies([&quot;NON_EXISTENT_CURRENCY_CODE&quot;])
+
+    def test_connection_error(self) -&gt; None:
+        &quot;&quot;&quot;
+        Неверный URL должен приводить к ConnectionError.
+
+        В реальном тесте лучше мокать requests.get,
+        но для простоты используем заведомо некорректный URL.
+        &quot;&quot;&quot;
+        with self.assertRaises(ConnectionError):
+            get_currencies([&quot;USD&quot;], url=&quot;https://invalid-url&quot;)
+</code></pre>
+<hr />
+<h3 id="52-logger-stringio">✔ 5.2 Тестирование декоратора logger через StringIO</h3>
+<p>Проверяются:</p>
+<ul>
+<li>логи INFO при успешном вызове,</li>
+<li>логи ERROR при исключениях,</li>
+<li>проброс исключений без потери типа.</li>
+</ul>
+<pre><code class="language-python">class TestLoggerDecorator(unittest.TestCase):
+    &quot;&quot;&quot;Тестирование поведения декоратора logger через io.StringIO.&quot;&quot;&quot;
+
+    def setUp(self) -&gt; None:
+        self.stream = io.StringIO()
+
+        @logger(handle=self.stream)
+        def test_function(x: int) -&gt; int:
+            return x * 2
+
+        @logger(handle=self.stream)
+        def failing_function() -&gt; None:
+            raise ValueError(&quot;triple T big sahur&quot;)
+
+        self.test_function = test_function
+        self.failing_function = failing_function
+
+    def test_logging_success(self) -&gt; None:
+        &quot;&quot;&quot;При успешном выполнении должны быть INFO-логи о старте и завершении.&quot;&quot;&quot;
+        result = self.test_function(3)
+        self.assertEqual(result, 6)
+
+        logs = self.stream.getvalue()
+        self.assertIn(&quot;INFO:&quot;, logs)
+        self.assertIn(&quot;Calling test_function&quot;, logs)
+        self.assertIn(&quot;returned 6&quot;, logs)
+
+        print(&quot;\n=== SUCCESS LOGS ===&quot;)
+        print(logs)
+
+
+    def test_logging_error_and_exception_propagation(self) -&gt; None:
+        &quot;&quot;&quot;При ошибке должен быть ERROR и исключение проброшено дальше.&quot;&quot;&quot;
+        with self.assertRaises(ValueError):
+            self.failing_function()
+
+        logs = self.stream.getvalue()
+        self.assertIn(&quot;ERROR:&quot;, logs)
+        self.assertIn(&quot;ValueError&quot;, logs)
+        self.assertIn(&quot;triple T big sahur&quot;, logs)
+
+        print(&quot;\n=== ERROR LOGS ===&quot;)
+        print(logs)
+</code></pre>
+<hr />
+<h3 id="53">✔ 5.3 Тест контекстного вызова из задания</h3>
+<p>Проверяется, что декоратор логирует ошибку при недоступном API.</p>
+<pre><code class="language-python">class TestStreamWriteExample(unittest.TestCase):
+    &quot;&quot;&quot;
+    Пример теста с контекстом из задания.
+
+    Используем декоратор logger и StringIO.
+    &quot;&quot;&quot;
+
+    def setUp(self) -&gt; None:
+        self.stream = io.StringIO()
+
+        @logger(handle=self.stream)
+        def wrapped() -&gt; dict[str, float]:
+            return get_currencies([&quot;USD&quot;],
+                                  url=&quot;https://invalid-url&quot;)
+
+        self.wrapped = wrapped
+
+    def test_logging_error(self) -&gt; None:
+        &quot;&quot;&quot;Проверяем, что ошибка логируется и исключение пробрасывается.&quot;&quot;&quot;
+        with self.assertRaises(ConnectionError):
+            self.wrapped()
+
+        logs = self.stream.getvalue()
+        self.assertIn(&quot;ERROR:&quot;, logs)
+        self.assertIn(&quot;ConnectionError&quot;, logs)
+
+        print(&quot;\n=== STREAM LOGS ===&quot;)
+        print(logs)
+</code></pre>
+<hr />
+<h3 id="54-solve_quadratic">✔ 5.4 Тесты функции solve_quadratic</h3>
+<p>Проверяются:</p>
+<ul>
+<li>два корня,</li>
+<li>отсутствие корней при d &lt; 0,</li>
+<li>ошибки при некорректных параметрах.</li>
+</ul>
+<pre><code class="language-python">class TestSolveQuadratic(unittest.TestCase):
+    &quot;&quot;&quot;Краткая проверка solve_quadratic.&quot;&quot;&quot;
+
+    def test_two_roots(self) -&gt; None:
+        &quot;&quot;&quot;Уравнение x^2 - 3x + 2 = 0 имеет два корня: 1 и 2.&quot;&quot;&quot;
+        roots = solve_quadratic(1, -3, 2)
+        self.assertIsNotNone(roots)
+        self.assertAlmostEqual(sorted(roots)[0], 1.0)
+        self.assertAlmostEqual(sorted(roots)[1], 2.0)
+
+    def test_negative_discriminant(self) -&gt; None:
+        &quot;&quot;&quot;При d &lt; 0 возвращается None.&quot;&quot;&quot;
+        roots = solve_quadratic(1, 0, 1)
+        self.assertIsNone(roots)
+
+    def test_invalid_coefficients(self) -&gt; None:
+        &quot;&quot;&quot;Некорректные коэффициенты должны вызывать исключения.&quot;&quot;&quot;
+        with self.assertRaises(TypeError):
+            solve_quadratic(&quot;abc&quot;, 2, 3)
+
+        with self.assertRaises(ValueError):
+            solve_quadratic(0, 0, 1)
+</code></pre>
+<hr />
+<h2 id="6-currencylog-quadraticlog">📌 6. Логи в файлах currency.log и quadratic.log</h2>
+<p><img alt="img_3.png" src="../currency_logs.png" />
+<img alt="img_4.png" src="../quadratic.png" /></p>
+<hr />
+<h2 id="7">✔ 7. Вывод</h2>
+<p>В ходе выполнения работы было разработано:</p>
+<ul>
+<li>
+<p>параметризуемый декоратор <code>logger</code>, умеющий логировать:</p>
+</li>
+<li>
+<p>в stdout;</p>
+</li>
+<li>в любой файловый поток (в т.ч. StringIO);</li>
+<li>в объект logging.Logger;</li>
+<li>функция get_currencies с корректной обработкой ошибок;</li>
+<li>демонстрационный пример solve_quadratic с многоуровневым логированием;</li>
+<li>
+<p>полный набор модульных тестов для:</p>
+</li>
+<li>
+<p>бизнес-логики,</p>
+</li>
+<li>логирования,</li>
+<li>обработки ошибок.</li>
+</ul>
+<p>Все цели работы выполнены.</p>
+<p>Ломаченко Ян (P3120, 505115)</p></p>
+    </article>
+</section>
+<!-- endblock -->
+                
+                
+            </main>
+
+            
+                    <!-- block preview -->
+<!-- endblock -->
+            
+
+            
+                    <!-- block footer -->
+<footer class="pt-4 my-md-5 pt-md-5 border-top" id="component-footer">
+    <div class="row">
+        <div class="col-12 col-md">
+                <!-- block copyright -->
+
+    <small class="d-block mb-3">
+        Made with
+        <a href="https://github.com/FernandoCelmer/mkdocs-simple-blog" target="_blank" rel="noopener">
+            Simple Blog for MkDocs
+        </a>
+    </small>
+
+<!-- endblock -->
+        </div>
+    </div>
+</footer>
+<!-- endblock -->
+            
+        </div>
+
+            <script src="../../../../assets/js/jquery-3.3.1.slim.min.js""></script>
+            <script src="../../../../assets/js/bootstrap.bundle.min.js""></script>
+            <script src="../../../../assets/js/main.min.js""></script>
+                <script src="../../../../search/main.js" defer></script>
+
+    </body>
+
+</html>
