@@ -10,3 +10,4 @@
 - [Лабораторная 3](semester_2/Python/README3.md)
 - [Лабораторная 4](semester_2/Python/README4.md)
 - [Лабораторная 5](semester_2/Python/README5.md)
+- [Лабораторная 6](semester_2/Python/README6.md)
