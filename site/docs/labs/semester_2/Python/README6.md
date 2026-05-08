@@ -2,7 +2,7 @@ title: Лабораторная работа №6
 
 ## Очистка и трансформация данных. pandas
 
-**Студент:** Фамилия Имя
+**Студент:** Ломаченко Ян
 **Группа:** P3120
 
 **Ссылка на Colab:** [Открыть ноутбук](https://colab.research.google.com/drive/1ozo--qB4bAbOz2xaEyFk5tm2So4gF0s6?usp=sharing)
