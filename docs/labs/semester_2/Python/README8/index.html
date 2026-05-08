@@ -1,0 +1,896 @@
+<!doctype html>
+<html data-bs-theme="">
+    <head>
+                <title>Лабораторная работа №7: Инструменты для работы с языком - Сайт Ломаченко Яна</title>
+
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            
+            <link rel="canonical" href="https://yannisbtw.github.io/labs/semester_2/Python/README8/">
+            
+
+            
+                <link  rel="icon" type="image/x-icon" href="../../../../assets/img/favicon.ico">
+            
+
+        <script>var base_url = '../../../..';</script>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+            <link rel="stylesheet" href="../../../../assets/css/bootstrap.min.css">
+            <link rel="stylesheet" href="../../../../assets/css/root.min.css">
+            <link rel="stylesheet" href="../../../../assets/css/main.min.css">
+            <link rel="stylesheet" href="../../../../assets/css/media.min.css">
+            <link rel="stylesheet" href="../../../../assets/css/mkdocstrings.min.css">
+                <script src="../../../../search/main.js"></script>
+
+            
+                
+            
+          
+    </head>
+
+    <body>
+        <div class="container py-3">
+            <header>
+                    <!-- block header -->
+<nav class="navbar navbar-expand-xl border-bottom">
+    <div class="container-fluid">
+        
+
+        
+            <span class=" fs-4 title-color site-name" id="component-site-name" style="text-transform: uppercase;">Сайт Ломаченко Яна</span>
+        
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMenu"
+            aria-controls="navbarsMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse flex-column ml-auto" id="navbarsMenu">
+            <ul class="navbar-nav">
+
+                <!-- block menu -->
+                <li class="nav-item">
+                    <!-- block menu -->
+    
+        <li class="nav-item" id="component-menu">
+            <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../..">[Главная]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../../about/">[Обо мне]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../../projects/">[Проекты]</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="
+                            nav-link dropdown-toggle text-decoration-none" href="#" data-bs-toggle="dropdown">[Лабораторные работы]</a>
+                            <ul class="dropdown-menu">
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../" class="dropdown-item text-decoration-none ">1 семестр</a>
+    </li>
+<!-- endblock -->
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../index2/" class="dropdown-item text-decoration-none ">2 семестр</a>
+    </li>
+<!-- endblock -->
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../../contacts/">[Контакты]</a>
+                        </li>
+            </ul>
+        </li>
+<!-- endblock -->
+                </li>
+                <!-- endblock -->
+
+                <!-- block search -->
+                <li class="nav-item">
+                    <a class="collapsed" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <div class="md-search-icon">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </div>
+                    </a>
+                </li>
+                <!--  endblock -->
+
+                <!-- block source -->
+                <li class="nav-item">
+                    
+                </li>
+                <!--  endblock -->
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--  endblock -->
+            </header>
+
+            <main><!-- block search -->
+<div class="collapse" id="collapseExample">
+    <div role="search" class="search-box">
+        <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+            <input type="text" name="q" class="search-query"
+            placeholder="Search docs" title="Type search term here" />
+        </form>
+    </div>
+</div>
+<!-- endblock -->
+
+                
+                        <!-- block content -->
+<section class="container post" id="component-content">
+    <article>
+        <header>
+            
+                <h1 class=" title" id="component-title">Лабораторная работа №7: Инструменты для работы с языком</h1>
+            
+        </header>
+        <p><p><strong>ФИО</strong>: Ян Ломаченко Станиславович</p>
+<p><strong>ИСУ</strong>: 505115</p>
+<p><strong>Группа</strong>: P3120</p>
+<p>Ссылка на <strong><a href="https://colab.research.google.com/drive/1Tg33wAZg6x0C75QLJuFlAKW4wZmsNMpE?usp=sharing">Google Colab</a></strong></p>
+<hr />
+<h2 id="1">1. Цель работы</h2>
+<p>Целью работы было изучить базовые методы обработки текстовых данных и применить их для задачи бинарной классификации тональности твитов.</p>
+<p>В рамках работы решалась задача определения эмоциональной окраски текста:</p>
+<ul>
+<li><code>positive</code> — положительный твит;</li>
+<li><code>negative</code> — отрицательный твит.</li>
+</ul>
+<p>Для решения задачи использовались методы векторизации текста и алгоритмы машинного обучения. Основное внимание было уделено сравнению разных способов извлечения признаков из текста и сравнению качества нескольких моделей классификации.</p>
+<hr />
+<h2 id="2">2. Подготовка данных</h2>
+<p>Изначально были загружены два набора данных:</p>
+<pre><code class="language-python">positive = pd.read_csv('positive.csv', sep=';', usecols=[3], names=['text'])
+positive['label'] = ['positive'] * len(positive)
+
+negative = pd.read_csv('negative.csv', sep=';', usecols=[3], names=['text'])
+negative['label'] = ['negative'] * len(negative)
+
+df = pd.concat([positive, negative])
+````
+
+Файл `positive.csv` содержит положительные твиты, а файл `negative.csv` — отрицательные.
+Из каждого файла была взята колонка с текстом твита. После этого для каждого текста была добавлена метка класса:
+
+* `positive` для положительных твитов;
+* `negative` для отрицательных твитов.
+
+Затем оба набора были объединены в один датафрейм `df`.
+
+Итоговая структура данных:
+
+| text        | label               |
+| ----------- | ------------------- |
+| текст твита | positive / negative |
+
+---
+
+## 3. Разделение выборки
+
+Для обучения и проверки моделей датасет был разделён на обучающую и тестовую выборки:
+
+```python
+x_train, x_test, y_train, y_test = train_test_split(df.text, df.label)
+</code></pre>
+<p>Где:</p>
+<ul>
+<li><code>x_train</code> — тексты для обучения модели;</li>
+<li><code>x_test</code> — тексты для проверки модели;</li>
+<li><code>y_train</code> — правильные ответы для обучающих текстов;</li>
+<li><code>y_test</code> — правильные ответы для тестовых текстов.</li>
+</ul>
+<p>Такой подход позволяет проверить, насколько хорошо модель работает на новых данных, которые она не видела во время обучения.</p>
+<hr />
+<h2 id="4-countvectorizer-logisticregression">4. Базовая модель: CountVectorizer + LogisticRegression</h2>
+<p>В качестве базового варианта была использована модель <code>LogisticRegression</code> и векторизация текста с помощью <code>CountVectorizer</code>.</p>
+<pre><code class="language-python">vectorizer = CountVectorizer(ngram_range=(1, 1))
+
+vectorized_x_train = vectorizer.fit_transform(x_train)
+
+clf = LogisticRegression(random_state=42, max_iter=1000)
+clf.fit(vectorized_x_train, y_train)
+
+vectorized_x_test = vectorizer.transform(x_test)
+
+pred = clf.predict(vectorized_x_test)
+
+print(classification_report(y_test, pred))
+</code></pre>
+<p>В данном случае использовались <strong>униграммы слов</strong>, то есть отдельные слова как признаки.</p>
+<p>Например, текст:</p>
+<pre><code class="language-text">хороший фильм
+</code></pre>
+<p>превращается в признаки:</p>
+<pre><code class="language-text">хороший
+фильм
+</code></pre>
+<p><code>CountVectorizer</code> считает, сколько раз каждое слово встретилось в тексте.</p>
+<hr />
+<h2 id="5-logisticregression">5. Результаты LogisticRegression</h2>
+<p>Результат <code>classification_report</code> для базовой модели:</p>
+<pre><code class="language-text">              precision    recall  f1-score   support
+
+    negative       0.76      0.77      0.76     27980
+    positive       0.77      0.76      0.77     28729
+
+    accuracy                           0.76     56709
+   macro avg       0.76      0.76      0.76     56709
+weighted avg       0.76      0.76      0.76     56709
+</code></pre>
+<h3 id="_1">Интерпретация результата</h3>
+<p>Модель показала accuracy около <code>0.76</code>, то есть правильно классифицировала примерно 76% твитов.</p>
+<p>Для класса <code>negative</code>:</p>
+<ul>
+<li><code>precision = 0.76</code>;</li>
+<li><code>recall = 0.77</code>;</li>
+<li><code>f1-score = 0.76</code>.</li>
+</ul>
+<p>Для класса <code>positive</code>:</p>
+<ul>
+<li><code>precision = 0.77</code>;</li>
+<li><code>recall = 0.76</code>;</li>
+<li><code>f1-score = 0.77</code>.</li>
+</ul>
+<p>Метрики для двух классов близки друг к другу, поэтому можно сказать, что модель работает достаточно сбалансированно и не имеет сильного перекоса в сторону одного класса.</p>
+<hr />
+<h2 id="6">6. Почему этот вариант считается базовым</h2>
+<p>Базовый вариант был построен без символьных признаков, лемматизации, TF-IDF и сложных n-грамм. Использовались только словесные униграммы.</p>
+<p>Это сделано потому, что такой вариант является хорошей точкой отсчёта. Он простой, понятный и позволяет оценить начальное качество модели.</p>
+<p>Базовая схема:</p>
+<pre><code class="language-text">CountVectorizer(ngram_range=(1, 1)) + LogisticRegression
+</code></pre>
+<p>Дальше остальные модели и способы векторизации сравнивались именно с этим результатом.</p>
+<hr />
+<h2 id="7">7. Альтернативные модели классификации</h2>
+<p>По заданию необходимо было применить две альтернативные модели вместо <code>LogisticRegression</code>.</p>
+<p>Были выбраны:</p>
+<ol>
+<li><code>XGBClassifier</code>;</li>
+<li><code>LinearSVC</code>.</li>
+</ol>
+<p>Для корректной работы <code>XGBClassifier</code> текстовые метки классов были преобразованы в числовые значения с помощью <code>LabelEncoder</code>.</p>
+<pre><code class="language-python">from sklearn.preprocessing import LabelEncoder
+
+label_encoder = LabelEncoder()
+
+y_train_encoded = label_encoder.fit_transform(y_train)
+y_test_encoded = label_encoder.transform(y_test)
+
+print(label_encoder.classes_)
+</code></pre>
+<p>Результат:</p>
+<pre><code class="language-text">['negative' 'positive']
+</code></pre>
+<p>Это означает:</p>
+<pre><code class="language-text">negative → 0
+positive → 1
+</code></pre>
+<hr />
+<h2 id="8-xgbclassifier">8. Модель XGBClassifier</h2>
+<p>Для <code>XGBClassifier</code> использовались параметры из задания:</p>
+<pre><code class="language-python">xgb_clf = XGBClassifier(
+    learning_rate=0.1,
+    n_estimators=1000,
+    max_depth=5,
+    min_child_weight=3,
+    gamma=0.2,
+    subsample=0.6,
+    colsample_bytree=1.0,
+    objective='binary:logistic',
+    nthread=4,
+    scale_pos_weight=1,
+    seed=27
+)
+
+xgb_clf.fit(vectorized_x_train, y_train_encoded)
+
+pred_xgb = xgb_clf.predict(vectorized_x_test)
+
+print(classification_report(
+    y_test_encoded,
+    pred_xgb,
+    target_names=label_encoder.classes_
+))
+</code></pre>
+<p>Результат:</p>
+<pre><code class="language-text">              precision    recall  f1-score   support
+
+    negative       0.73      0.68      0.70     27980
+    positive       0.71      0.76      0.73     28729
+
+    accuracy                           0.72     56709
+   macro avg       0.72      0.72      0.72     56709
+weighted avg       0.72      0.72      0.72     56709
+</code></pre>
+<h3 id="xgbclassifier">Вывод по XGBClassifier</h3>
+<p><code>XGBClassifier</code> показал accuracy <code>0.72</code>, что ниже результата базовой <code>LogisticRegression</code>.</p>
+<p>Это можно объяснить тем, что текстовые признаки после <code>CountVectorizer</code> представляют собой большую разреженную матрицу. В такой матрице очень много признаков, но большинство значений равны нулю.</p>
+<p>Для линейных моделей такие данные обычно удобны, а модели на деревьях, к которым относится XGBoost, чаще лучше работают с табличными данными, где признаки более плотные и структурированные.</p>
+<hr />
+<h2 id="9-linearsvc">9. Модель LinearSVC</h2>
+<p>В качестве второй альтернативной модели была использована <code>LinearSVC</code>.</p>
+<pre><code class="language-python">from sklearn.svm import LinearSVC
+
+svc_clf = LinearSVC(random_state=42, max_iter=10000)
+svc_clf.fit(vectorized_x_train, y_train)
+
+pred_svc = svc_clf.predict(vectorized_x_test)
+
+print(classification_report(y_test, pred_svc))
+</code></pre>
+<p>Результат:</p>
+<pre><code class="language-text">              precision    recall  f1-score   support
+
+    negative       0.73      0.77      0.75     27980
+    positive       0.76      0.73      0.74     28729
+
+    accuracy                           0.75     56709
+   macro avg       0.75      0.75      0.75     56709
+weighted avg       0.75      0.75      0.75     56709
+</code></pre>
+<h3 id="linearsvc">Вывод по LinearSVC</h3>
+<p><code>LinearSVC</code> показал accuracy <code>0.75</code>, что немного ниже результата <code>LogisticRegression</code>, но выше результата <code>XGBClassifier</code>.</p>
+<p>Метрики для классов также достаточно сбалансированы:</p>
+<ul>
+<li><code>f1-score</code> для <code>negative</code> равен <code>0.75</code>;</li>
+<li><code>f1-score</code> для <code>positive</code> равен <code>0.74</code>.</li>
+</ul>
+<p>Это говорит о том, что модель работает стабильно, но в данной задаче немного уступает логистической регрессии.</p>
+<hr />
+<h2 id="10">10. Сравнение моделей</h2>
+<table>
+<thead>
+<tr>
+<th>Модель</th>
+<th>Векторизация</th>
+<th style="text-align: right;">Accuracy</th>
+<th style="text-align: right;">F1 negative</th>
+<th style="text-align: right;">F1 positive</th>
+<th style="text-align: right;">Weighted avg F1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LogisticRegression</td>
+<td>CountVectorizer, униграммы</td>
+<td style="text-align: right;">0.76</td>
+<td style="text-align: right;">0.76</td>
+<td style="text-align: right;">0.77</td>
+<td style="text-align: right;">0.76</td>
+</tr>
+<tr>
+<td>XGBClassifier</td>
+<td>CountVectorizer, униграммы</td>
+<td style="text-align: right;">0.72</td>
+<td style="text-align: right;">0.70</td>
+<td style="text-align: right;">0.73</td>
+<td style="text-align: right;">0.72</td>
+</tr>
+<tr>
+<td>LinearSVC</td>
+<td>CountVectorizer, униграммы</td>
+<td style="text-align: right;">0.75</td>
+<td style="text-align: right;">0.75</td>
+<td style="text-align: right;">0.74</td>
+<td style="text-align: right;">0.75</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_2">Общий вывод по моделям</h3>
+<p>Лучший результат среди трёх моделей показала <code>LogisticRegression</code>.</p>
+<p>Она оказалась наиболее подходящей для данной задачи, потому что хорошо работает с разреженными текстовыми признаками. <code>LinearSVC</code> показал близкий результат, а <code>XGBClassifier</code> оказался хуже.</p>
+<p>Это подтверждает, что более сложная модель не всегда даёт лучшее качество. Для задач классификации текстов простые линейные модели часто оказываются очень сильным базовым решением.</p>
+<hr />
+<h2 id="11-tf-idf-">11. TF-IDF-векторизация</h2>
+<p>Далее была проведена серия экспериментов с <code>TfidfVectorizer</code>.</p>
+<p>В отличие от <code>CountVectorizer</code>, который считает только количество слов, <code>TfidfVectorizer</code> учитывает важность слова.</p>
+<p>Слова, которые часто встречаются почти во всех текстах, получают меньший вес. Более редкие и информативные слова получают больший вес.</p>
+<p>Были проверены следующие варианты:</p>
+<ul>
+<li>униграммы;</li>
+<li>биграммы;</li>
+<li>триграммы;</li>
+<li>пентаграммы.</li>
+</ul>
+<hr />
+<h2 id="12-tf-idf">12. TF-IDF: униграммы</h2>
+<pre><code class="language-python">tfidfvectorizer = TfidfVectorizer(ngram_range=(1,1))
+
+tfidf_vectorized_x_train = tfidfvectorizer.fit_transform(x_train)
+
+clf = LogisticRegression(random_state=42, max_iter=1000)
+clf.fit(tfidf_vectorized_x_train, y_train)
+
+tfidf_vectorized_x_test = tfidfvectorizer.transform(x_test)
+
+pred = clf.predict(tfidf_vectorized_x_test)
+
+print(classification_report(y_test, pred))
+</code></pre>
+<p>Результат:</p>
+<pre><code class="language-text">              precision    recall  f1-score   support
+
+    negative       0.76      0.73      0.75     27980
+    positive       0.75      0.78      0.76     28729
+
+    accuracy                           0.76     56709
+   macro avg       0.76      0.76      0.76     56709
+weighted avg       0.76      0.76      0.76     56709
+</code></pre>
+<p>TF-IDF на униграммах показал результат, близкий к обычному <code>CountVectorizer</code>.</p>
+<hr />
+<h2 id="13-tf-idf">13. TF-IDF: биграммы</h2>
+<pre><code class="language-python">tfidfvectorizer = TfidfVectorizer(ngram_range=(2, 2))
+
+tfidf_vectorized_x_train = tfidfvectorizer.fit_transform(x_train)
+
+clf = LogisticRegression(random_state=42, max_iter=1000)
+clf.fit(tfidf_vectorized_x_train, y_train)
+
+tfidf_vectorized_x_test = tfidfvectorizer.transform(x_test)
+
+pred = clf.predict(tfidf_vectorized_x_test)
+
+print(classification_report(y_test, pred))
+</code></pre>
+<p>Результат:</p>
+<pre><code class="language-text">              precision    recall  f1-score   support
+
+    negative       0.72      0.67      0.69     27980
+    positive       0.70      0.75      0.72     28729
+
+    accuracy                           0.71     56709
+   macro avg       0.71      0.71      0.71     56709
+weighted avg       0.71      0.71      0.71     56709
+</code></pre>
+<p>Биграммы показали качество ниже, чем униграммы.</p>
+<p>Accuracy снизилась с <code>0.76</code> до <code>0.71</code>, а weighted avg f1-score снизился с <code>0.76</code> до <code>0.71</code>.</p>
+<hr />
+<h2 id="14-tf-idf">14. TF-IDF: триграммы</h2>
+<pre><code class="language-python">tfidfvectorizer = TfidfVectorizer(ngram_range=(3, 3))
+
+tfidf_vectorized_x_train = tfidfvectorizer.fit_transform(x_train)
+
+clf = LogisticRegression(random_state=42, max_iter=1000)
+clf.fit(tfidf_vectorized_x_train, y_train)
+
+tfidf_vectorized_x_test = tfidfvectorizer.transform(x_test)
+
+pred = clf.predict(tfidf_vectorized_x_test)
+
+print(classification_report(y_test, pred))
+</code></pre>
+<p>Результат:</p>
+<pre><code class="language-text">              precision    recall  f1-score   support
+
+    negative       0.73      0.46      0.56     27980
+    positive       0.61      0.83      0.71     28729
+
+    accuracy                           0.65     56709
+   macro avg       0.67      0.65      0.63     56709
+weighted avg       0.67      0.65      0.64     56709
+</code></pre>
+<p>Триграммы показали ещё более низкое качество.</p>
+<p>Особенно заметен перекос по классу <code>negative</code>:</p>
+<ul>
+<li><code>recall negative = 0.46</code>;</li>
+<li><code>recall positive = 0.83</code>.</li>
+</ul>
+<p>Это означает, что модель стала значительно чаще находить положительные твиты, но хуже распознавать отрицательные.</p>
+<hr />
+<h2 id="15-tf-idf">15. TF-IDF: пентаграммы</h2>
+<pre><code class="language-python">tfidfvectorizer = TfidfVectorizer(ngram_range=(5, 5))
+
+tfidf_vectorized_x_train = tfidfvectorizer.fit_transform(x_train)
+
+clf = LogisticRegression(random_state=42, max_iter=1000)
+clf.fit(tfidf_vectorized_x_train, y_train)
+
+tfidf_vectorized_x_test = tfidfvectorizer.transform(x_test)
+
+pred = clf.predict(tfidf_vectorized_x_test)
+
+print(classification_report(y_test, pred))
+</code></pre>
+<p>Результат:</p>
+<pre><code class="language-text">              precision    recall  f1-score   support
+
+    negative       0.95      0.11      0.20     27980
+    positive       0.54      0.99      0.70     28729
+
+    accuracy                           0.56     56709
+   macro avg       0.74      0.55      0.45     56709
+weighted avg       0.74      0.56      0.45     56709
+</code></pre>
+<p>Пентаграммы показали самый слабый результат.</p>
+<p>Accuracy составила всего <code>0.56</code>, а weighted avg f1-score — <code>0.45</code>.</p>
+<hr />
+<h2 id="16-tf-idf-n-">16. Сравнение TF-IDF n-грамм</h2>
+<table>
+<thead>
+<tr>
+<th>TF-IDF признаки</th>
+<th style="text-align: right;">Accuracy</th>
+<th style="text-align: right;">F1 negative</th>
+<th style="text-align: right;">F1 positive</th>
+<th style="text-align: right;">Macro avg F1</th>
+<th style="text-align: right;">Weighted avg F1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Униграммы</td>
+<td style="text-align: right;">0.76</td>
+<td style="text-align: right;">0.75</td>
+<td style="text-align: right;">0.76</td>
+<td style="text-align: right;">0.76</td>
+<td style="text-align: right;">0.76</td>
+</tr>
+<tr>
+<td>Биграммы</td>
+<td style="text-align: right;">0.71</td>
+<td style="text-align: right;">0.69</td>
+<td style="text-align: right;">0.72</td>
+<td style="text-align: right;">0.71</td>
+<td style="text-align: right;">0.71</td>
+</tr>
+<tr>
+<td>Триграммы</td>
+<td style="text-align: right;">0.65</td>
+<td style="text-align: right;">0.56</td>
+<td style="text-align: right;">0.71</td>
+<td style="text-align: right;">0.63</td>
+<td style="text-align: right;">0.64</td>
+</tr>
+<tr>
+<td>Пентаграммы</td>
+<td style="text-align: right;">0.56</td>
+<td style="text-align: right;">0.20</td>
+<td style="text-align: right;">0.70</td>
+<td style="text-align: right;">0.45</td>
+<td style="text-align: right;">0.45</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="17-tf-idf-">17. Вывод по TF-IDF-векторизации</h2>
+<p>Лучшее качество среди TF-IDF-вариантов показали униграммы:</p>
+<pre><code class="language-text">accuracy = 0.76
+weighted avg f1-score = 0.76
+</code></pre>
+<p>При использовании биграмм качество снизилось:</p>
+<pre><code class="language-text">accuracy = 0.71
+weighted avg f1-score = 0.71
+</code></pre>
+<p>При использовании триграмм качество стало ещё ниже:</p>
+<pre><code class="language-text">accuracy = 0.65
+weighted avg f1-score = 0.64
+</code></pre>
+<p>Самый плохой результат получился на пентаграммах:</p>
+<pre><code class="language-text">accuracy = 0.56
+weighted avg f1-score = 0.45
+</code></pre>
+<p>Таким образом, при увеличении длины n-грамм качество модели снижалось.</p>
+<p>Это связано с тем, что длинные n-граммы встречаются в текстах намного реже, чем отдельные слова. Например, слово <code>хороший</code> может встретиться во многих твитах, а точная последовательность из пяти слов встречается редко.</p>
+<p>Из-за этого матрица признаков становится более разреженной, а модель хуже обобщает на тестовые данные.</p>
+<hr />
+<h2 id="18-n-">18. Почему длинные n-граммы ухудшили результат</h2>
+<p>Униграммы позволяют модели находить общие признаки тональности:</p>
+<pre><code class="language-text">хороший
+плохой
+ужасный
+отличный
+люблю
+ненавижу
+</code></pre>
+<p>Такие признаки встречаются часто и помогают модели делать устойчивые выводы.</p>
+<p>Биграммы уже более специфичны:</p>
+<pre><code class="language-text">очень хорошо
+не понравилось
+плохой фильм
+</code></pre>
+<p>Они могут быть полезны, но встречаются реже.</p>
+<p>Триграммы и пентаграммы ещё более специфичны:</p>
+<pre><code class="language-text">мне очень понравился
+это было очень плохо
+мне совсем не понравился этот
+</code></pre>
+<p>Чем длиннее n-грамма, тем меньше вероятность, что точно такая же последовательность встретится и в обучающей, и в тестовой выборке.</p>
+<p>Поэтому модель начинает хуже работать на новых данных.</p>
+<hr />
+<h2 id="19">19. Эксперименты с токенизацией и пунктуацией</h2>
+<p>В ходе работы также исследовалось влияние токенизации, стоп-слов и пунктуации.</p>
+<p>Когда использовался более умный токенизатор:</p>
+<pre><code class="language-python">smart_tokenizer = CountVectorizer(
+    ngram_range=(1, 1),
+    tokenizer=word_tokenize,
+    stop_words=noise
+)
+</code></pre>
+<p>модель показала хороший результат:</p>
+<pre><code class="language-text">              precision    recall  f1-score   support
+
+    negative       0.76      0.80      0.78     27980
+    positive       0.80      0.76      0.78     28729
+
+    accuracy                           0.78     56709
+   macro avg       0.78      0.78      0.78     56709
+weighted avg       0.78      0.78      0.78     56709
+</code></pre>
+<p>Accuracy увеличилась до <code>0.78</code>.</p>
+<p>Это говорит о том, что токенизация и удаление шумовых слов могут улучшить качество модели.</p>
+<hr />
+<h2 id="20">20. Почему пунктуация дала почти идеальный результат</h2>
+<p>В одном из экспериментов стоп-слова и пунктуация не удалялись. После этого модель показала почти идеальные метрики:</p>
+<pre><code class="language-text">              precision    recall  f1-score   support
+
+    negative       1.00      1.00      1.00     27980
+    positive       1.00      1.00      1.00     28729
+
+    accuracy                           1.00     56709
+   macro avg       1.00      1.00      1.00     56709
+weighted avg       1.00      1.00      1.00     56709
+</code></pre>
+<p>Такой результат выглядит слишком хорошим. Он объясняется тем, что в данных есть очень сильные признаки, связанные с пунктуацией и смайликами.</p>
+<p>Например:</p>
+<pre><code class="language-text">:)  → positive
+:(  → negative
+))  → positive
+((  → negative
+</code></pre>
+<p>Модель могла научиться классифицировать твиты не по смыслу текста, а по наличию таких токенов.</p>
+<p>Это называется утечкой признака или слишком сильной подсказкой в данных.</p>
+<hr />
+<h2 id="21">21. Классификация без машинного обучения по одному токену</h2>
+<p>Чтобы проверить значимость таких признаков, была выполнена простая классификация без машинного обучения.</p>
+<p>Например, правило:</p>
+<pre><code class="language-python">pred = x_test.apply(lambda text: 'positive' if ':)' in text else 'negative')
+</code></pre>
+<p>Результат:</p>
+<pre><code class="language-text">              precision    recall  f1-score   support
+
+    negative       0.54      1.00      0.70     27980
+    positive       1.00      0.18      0.31     28729
+
+    accuracy                           0.59     56709
+   macro avg       0.77      0.59      0.51     56709
+weighted avg       0.78      0.59      0.51     56709
+</code></pre>
+<p>Этот результат показывает, что один токен сам по себе не покрывает весь датасет, но когда он встречается, он является очень сильным индикатором класса.</p>
+<p>Например, если в твите есть <code>:)</code>, то он почти наверняка положительный. Поэтому <code>precision</code> для класса <code>positive</code> равен <code>1.00</code>.</p>
+<p>Однако далеко не все положительные твиты содержат именно этот смайлик, поэтому <code>recall</code> для класса <code>positive</code> равен только <code>0.18</code>.</p>
+<hr />
+<h2 id="22">22. Символьные признаки</h2>
+<p>Также использовались символьные признаки:</p>
+<pre><code class="language-python">char_vectorizer = CountVectorizer(
+    analyzer='char',
+    ngram_range=(1, 1)
+)
+</code></pre>
+<p>В этом случае модель анализирует не слова, а отдельные символы.</p>
+<p>Например, текст:</p>
+<pre><code class="language-text">кот
+</code></pre>
+<p>разбивается на символы:</p>
+<pre><code class="language-text">к
+о
+т
+</code></pre>
+<p>Результат на символьных униграммах:</p>
+<pre><code class="language-text">              precision    recall  f1-score   support
+
+    negative       1.00      0.99      0.99     27980
+    positive       0.99      1.00      1.00     28729
+
+    accuracy                           0.99     56709
+   macro avg       1.00      0.99      0.99     56709
+weighted avg       0.99      0.99      0.99     56709
+</code></pre>
+<p>Такой высокий результат также объясняется тем, что модель видит символы из смайликов:</p>
+<pre><code class="language-text">:
+)
+(
+D
+;
+</code></pre>
+<p>Символ <code>)</code> часто связан с положительными твитами, а символ <code>(</code> — с отрицательными.</p>
+<hr />
+<h2 id="23-n-">23. Польза символьных n-грамм</h2>
+<p>Несмотря на то, что в данном датасете символьные признаки дают завышенное качество из-за смайликов, в целом это полезный подход.</p>
+<p>Символьные n-граммы часто применяются в задачах:</p>
+<ul>
+<li>определения языка текста;</li>
+<li>обработки текстов с опечатками;</li>
+<li>анализа коротких сообщений;</li>
+<li>обработки языков без хороших готовых токенизаторов;</li>
+<li>классификации текстов со сленгом и нестандартным написанием.</li>
+</ul>
+<p>Преимущество символьных признаков в том, что для них не нужны:</p>
+<ul>
+<li>токенизация;</li>
+<li>лемматизация;</li>
+<li>морфологический анализатор;</li>
+<li>словарь языка.</li>
+</ul>
+<hr />
+<h2 id="24">24. Общая таблица результатов</h2>
+<table>
+<thead>
+<tr>
+<th>Эксперимент</th>
+<th style="text-align: right;">Accuracy</th>
+<th style="text-align: right;">F1 negative</th>
+<th style="text-align: right;">F1 positive</th>
+<th style="text-align: right;">Weighted avg F1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CountVectorizer + LogisticRegression</td>
+<td style="text-align: right;">0.76</td>
+<td style="text-align: right;">0.76</td>
+<td style="text-align: right;">0.77</td>
+<td style="text-align: right;">0.76</td>
+</tr>
+<tr>
+<td>CountVectorizer + XGBClassifier</td>
+<td style="text-align: right;">0.72</td>
+<td style="text-align: right;">0.70</td>
+<td style="text-align: right;">0.73</td>
+<td style="text-align: right;">0.72</td>
+</tr>
+<tr>
+<td>CountVectorizer + LinearSVC</td>
+<td style="text-align: right;">0.75</td>
+<td style="text-align: right;">0.75</td>
+<td style="text-align: right;">0.74</td>
+<td style="text-align: right;">0.75</td>
+</tr>
+<tr>
+<td>TF-IDF униграммы + LogisticRegression</td>
+<td style="text-align: right;">0.76</td>
+<td style="text-align: right;">0.75</td>
+<td style="text-align: right;">0.76</td>
+<td style="text-align: right;">0.76</td>
+</tr>
+<tr>
+<td>TF-IDF биграммы + LogisticRegression</td>
+<td style="text-align: right;">0.71</td>
+<td style="text-align: right;">0.69</td>
+<td style="text-align: right;">0.72</td>
+<td style="text-align: right;">0.71</td>
+</tr>
+<tr>
+<td>TF-IDF триграммы + LogisticRegression</td>
+<td style="text-align: right;">0.65</td>
+<td style="text-align: right;">0.56</td>
+<td style="text-align: right;">0.71</td>
+<td style="text-align: right;">0.64</td>
+</tr>
+<tr>
+<td>TF-IDF пентаграммы + LogisticRegression</td>
+<td style="text-align: right;">0.56</td>
+<td style="text-align: right;">0.20</td>
+<td style="text-align: right;">0.70</td>
+<td style="text-align: right;">0.45</td>
+</tr>
+<tr>
+<td>CountVectorizer + word_tokenize + stop_words</td>
+<td style="text-align: right;">0.78</td>
+<td style="text-align: right;">0.78</td>
+<td style="text-align: right;">0.78</td>
+<td style="text-align: right;">0.78</td>
+</tr>
+<tr>
+<td>Символьные униграммы</td>
+<td style="text-align: right;">0.99</td>
+<td style="text-align: right;">0.99</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.99</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="25">25. Итоговые выводы</h2>
+<p>В ходе работы была решена задача бинарной классификации тональности твитов.</p>
+<p>Были изучены и применены разные способы представления текста в виде числовых признаков:</p>
+<ul>
+<li><code>CountVectorizer</code>;</li>
+<li><code>TfidfVectorizer</code>;</li>
+<li>словесные униграммы;</li>
+<li>биграммы;</li>
+<li>триграммы;</li>
+<li>пентаграммы;</li>
+<li>символьные признаки;</li>
+<li>токенизация через <code>word_tokenize</code>.</li>
+</ul>
+<p>Также были обучены и сравнены несколько моделей классификации:</p>
+<ul>
+<li><code>LogisticRegression</code>;</li>
+<li><code>XGBClassifier</code>;</li>
+<li><code>LinearSVC</code>.</li>
+</ul>
+<p>Лучший честный результат среди основных моделей показала логистическая регрессия с улучшенной токенизацией и удалением шумовых слов:</p>
+<pre><code class="language-text">accuracy = 0.78
+weighted avg f1-score = 0.78
+</code></pre>
+<p>Базовая <code>LogisticRegression</code> с <code>CountVectorizer</code> также показала хороший результат:</p>
+<pre><code class="language-text">accuracy = 0.76
+weighted avg f1-score = 0.76
+</code></pre>
+<p>Среди альтернативных моделей лучший результат показала <code>LinearSVC</code>:</p>
+<pre><code class="language-text">accuracy = 0.75
+weighted avg f1-score = 0.75
+</code></pre>
+<p><code>XGBClassifier</code> оказался хуже:</p>
+<pre><code class="language-text">accuracy = 0.72
+weighted avg f1-score = 0.72
+</code></pre>
+<p>В экспериментах с TF-IDF лучше всего сработали униграммы. При увеличении длины n-грамм качество снижалось. Особенно плохой результат получился на пентаграммах, потому что длинные последовательности слов редко повторяются в обучающей и тестовой выборках.</p>
+<p>Также было обнаружено, что пунктуация и смайлики являются очень сильными признаками для данного датасета. Если их не удалять, модель может получить почти идеальное качество, но такой результат не всегда означает настоящее понимание текста. Скорее всего, модель использует простые подсказки вроде:</p>
+<pre><code class="language-text">:)  → positive
+:(  → negative
+</code></pre>
+<p>Поэтому при оценке качества модели важно учитывать не только численные метрики, но и то, за счёт каких признаков модель достигает результата.</p>
+<hr />
+<h2 id="26">26. Заключение</h2>
+<p>Работа показала, что для задач классификации текстов простые линейные модели могут быть очень эффективными. <code>LogisticRegression</code> оказалась сильным базовым решением и показала лучшее качество среди основных моделей.</p>
+<p>Также было показано, что качество классификации сильно зависит от способа векторизации текста. Униграммы оказались более устойчивыми, чем длинные n-граммы, а символьные признаки дали очень высокий результат из-за наличия в данных смайликов и пунктуации.</p>
+<p>Главный вывод: при работе с текстовыми данными важно не только обучить модель, но и внимательно анализировать признаки, потому что иногда высокая точность может быть вызвана не качественным пониманием текста, а наличием в данных сильных искусственных подсказок.</p>
+<pre><code></code></pre></p>
+    </article>
+</section>
+<!-- endblock -->
+                
+                
+            </main>
+
+            
+                    <!-- block preview -->
+<!-- endblock -->
+            
+
+            
+                    <!-- block footer -->
+<footer class="pt-4 my-md-5 pt-md-5 border-top" id="component-footer">
+    <div class="row">
+        <div class="col-12 col-md">
+                <!-- block copyright -->
+
+    <small class="d-block mb-3">
+        Made with
+        <a href="https://github.com/FernandoCelmer/mkdocs-simple-blog" target="_blank" rel="noopener">
+            Simple Blog for MkDocs
+        </a>
+    </small>
+
+<!-- endblock -->
+        </div>
+    </div>
+</footer>
+<!-- endblock -->
+            
+        </div>
+
+            <script src="../../../../assets/js/jquery-3.3.1.slim.min.js""></script>
+            <script src="../../../../assets/js/bootstrap.bundle.min.js""></script>
+            <script src="../../../../assets/js/main.min.js""></script>
+                <script src="../../../../search/main.js" defer></script>
+
+    </body>
+
+</html>
