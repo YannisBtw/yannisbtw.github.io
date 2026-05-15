@@ -1,0 +1,1268 @@
+<!doctype html>
+<html data-bs-theme="">
+    <head>
+                <title>Лабораторная работа №8: Веб-скрейпинг новостей сайта ITMO News - Сайт Ломаченко Яна</title>
+
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            
+            <link rel="canonical" href="https://yannisbtw.github.io/labs/semester_2/Python/README7/">
+            
+
+            
+                <link  rel="icon" type="image/x-icon" href="../../../../assets/img/favicon.ico">
+            
+
+        <script>var base_url = '../../../..';</script>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+            <link rel="stylesheet" href="../../../../assets/css/bootstrap.min.css">
+            <link rel="stylesheet" href="../../../../assets/css/root.min.css">
+            <link rel="stylesheet" href="../../../../assets/css/main.min.css">
+            <link rel="stylesheet" href="../../../../assets/css/media.min.css">
+            <link rel="stylesheet" href="../../../../assets/css/mkdocstrings.min.css">
+                <script src="../../../../search/main.js"></script>
+
+            
+                
+            
+          
+    </head>
+
+    <body>
+        <div class="container py-3">
+            <header>
+                    <!-- block header -->
+<nav class="navbar navbar-expand-xl border-bottom">
+    <div class="container-fluid">
+        
+
+        
+            <span class=" fs-4 title-color site-name" id="component-site-name" style="text-transform: uppercase;">Сайт Ломаченко Яна</span>
+        
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMenu"
+            aria-controls="navbarsMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse flex-column ml-auto" id="navbarsMenu">
+            <ul class="navbar-nav">
+
+                <!-- block menu -->
+                <li class="nav-item">
+                    <!-- block menu -->
+    
+        <li class="nav-item" id="component-menu">
+            <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../..">[Главная]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../../about/">[Обо мне]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../../projects/">[Проекты]</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="
+                            nav-link dropdown-toggle text-decoration-none" href="#" data-bs-toggle="dropdown">[Лабораторные работы]</a>
+                            <ul class="dropdown-menu">
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../" class="dropdown-item text-decoration-none ">1 семестр</a>
+    </li>
+<!-- endblock -->
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../index2/" class="dropdown-item text-decoration-none ">2 семестр</a>
+    </li>
+<!-- endblock -->
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../../contacts/">[Контакты]</a>
+                        </li>
+            </ul>
+        </li>
+<!-- endblock -->
+                </li>
+                <!-- endblock -->
+
+                <!-- block search -->
+                <li class="nav-item">
+                    <a class="collapsed" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <div class="md-search-icon">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </div>
+                    </a>
+                </li>
+                <!--  endblock -->
+
+                <!-- block source -->
+                <li class="nav-item">
+                    
+                </li>
+                <!--  endblock -->
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--  endblock -->
+            </header>
+
+            <main><!-- block search -->
+<div class="collapse" id="collapseExample">
+    <div role="search" class="search-box">
+        <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+            <input type="text" name="q" class="search-query"
+            placeholder="Search docs" title="Type search term here" />
+        </form>
+    </div>
+</div>
+<!-- endblock -->
+
+                
+                        <!-- block content -->
+<section class="container post" id="component-content">
+    <article>
+        <header>
+            
+                <h1 class=" title" id="component-title">Лабораторная работа №8: Веб-скрейпинг новостей сайта ITMO News</h1>
+            
+        </header>
+        <p><p><strong>ФИО</strong>: Ян Ломаченко Станиславович</p>
+<p><strong>ИСУ</strong>: 505115</p>
+<p><strong>Группа</strong>: P3120</p>
+<p>Ссылка на <strong><a href="https://colab.research.google.com/drive/1x7JWkhTmFqPCo2_bu3tOPUoTt2_XjBEW?usp=sharing">Google Colab</a></strong><br><br></p>
+<h2 id="1">1. Цель работы</h2>
+<p>Целью работы было освоить базовые методы веб-скрейпинга данных из HTML-страниц на примере сайта новостей Университета ИТМО.</p>
+<p>В рамках работы необходимо было получить данные с сайта:</p>
+<p>https://news.itmo.ru/ru</p>
+<p>и сохранить результаты в формате CSV.</p>
+<hr />
+<h2 id="2">2. Постановка задачи</h2>
+<p>По заданию требовалось:</p>
+<ol>
+<li>Сделать копию исходного ноутбука в Google Colab.</li>
+<li>Открыть доступ к ноутбуку.</li>
+<li>В верхней ячейке указать фамилию, имя и группу.</li>
+<li>Спарсить общий набор данных по новостям:</li>
+<li>идентификатор новости;</li>
+<li>название новости;</li>
+<li>дату размещения;</li>
+<li>URL на страницу конкретной новости.</li>
+<li>Для каждой новости из датасета дополнительно спарсить:</li>
+<li>идентификатор;</li>
+<li>название новости;</li>
+<li>дату размещения;</li>
+<li>количество просмотров;</li>
+<li>текст новости;</li>
+<li>теги.</li>
+<li>Сохранить общий CSV-файл рядом с ноутбуком.</li>
+<li>Сохранить CSV-файл с подробным содержимым новостей в папку <code>news_content</code>.</li>
+<li>Выполнить все ячейки ноутбука.</li>
+<li>Сохранить и закрепить версию Colab.</li>
+<li>Предоставить ссылку на готовый Colab-файл.</li>
+</ol>
+<hr />
+<h2 id="3">3. Используемые инструменты и библиотеки</h2>
+<p>Для выполнения работы использовались следующие библиотеки Python:</p>
+<pre><code class="language-python">import os
+import re
+import time
+import random
+import requests
+import pandas as pd
+
+from bs4 import BeautifulSoup
+````
+
+### Назначение библиотек
+
+| Библиотека      | Назначение                                                  |
+| --------------- | ----------------------------------------------------------- |
+| `os`            | Работа с папками и путями к файлам                          |
+| `re`            | Извлечение ID новости из URL с помощью регулярных выражений |
+| `time`          | Создание задержек между запросами                           |
+| `random`        | Генерация случайных пауз между запросами                    |
+| `requests`      | Загрузка HTML-страниц сайта                                 |
+| `pandas`        | Формирование таблиц и сохранение CSV-файлов                 |
+| `BeautifulSoup` | Парсинг HTML-разметки страниц                               |
+
+---
+
+## 4. Общая логика решения
+
+Вся работа была разделена на несколько этапов:
+
+1. Сначала были получены списки заголовков новостей и ссылок на страницы новостей.
+2. Затем для каждой ссылки выполнялся отдельный запрос к странице новости.
+3. Из URL новости извлекался числовой идентификатор.
+4. Из HTML-страницы новости извлекались:
+
+   * дата публикации;
+   * количество просмотров;
+   * точный заголовок;
+   * основной текст;
+   * теги.
+5. После сбора данных формировались два датасета:
+
+   * общий датасет;
+   * датасет с подробным содержимым новостей.
+6. Оба датасета сохранялись в CSV-файлы.
+
+---
+
+## 5. Структура итоговых файлов
+
+В результате выполнения кода создаются два CSV-файла.
+
+### 5.1. Общий CSV-файл
+
+Файл:
+
+```text
+general_news.csv
+</code></pre>
+<p>Содержит данные из пункта 3 задания:</p>
+<table>
+<thead>
+<tr>
+<th>Колонка</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Идентификатор новости</code></td>
+<td>Числовой ID новости, извлечённый из URL</td>
+</tr>
+<tr>
+<td><code>Название новости</code></td>
+<td>Название новости</td>
+</tr>
+<tr>
+<td><code>Дата её размещения</code></td>
+<td>Дата публикации новости</td>
+</tr>
+<tr>
+<td><code>URL на страницу с конкретной новостью</code></td>
+<td>Полная ссылка на страницу новости</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="52-csv-">5.2. CSV-файл с содержимым новостей</h3>
+<p>Файл:</p>
+<pre><code class="language-text">news_content/news_content.csv
+</code></pre>
+<p>Содержит данные из пункта 4 задания:</p>
+<table>
+<thead>
+<tr>
+<th>Колонка</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Идентификатор</code></td>
+<td>Числовой ID новости</td>
+</tr>
+<tr>
+<td><code>Название новости</code></td>
+<td>Название новости</td>
+</tr>
+<tr>
+<td><code>Дата размещения</code></td>
+<td>Дата публикации</td>
+</tr>
+<tr>
+<td><code>Количество просмотров</code></td>
+<td>Количество просмотров новости</td>
+</tr>
+<tr>
+<td><code>Текст</code></td>
+<td>Основной текст новости</td>
+</tr>
+<tr>
+<td><code>Теги</code></td>
+<td>Теги новости</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6">6. Создание файлов и папок</h2>
+<p>В коде заранее задаются имена файлов и папки:</p>
+<pre><code class="language-python">GENERAL_CSV = 'general_news.csv'
+CONTENT_DIR = 'news_content'
+CONTENT_CSV = os.path.join(CONTENT_DIR, 'news_content.csv')
+</code></pre>
+<p>Затем создаётся папка для подробного CSV-файла:</p>
+<pre><code class="language-python">os.makedirs(CONTENT_DIR, exist_ok=True)
+</code></pre>
+<p>Параметр <code>exist_ok=True</code> нужен для того, чтобы код не выдавал ошибку, если папка <code>news_content</code> уже существует.</p>
+<hr />
+<h2 id="7">7. Извлечение идентификатора новости</h2>
+<p>Идентификатор новости находится в конце URL.</p>
+<p>Пример URL:</p>
+<pre><code class="language-text">https://news.itmo.ru/ru/education/cooperation/news/14792/
+</code></pre>
+<p>Из него необходимо получить:</p>
+<pre><code class="language-text">14792
+</code></pre>
+<p>Для этого была написана функция:</p>
+<pre><code class="language-python">def get_news_id(url):
+    &quot;&quot;&quot;
+    Достает числовой ID новости из URL.
+    &quot;&quot;&quot;
+    match = re.search(r'/(\d+)/?$', url)
+
+    if match:
+        return int(match.group(1))
+
+    return None
+</code></pre>
+<h3 id="_1">Как работает регулярное выражение</h3>
+<pre><code class="language-python">r'/(\d+)/?$'
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Часть выражения</th>
+<th>Значение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/</code></td>
+<td>Перед ID должен быть символ <code>/</code></td>
+</tr>
+<tr>
+<td><code>\d+</code></td>
+<td>Одна или несколько цифр</td>
+</tr>
+<tr>
+<td><code>(...)</code></td>
+<td>Сохранить найденные цифры в отдельную группу</td>
+</tr>
+<tr>
+<td><code>/?</code></td>
+<td>После числа может быть <code>/</code>, но он необязателен</td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td>Конец строки</td>
+</tr>
+</tbody>
+</table>
+<p>Таким образом, функция достаёт ID из URL и возвращает его как целое число.</p>
+<hr />
+<h2 id="8-html-">8. Анализ HTML-структуры страницы новости</h2>
+<p>На этапе работы мы отдельно посмотрели HTML-разметку нескольких страниц новостей ITMO.</p>
+<p>Было выявлено, что структура страницы новости выглядит примерно так:</p>
+<pre><code class="language-html">&lt;article&gt;
+    &lt;div class=&quot;news-info-wrapper&quot;&gt;
+        &lt;time datetime=&quot;2026-04-06T14:27:02+03:00&quot;&gt;
+            6 Апреля 2026, 14:27
+            &lt;span class=&quot;timezone&quot;&gt;UTC+3&lt;/span&gt;
+            &lt;span class=&quot;icon eye&quot;&gt;7250&lt;/span&gt;
+        &lt;/time&gt;
+    &lt;/div&gt;
+
+    &lt;h1&gt;Название новости&lt;/h1&gt;
+
+    &lt;div class=&quot;content js-mediator-article&quot;&gt;
+        &lt;p class=&quot;lead&quot;&gt;
+            &lt;strong&gt;Вводный абзац новости...&lt;/strong&gt;
+        &lt;/p&gt;
+
+        &lt;div class=&quot;post-content&quot;&gt;
+            &lt;p&gt;Основной текст новости...&lt;/p&gt;
+            &lt;p&gt;Следующий абзац...&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/article&gt;
+</code></pre>
+<p>Также теги новости находятся в ссылках вида:</p>
+<pre><code class="language-html">&lt;a href=&quot;/ru/search/?tag=...&quot;&gt;Поступление&lt;/a&gt;
+</code></pre>
+<p>После анализа HTML стало понятно, какие точные CSS-селекторы нужно использовать.</p>
+<hr />
+<h2 id="9-css-">9. Точные CSS-селекторы, использованные в работе</h2>
+<p>После анализа HTML были выбраны следующие селекторы:</p>
+<table>
+<thead>
+<tr>
+<th>Данные</th>
+<th>CSS-селектор</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Заголовок новости</td>
+<td><code>article h1</code></td>
+</tr>
+<tr>
+<td>Дата новости</td>
+<td><code>article time</code></td>
+</tr>
+<tr>
+<td>Количество просмотров</td>
+<td><code>article time span.icon.eye</code></td>
+</tr>
+<tr>
+<td>Основной контейнер текста</td>
+<td><code>div.content.js-mediator-article</code></td>
+</tr>
+<tr>
+<td>Лид новости</td>
+<td><code>p.lead</code></td>
+</tr>
+<tr>
+<td>Основной текст</td>
+<td><code>div.post-content</code></td>
+</tr>
+<tr>
+<td>Теги</td>
+<td><code>a[href*="/ru/search/?tag="]</code></td>
+</tr>
+</tbody>
+</table>
+<p>Именно это позволило отказаться от неточного поиска через набор разных <code>possible_selectors</code>.</p>
+<hr />
+<h2 id="10">10. Извлечение даты новости</h2>
+<p>Сначала предполагалось, что дата находится в блоке:</p>
+<pre><code class="language-html">&lt;div class=&quot;time&quot;&gt;
+</code></pre>
+<p>Но анализ HTML показал, что такого блока на страницах нет.</p>
+<p>Реальная дата находится внутри тега:</p>
+<pre><code class="language-html">&lt;article&gt;
+    &lt;time&gt;
+        6 Апреля 2026, 14:27
+        &lt;span class=&quot;timezone&quot;&gt;UTC+3&lt;/span&gt;
+        &lt;span class=&quot;icon eye&quot;&gt;7250&lt;/span&gt;
+    &lt;/time&gt;
+&lt;/article&gt;
+</code></pre>
+<p>Поэтому была написана функция:</p>
+<pre><code class="language-python">def get_news_date(soup):
+    &quot;&quot;&quot;
+    Достает дату новости из article time, не удаляя просмотры из HTML.
+    &quot;&quot;&quot;
+    time_tag = soup.select_one('article time')
+
+    if time_tag:
+        date_text = next(time_tag.stripped_strings, None)
+
+        if date_text:
+            return date_text
+
+    return 'Дата не найдена'
+</code></pre>
+<h3 id="_2">Важный момент</h3>
+<p>Ранее была версия функции, которая удаляла вложенные теги <code>span</code> из <code>time</code>.
+Но количество просмотров тоже находится внутри <code>span</code>, поэтому при таком подходе просмотры удалялись из HTML до их извлечения.</p>
+<p>Проблемная логика выглядела так:</p>
+<pre><code class="language-python">for inner_tag in time_tag.find_all(['span', 'a']):
+    inner_tag.decompose()
+</code></pre>
+<p>После этого блок с просмотрами:</p>
+<pre><code class="language-html">&lt;span class=&quot;icon eye&quot;&gt;7250&lt;/span&gt;
+</code></pre>
+<p>удалялся из дерева <code>soup</code>, и функция для просмотров уже не могла его найти.</p>
+<p>Поэтому финальная версия функции <code>get_news_date()</code> ничего не удаляет, а просто берёт первый текстовый фрагмент внутри <code>time</code>.</p>
+<hr />
+<h2 id="11">11. Извлечение количества просмотров</h2>
+<p>Количество просмотров на сайте ITMO News находится не в отдельном блоке с текстом «просмотров», а внутри тега:</p>
+<pre><code class="language-html">&lt;span class=&quot;icon eye&quot;&gt;7250&lt;/span&gt;
+</code></pre>
+<p>Например:</p>
+<pre><code class="language-html">&lt;time datetime=&quot;2026-04-06T14:27:02+03:00&quot;&gt;
+    6 Апреля 2026, 14:27
+    &lt;span class=&quot;timezone&quot;&gt;UTC+3&lt;/span&gt;
+    &lt;span class=&quot;icon eye&quot;&gt;7250&lt;/span&gt;
+&lt;/time&gt;
+</code></pre>
+<p>Здесь число <code>7250</code> — это количество просмотров.</p>
+<p>Для извлечения была написана функция:</p>
+<pre><code class="language-python">def get_views(soup):
+    &quot;&quot;&quot;
+    Достает количество просмотров из:
+    &lt;span class=&quot;icon eye&quot;&gt;7250&lt;/span&gt;
+    &quot;&quot;&quot;
+    views_tag = soup.select_one('article time span.icon.eye')
+
+    if views_tag:
+        views_text = views_tag.get_text(strip=True)
+
+        if views_text.isdigit():
+            return int(views_text)
+
+    return None
+</code></pre>
+<p>Функция ищет элемент:</p>
+<pre><code class="language-python">article time span.icon.eye
+</code></pre>
+<p>Затем извлекает из него текст и преобразует его в целое число.</p>
+<hr />
+<h2 id="12">12. Извлечение текста новости</h2>
+<p>Основной текст новости находится в блоке:</p>
+<pre><code class="language-html">&lt;div class=&quot;content js-mediator-article&quot;&gt;
+</code></pre>
+<p>Внутри него есть:</p>
+<ol>
+<li>Вводный абзац:</li>
+</ol>
+<pre><code class="language-html">&lt;p class=&quot;lead&quot;&gt;...&lt;/p&gt;
+</code></pre>
+<ol>
+<li>Основной текст:</li>
+</ol>
+<pre><code class="language-html">&lt;div class=&quot;post-content&quot;&gt;
+    &lt;p&gt;...&lt;/p&gt;
+    &lt;ul&gt;
+        &lt;li&gt;...&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+</code></pre>
+<p>Для извлечения текста была написана функция:</p>
+<pre><code class="language-python">def get_text(soup):
+    &quot;&quot;&quot;
+    Достает текст новости из div.content.js-mediator-article.
+    &quot;&quot;&quot;
+    content = soup.select_one('div.content.js-mediator-article')
+
+    if content is None:
+        return ''
+
+    for tag in content.select('div.poster, div.copyinfo, figure, figcaption, script, style'):
+        tag.decompose()
+
+    text_parts = []
+
+    lead = content.select_one('p.lead')
+
+    if lead:
+        lead_text = lead.get_text(' ', strip=True)
+
+        if lead_text:
+            text_parts.append(lead_text)
+
+    post_content = content.select_one('div.post-content')
+
+    if post_content:
+        for element in post_content.find_all(['h1', 'h2', 'h3', 'h4', 'p', 'li']):
+            text = element.get_text(' ', strip=True)
+
+            if not text:
+                continue
+
+            if 'Фото:' in text and len(text) &lt; 150:
+                continue
+
+            if 'Источник:' in text and len(text) &lt; 150:
+                continue
+
+            text_parts.append(text)
+
+    return ' '.join(text_parts)
+</code></pre>
+<h3 id="_3">Что делает эта функция</h3>
+<ol>
+<li>Находит основной контейнер новости.</li>
+<li>Удаляет из него изображения, подписи к изображениям, скрипты и стили.</li>
+<li>Извлекает лид новости.</li>
+<li>Извлекает основной текст из блока <code>post-content</code>.</li>
+<li>Берёт не только абзацы <code>&lt;p&gt;</code>, но и заголовки <code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code>, <code>&lt;h4&gt;</code>, а также элементы списков <code>&lt;li&gt;</code>.</li>
+<li>Убирает короткие подписи к фото и источникам.</li>
+<li>Склеивает все части текста в одну строку.</li>
+</ol>
+<hr />
+<h2 id="13">13. Почему учитывалась вариативность текста</h2>
+<p>В задании было отдельно указано:</p>
+<blockquote>
+<p>Текст — не забыть про вариативность верстки.</p>
+</blockquote>
+<p>На страницах ITMO News текст может быть оформлен по-разному:</p>
+<ul>
+<li>обычными абзацами <code>&lt;p&gt;</code>;</li>
+<li>заголовками <code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code>, <code>&lt;h4&gt;</code>;</li>
+<li>списками <code>&lt;ul&gt;</code> и <code>&lt;li&gt;</code>;</li>
+<li>блоками цитат <code>&lt;blockquote&gt;</code>;</li>
+<li>внутренними блоками с <code>id</code>, например <code>link1</code>, <code>link2</code>, <code>link3</code>.</li>
+</ul>
+<p>Поэтому код не ограничивается только тегом <code>&lt;p&gt;</code>, а собирает данные из разных текстовых элементов:</p>
+<pre><code class="language-python">post_content.find_all(['h1', 'h2', 'h3', 'h4', 'p', 'li'])
+</code></pre>
+<p>Это делает извлечение текста более полным.</p>
+<hr />
+<h2 id="14">14. Извлечение тегов новости</h2>
+<p>Теги на странице представлены ссылками на поиск по тегу.</p>
+<p>Пример:</p>
+<pre><code class="language-html">&lt;a href=&quot;/ru/search/?tag=Поступление&quot;&gt;Поступление&lt;/a&gt;
+</code></pre>
+<p>Для извлечения тегов была написана функция:</p>
+<pre><code class="language-python">def get_tags(soup):
+    &quot;&quot;&quot;
+    Достает теги из ссылок /ru/search/?tag=...
+    &quot;&quot;&quot;
+    tag_links = soup.select('a[href*=&quot;/ru/search/?tag=&quot;]')
+
+    tags = []
+
+    for link in tag_links:
+        tag_text = link.get_text(' ', strip=True)
+
+        if tag_text and tag_text not in tags:
+            tags.append(tag_text)
+
+    return ', '.join(tags)
+</code></pre>
+<p>Функция ищет все ссылки, у которых в <code>href</code> есть:</p>
+<pre><code class="language-text">/ru/search/?tag=
+</code></pre>
+<p>Затем достаёт текст каждой ссылки и сохраняет его в список.</p>
+<p>Чтобы теги не повторялись, используется проверка:</p>
+<pre><code class="language-python">if tag_text and tag_text not in tags:
+</code></pre>
+<p>В итоговый CSV теги записываются одной строкой через запятую.</p>
+<p>Пример:</p>
+<pre><code class="language-text">Поступление, День открытых дверей, Абитуриенты
+</code></pre>
+<hr />
+<h2 id="15">15. Основной цикл сбора данных</h2>
+<p>После определения всех функций создаются два списка:</p>
+<pre><code class="language-python">news_data = []
+content_data = []
+</code></pre>
+<p><code>news_data</code> используется для общего датасета.</p>
+<p><code>content_data</code> используется для подробного датасета.</p>
+<p>Основной цикл проходит по спискам <code>headers</code> и <code>urls</code>:</p>
+<pre><code class="language-python">for i, (header, url) in enumerate(zip(headers, urls)):
+</code></pre>
+<p>Здесь:</p>
+<ul>
+<li><code>headers</code> — список названий новостей;</li>
+<li><code>urls</code> — список ссылок на новости;</li>
+<li><code>zip(headers, urls)</code> объединяет название и ссылку в пару;</li>
+<li><code>enumerate(...)</code> добавляет номер текущей новости.</li>
+</ul>
+<hr />
+<h2 id="16">16. Начальные значения для каждой новости</h2>
+<p>Для каждой новости задаются значения по умолчанию:</p>
+<pre><code class="language-python">news_id = get_news_id(url)
+news_date = 'Дата не найдена'
+views = None
+text = ''
+tags = ''
+</code></pre>
+<p>Это нужно для того, чтобы даже в случае ошибки в итоговый датасет можно было добавить строку с частично заполненными данными.</p>
+<hr />
+<h2 id="17">17. Задержка между запросами</h2>
+<p>Перед запросом к каждой странице выполняется случайная пауза:</p>
+<pre><code class="language-python">time.sleep(random.uniform(0.5, 1.5))
+</code></pre>
+<p>Это означает, что код ждёт случайное количество секунд от <code>0.5</code> до <code>1.5</code>.</p>
+<p>Такой подход используется, чтобы не отправлять слишком много запросов к сайту подряд.</p>
+<hr />
+<h2 id="18-html-">18. Загрузка HTML-страницы</h2>
+<p>Для загрузки страницы новости используется:</p>
+<pre><code class="language-python">response = requests.get(
+    url,
+    headers={'User-Agent': 'Mozilla/5.0'},
+    timeout=20
+)
+</code></pre>
+<p>Здесь:</p>
+<table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Назначение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>url</code></td>
+<td>Ссылка на страницу новости</td>
+</tr>
+<tr>
+<td><code>headers={'User-Agent': 'Mozilla/5.0'}</code></td>
+<td>Имитация запроса от обычного браузера</td>
+</tr>
+<tr>
+<td><code>timeout=20</code></td>
+<td>Максимальное ожидание ответа — 20 секунд</td>
+</tr>
+</tbody>
+</table>
+<p>Затем выполняется проверка ответа:</p>
+<pre><code class="language-python">response.raise_for_status()
+</code></pre>
+<p>Если сервер вернул ошибку, например <code>404</code> или <code>500</code>, программа перейдёт в блок <code>except</code>.</p>
+<hr />
+<h2 id="19-html-beautifulsoup">19. Парсинг HTML через BeautifulSoup</h2>
+<p>После успешного запроса HTML-код страницы передаётся в BeautifulSoup:</p>
+<pre><code class="language-python">soup_news = BeautifulSoup(response.text, 'html.parser')
+</code></pre>
+<p>После этого можно искать элементы страницы с помощью:</p>
+<pre><code class="language-python">select_one()
+select()
+find()
+find_all()
+</code></pre>
+<p>В этой работе основным способом поиска были CSS-селекторы:</p>
+<pre><code class="language-python">soup.select_one('article time')
+soup.select_one('article h1')
+soup.select('a[href*=&quot;/ru/search/?tag=&quot;]')
+</code></pre>
+<hr />
+<h2 id="20">20. Получение данных со страницы новости</h2>
+<p>Внутри цикла вызываются функции:</p>
+<pre><code class="language-python">news_date = get_news_date(soup_news)
+</code></pre>
+<p>Достаёт дату публикации.</p>
+<pre><code class="language-python">title_tag = soup_news.select_one('article h1')
+</code></pre>
+<p>Ищет точный заголовок новости на странице.</p>
+<pre><code class="language-python">views = get_views(soup_news)
+</code></pre>
+<p>Достаёт количество просмотров.</p>
+<pre><code class="language-python">text = get_text(soup_news)
+</code></pre>
+<p>Достаёт основной текст новости.</p>
+<pre><code class="language-python">tags = get_tags(soup_news)
+</code></pre>
+<p>Достаёт теги новости.</p>
+<hr />
+<h2 id="21">21. Уточнение заголовка новости</h2>
+<p>Изначально заголовок берётся из списка <code>headers</code>.</p>
+<p>Но на самой странице новости он может быть точнее, поэтому код ищет заголовок внутри страницы:</p>
+<pre><code class="language-python">title_tag = soup_news.select_one('article h1')
+
+if title_tag:
+    page_title = title_tag.get_text(' ', strip=True)
+
+    if page_title:
+        header = page_title
+</code></pre>
+<p>Если заголовок найден, переменная <code>header</code> обновляется.</p>
+<hr />
+<h2 id="22">22. Обработка ошибок</h2>
+<p>Весь запрос и парсинг страницы находятся внутри блока:</p>
+<pre><code class="language-python">try:
+    ...
+except requests.exceptions.RequestException as e:
+    ...
+except Exception as e:
+    ...
+</code></pre>
+<p>Если возникает ошибка при запросе к сайту, выполняется:</p>
+<pre><code class="language-python">except requests.exceptions.RequestException as e:
+    print(f&quot;Ошибка при запросе {url}: {e}&quot;)
+</code></pre>
+<p>Если возникает любая другая ошибка, например при парсинге, выполняется:</p>
+<pre><code class="language-python">except Exception as e:
+    print(f&quot;Ошибка при парсинге {url}: {e}&quot;)
+</code></pre>
+<p>Это важно, потому что одна проблемная страница не должна останавливать весь процесс сбора данных.</p>
+<hr />
+<h2 id="23">23. Формирование общего датасета</h2>
+<p>После обработки страницы в список <code>news_data</code> добавляется словарь:</p>
+<pre><code class="language-python">news_data.append({
+    'Идентификатор новости': news_id,
+    'Название новости': header,
+    'Дата её размещения': news_date,
+    'URL на страницу с конкретной новостью': url
+})
+</code></pre>
+<p>Этот словарь соответствует одной строке будущего файла <code>general_news.csv</code>.</p>
+<hr />
+<h2 id="24">24. Формирование подробного датасета</h2>
+<p>В список <code>content_data</code> добавляется второй словарь:</p>
+<pre><code class="language-python">content_data.append({
+    'Идентификатор': news_id,
+    'Название новости': header,
+    'Дата размещения': news_date,
+    'Количество просмотров': views,
+    'Текст': text,
+    'Теги': tags
+})
+</code></pre>
+<p>Этот словарь соответствует одной строке будущего файла:</p>
+<pre><code class="language-text">news_content/news_content.csv
+</code></pre>
+<hr />
+<h2 id="25">25. Вывод прогресса</h2>
+<p>Каждые 10 новостей выводится сообщение:</p>
+<pre><code class="language-python">if (i + 1) % 10 == 0:
+    print(f&quot;Обработано {i + 1} новостей...&quot;)
+</code></pre>
+<p>Это удобно, потому что сбор данных может занимать некоторое время.</p>
+<hr />
+<h2 id="26">26. Преобразование данных в таблицы</h2>
+<p>После завершения цикла списки словарей преобразуются в таблицы <code>pandas</code>.</p>
+<p>Общий датасет:</p>
+<pre><code class="language-python">general_df = pd.DataFrame(news_data)
+</code></pre>
+<p>Подробный датасет:</p>
+<pre><code class="language-python">content_df = pd.DataFrame(content_data)
+</code></pre>
+<hr />
+<h2 id="27">27. Удаление дубликатов</h2>
+<p>Так как одна и та же новость может попасться несколько раз, из таблиц удаляются дубликаты.</p>
+<p>Для общего датасета:</p>
+<pre><code class="language-python">general_df = general_df.drop_duplicates(subset=['Идентификатор новости'])
+</code></pre>
+<p>Для подробного датасета:</p>
+<pre><code class="language-python">content_df = content_df.drop_duplicates(subset=['Идентификатор'])
+</code></pre>
+<p>Дубликаты определяются по ID новости.</p>
+<hr />
+<h2 id="28-csv-">28. Сохранение общего CSV-файла</h2>
+<p>Общий датасет сохраняется командой:</p>
+<pre><code class="language-python">general_df.to_csv(GENERAL_CSV, index=False, encoding='utf-8-sig')
+</code></pre>
+<p>Параметры:</p>
+<table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Значение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GENERAL_CSV</code></td>
+<td>Имя файла <code>general_news.csv</code></td>
+</tr>
+<tr>
+<td><code>index=False</code></td>
+<td>Не сохранять технический индекс pandas</td>
+</tr>
+<tr>
+<td><code>encoding='utf-8-sig'</code></td>
+<td>Корректная кодировка для русского текста</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="29-csv-">29. Сохранение подробного CSV-файла</h2>
+<p>Подробный датасет сохраняется командой:</p>
+<pre><code class="language-python">content_df.to_csv(CONTENT_CSV, index=False, encoding='utf-8-sig')
+</code></pre>
+<p>Файл сохраняется по пути:</p>
+<pre><code class="language-text">news_content/news_content.csv
+</code></pre>
+<p>Это соответствует требованию задания сохранить данные из пункта 4 в папке <code>news_content</code>.</p>
+<hr />
+<h2 id="30">30. Проверка результата</h2>
+<p>После сохранения файлов выводятся сообщения:</p>
+<pre><code class="language-python">print(f&quot;Общий файл успешно записан: {GENERAL_CSV}&quot;)
+print(f&quot;Файл с содержимым новостей успешно записан: {CONTENT_CSV}&quot;)
+</code></pre>
+<p>Также отображаются первые строки обеих таблиц:</p>
+<pre><code class="language-python">display(general_df.head())
+display(content_df.head())
+</code></pre>
+<p>Это позволяет быстро проверить, что данные собраны корректно.</p>
+<hr />
+<h2 id="31">31. Итоговая структура ноутбука</h2>
+<p>В итоговом Colab-ноутбуке должны быть следующие части:</p>
+<ol>
+<li>Markdown-ячейка с фамилией, именем и группой.</li>
+<li>Ячейка с импортом библиотек.</li>
+<li>Ячейка с кодом для получения списков <code>headers</code> и <code>urls</code>.</li>
+<li>Ячейка с функциями для парсинга страниц новостей.</li>
+<li>Ячейка с основным циклом сбора данных.</li>
+<li>Ячейка с сохранением CSV-файлов.</li>
+<li>Ячейка с проверкой результата.</li>
+</ol>
+<hr />
+<h2 id="32">32. Итоговый код основной части</h2>
+<pre><code class="language-python">import os
+import re
+import time
+import random
+import requests
+import pandas as pd
+
+from bs4 import BeautifulSoup
+
+
+GENERAL_CSV = 'general_news.csv'
+CONTENT_DIR = 'news_content'
+CONTENT_CSV = os.path.join(CONTENT_DIR, 'news_content.csv')
+
+os.makedirs(CONTENT_DIR, exist_ok=True)
+
+
+def get_news_id(url):
+    &quot;&quot;&quot;
+    Достает числовой ID новости из URL.
+    &quot;&quot;&quot;
+    match = re.search(r'/(\d+)/?$', url)
+
+    if match:
+        return int(match.group(1))
+
+    return None
+
+
+def get_news_date(soup):
+    &quot;&quot;&quot;
+    Достает дату новости из article time, не удаляя просмотры из HTML.
+    &quot;&quot;&quot;
+    time_tag = soup.select_one('article time')
+
+    if time_tag:
+        date_text = next(time_tag.stripped_strings, None)
+
+        if date_text:
+            return date_text
+
+    return 'Дата не найдена'
+
+
+def get_views(soup):
+    &quot;&quot;&quot;
+    Достает количество просмотров из:
+    &lt;span class=&quot;icon eye&quot;&gt;7250&lt;/span&gt;
+    &quot;&quot;&quot;
+    views_tag = soup.select_one('article time span.icon.eye')
+
+    if views_tag:
+        views_text = views_tag.get_text(strip=True)
+
+        if views_text.isdigit():
+            return int(views_text)
+
+    return None
+
+
+def get_text(soup):
+    &quot;&quot;&quot;
+    Достает текст новости из div.content.js-mediator-article.
+    &quot;&quot;&quot;
+    content = soup.select_one('div.content.js-mediator-article')
+
+    if content is None:
+        return ''
+
+    for tag in content.select('div.poster, div.copyinfo, figure, figcaption, script, style'):
+        tag.decompose()
+
+    text_parts = []
+
+    lead = content.select_one('p.lead')
+
+    if lead:
+        lead_text = lead.get_text(' ', strip=True)
+
+        if lead_text:
+            text_parts.append(lead_text)
+
+    post_content = content.select_one('div.post-content')
+
+    if post_content:
+        for element in post_content.find_all(['h1', 'h2', 'h3', 'h4', 'p', 'li']):
+            text = element.get_text(' ', strip=True)
+
+            if not text:
+                continue
+
+            if 'Фото:' in text and len(text) &lt; 150:
+                continue
+
+            if 'Источник:' in text and len(text) &lt; 150:
+                continue
+
+            text_parts.append(text)
+
+    return ' '.join(text_parts)
+
+
+def get_tags(soup):
+    &quot;&quot;&quot;
+    Достает теги из ссылок /ru/search/?tag=...
+    &quot;&quot;&quot;
+    tag_links = soup.select('a[href*=&quot;/ru/search/?tag=&quot;]')
+
+    tags = []
+
+    for link in tag_links:
+        tag_text = link.get_text(' ', strip=True)
+
+        if tag_text and tag_text not in tags:
+            tags.append(tag_text)
+
+    return ', '.join(tags)
+
+
+news_data = []
+content_data = []
+
+print(&quot;Начинается сбор данных для каждой новости. Это может занять некоторое время...&quot;)
+
+for i, (header, url) in enumerate(zip(headers, urls)):
+    news_id = get_news_id(url)
+    news_date = 'Дата не найдена'
+    views = None
+    text = ''
+    tags = ''
+
+    try:
+        time.sleep(random.uniform(0.5, 1.5))
+
+        response = requests.get(
+            url,
+            headers={'User-Agent': 'Mozilla/5.0'},
+            timeout=20
+        )
+
+        response.raise_for_status()
+
+        soup_news = BeautifulSoup(response.text, 'html.parser')
+
+        news_date = get_news_date(soup_news)
+
+        title_tag = soup_news.select_one('article h1')
+
+        if title_tag:
+            page_title = title_tag.get_text(' ', strip=True)
+
+            if page_title:
+                header = page_title
+
+        views = get_views(soup_news)
+        text = get_text(soup_news)
+        tags = get_tags(soup_news)
+
+    except requests.exceptions.RequestException as e:
+        print(f&quot;Ошибка при запросе {url}: {e}&quot;)
+
+    except Exception as e:
+        print(f&quot;Ошибка при парсинге {url}: {e}&quot;)
+
+    news_data.append({
+        'Идентификатор новости': news_id,
+        'Название новости': header,
+        'Дата её размещения': news_date,
+        'URL на страницу с конкретной новостью': url
+    })
+
+    content_data.append({
+        'Идентификатор': news_id,
+        'Название новости': header,
+        'Дата размещения': news_date,
+        'Количество просмотров': views,
+        'Текст': text,
+        'Теги': tags
+    })
+
+    if (i + 1) % 10 == 0:
+        print(f&quot;Обработано {i + 1} новостей...&quot;)
+
+
+print(&quot;Сбор данных завершен. Начинается запись в CSV.&quot;)
+
+general_df = pd.DataFrame(news_data)
+general_df = general_df.drop_duplicates(subset=['Идентификатор новости'])
+
+content_df = pd.DataFrame(content_data)
+content_df = content_df.drop_duplicates(subset=['Идентификатор'])
+
+general_df.to_csv(GENERAL_CSV, index=False, encoding='utf-8-sig')
+content_df.to_csv(CONTENT_CSV, index=False, encoding='utf-8-sig')
+
+print(f&quot;Общий файл успешно записан: {GENERAL_CSV}&quot;)
+print(f&quot;Файл с содержимым новостей успешно записан: {CONTENT_CSV}&quot;)
+
+print(&quot;\nПервые строки общего датасета:&quot;)
+display(general_df.head())
+
+print(&quot;\nПервые строки датасета с контентом:&quot;)
+display(content_df.head())
+</code></pre>
+<hr />
+<h2 id="33">33. Полученные результаты</h2>
+<p>В результате выполнения работы были получены два файла.</p>
+<h3 id="_4">Общий файл</h3>
+<pre><code class="language-text">general_news.csv
+</code></pre>
+<p>Он содержит базовую информацию о новостях:</p>
+<pre><code class="language-text">ID новости
+Название
+Дата размещения
+URL
+</code></pre>
+<h3 id="_5">Подробный файл</h3>
+<pre><code class="language-text">news_content/news_content.csv
+</code></pre>
+<p>Он содержит расширенную информацию:</p>
+<pre><code class="language-text">ID новости
+Название
+Дата размещения
+Количество просмотров
+Текст
+Теги
+</code></pre>
+<hr />
+<h2 id="34">34. Соответствие требованиям задания</h2>
+<table>
+<thead>
+<tr>
+<th>Требование</th>
+<th>Статус</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Сделана копия ноутбука в Google Colab</td>
+<td>Выполнено</td>
+</tr>
+<tr>
+<td>В верхней ячейке указаны ФИО и группа</td>
+<td>Выполнено</td>
+</tr>
+<tr>
+<td>Спарсен идентификатор новости</td>
+<td>Выполнено</td>
+</tr>
+<tr>
+<td>Спарсено название новости</td>
+<td>Выполнено</td>
+</tr>
+<tr>
+<td>Спарсена дата размещения</td>
+<td>Выполнено</td>
+</tr>
+<tr>
+<td>Спарсен URL новости</td>
+<td>Выполнено</td>
+</tr>
+<tr>
+<td>Для каждой новости спарсен идентификатор</td>
+<td>Выполнено</td>
+</tr>
+<tr>
+<td>Для каждой новости спарсено название</td>
+<td>Выполнено</td>
+</tr>
+<tr>
+<td>Для каждой новости спарсена дата</td>
+<td>Выполнено</td>
+</tr>
+<tr>
+<td>Для каждой новости спарсено количество просмотров</td>
+<td>Выполнено</td>
+</tr>
+<tr>
+<td>Для каждой новости спарсен текст</td>
+<td>Выполнено</td>
+</tr>
+<tr>
+<td>Учтена вариативность текста</td>
+<td>Выполнено</td>
+</tr>
+<tr>
+<td>Для каждой новости спарсены теги</td>
+<td>Выполнено</td>
+</tr>
+<tr>
+<td>Общий CSV сохранён рядом с ноутбуком</td>
+<td>Выполнено</td>
+</tr>
+<tr>
+<td>Подробный CSV сохранён в папке <code>news_content</code></td>
+<td>Выполнено</td>
+</tr>
+<tr>
+<td>Ячейки выполнены</td>
+<td>Выполнено</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="35">35. Особенности и важные решения</h2>
+<p>В ходе работы были приняты следующие важные решения:</p>
+<ol>
+<li>Использовать точные CSS-селекторы после анализа HTML.</li>
+<li>Не удалять вложенные элементы из тега <code>time</code>, чтобы не потерять просмотры.</li>
+<li>Извлекать дату как первый текстовый фрагмент внутри <code>time</code>.</li>
+<li>Извлекать просмотры из <code>span.icon.eye</code>.</li>
+<li>Извлекать текст из <code>div.content.js-mediator-article</code>.</li>
+<li>Учитывать не только абзацы, но и заголовки и списки.</li>
+<li>Удалять из текста подписи к фото и источникам.</li>
+<li>Сохранять теги одной строкой через запятую.</li>
+<li>Удалять дубликаты по ID новости.</li>
+<li>Сохранять CSV в кодировке <code>utf-8-sig</code> для корректного отображения русского текста.</li>
+</ol>
+<hr />
+<h2 id="36">36. Вывод</h2>
+<p>В ходе лабораторной работы был реализован веб-скрейпер для сайта ITMO News.</p>
+<p>С помощью библиотек <code>requests</code> и <code>BeautifulSoup</code> были загружены и разобраны HTML-страницы новостей. Из каждой новости были извлечены основные и дополнительные данные: идентификатор, заголовок, дата публикации, URL, количество просмотров, текст и теги.</p>
+<p>Полученные данные были структурированы в виде таблиц с помощью библиотеки <code>pandas</code> и сохранены в CSV-файлы. Общая информация о новостях была сохранена в файл <code>general_news.csv</code>, а подробное содержимое новостей — в файл <code>news_content/news_content.csv</code>.</p>
+<p>Работа позволила закрепить навыки:</p>
+<ul>
+<li>отправки HTTP-запросов;</li>
+<li>анализа HTML-разметки;</li>
+<li>поиска элементов с помощью CSS-селекторов;</li>
+<li>обработки текста;</li>
+<li>извлечения числовых данных из URL;</li>
+<li>формирования табличных данных;</li>
+<li>сохранения результатов в CSV;</li>
+<li>организации файловой структуры проекта.</li>
+</ul>
+<p>Итоговый код соответствует требованиям задания и позволяет автоматически собрать датасет новостей с сайта ITMO News.</p></p>
+    </article>
+</section>
+<!-- endblock -->
+                
+                
+            </main>
+
+            
+                    <!-- block preview -->
+<!-- endblock -->
+            
+
+            
+                    <!-- block footer -->
+<footer class="pt-4 my-md-5 pt-md-5 border-top" id="component-footer">
+    <div class="row">
+        <div class="col-12 col-md">
+                <!-- block copyright -->
+
+    <small class="d-block mb-3">
+        Made with
+        <a href="https://github.com/FernandoCelmer/mkdocs-simple-blog" target="_blank" rel="noopener">
+            Simple Blog for MkDocs
+        </a>
+    </small>
+
+<!-- endblock -->
+        </div>
+    </div>
+</footer>
+<!-- endblock -->
+            
+        </div>
+
+            <script src="../../../../assets/js/jquery-3.3.1.slim.min.js""></script>
+            <script src="../../../../assets/js/bootstrap.bundle.min.js""></script>
+            <script src="../../../../assets/js/main.min.js""></script>
+                <script src="../../../../search/main.js" defer></script>
+
+    </body>
+
+</html>

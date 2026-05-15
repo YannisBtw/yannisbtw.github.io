@@ -12,3 +12,4 @@
 - [Лабораторная 5](semester_2/Python/README5.md)
 - [Лабораторная 6](semester_2/Python/README6.md)
 - [Лабораторная 7](semester_2/Python/README8.md)
+- [Лабораторная 8](semester_2/Python/README7.md)
