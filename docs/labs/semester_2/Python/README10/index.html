@@ -1,0 +1,985 @@
+<!doctype html>
+<html data-bs-theme="">
+    <head>
+                <title>Лабораторная работа №10: Разработка ML-сервиса для предсказания одобрения ипотеки - Сайт Ломаченко Яна</title>
+
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            
+            <link rel="canonical" href="https://yannisbtw.github.io/labs/semester_2/Python/README10/">
+            
+
+            
+                <link  rel="icon" type="image/x-icon" href="../../../../assets/img/favicon.ico">
+            
+
+        <script>var base_url = '../../../..';</script>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+            <link rel="stylesheet" href="../../../../assets/css/bootstrap.min.css">
+            <link rel="stylesheet" href="../../../../assets/css/root.min.css">
+            <link rel="stylesheet" href="../../../../assets/css/main.min.css">
+            <link rel="stylesheet" href="../../../../assets/css/media.min.css">
+            <link rel="stylesheet" href="../../../../assets/css/mkdocstrings.min.css">
+                <script src="../../../../search/main.js"></script>
+
+            
+                
+            
+          
+    </head>
+
+    <body>
+        <div class="container py-3">
+            <header>
+                    <!-- block header -->
+<nav class="navbar navbar-expand-xl border-bottom">
+    <div class="container-fluid">
+        
+
+        
+            <span class=" fs-4 title-color site-name" id="component-site-name" style="text-transform: uppercase;">Сайт Ломаченко Яна</span>
+        
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMenu"
+            aria-controls="navbarsMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse flex-column ml-auto" id="navbarsMenu">
+            <ul class="navbar-nav">
+
+                <!-- block menu -->
+                <li class="nav-item">
+                    <!-- block menu -->
+    
+        <li class="nav-item" id="component-menu">
+            <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../..">[Главная]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../../about/">[Обо мне]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../../projects/">[Проекты]</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="
+                            nav-link dropdown-toggle text-decoration-none" href="#" data-bs-toggle="dropdown">[Лабораторные работы]</a>
+                            <ul class="dropdown-menu">
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../" class="dropdown-item text-decoration-none ">1 семестр</a>
+    </li>
+<!-- endblock -->
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../index2/" class="dropdown-item text-decoration-none ">2 семестр</a>
+    </li>
+<!-- endblock -->
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../../contacts/">[Контакты]</a>
+                        </li>
+            </ul>
+        </li>
+<!-- endblock -->
+                </li>
+                <!-- endblock -->
+
+                <!-- block search -->
+                <li class="nav-item">
+                    <a class="collapsed" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <div class="md-search-icon">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </div>
+                    </a>
+                </li>
+                <!--  endblock -->
+
+                <!-- block source -->
+                <li class="nav-item">
+                    
+                </li>
+                <!--  endblock -->
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--  endblock -->
+            </header>
+
+            <main><!-- block search -->
+<div class="collapse" id="collapseExample">
+    <div role="search" class="search-box">
+        <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+            <input type="text" name="q" class="search-query"
+            placeholder="Search docs" title="Type search term here" />
+        </form>
+    </div>
+</div>
+<!-- endblock -->
+
+                
+                        <!-- block content -->
+<section class="container post" id="component-content">
+    <article>
+        <header>
+            
+                <h1 class=" title" id="component-title">Лабораторная работа №10: Разработка ML-сервиса для предсказания одобрения ипотеки</h1>
+            
+        </header>
+        <p><p>Веб-приложение для предсказания одобрения ипотечной заявки на основе данных клиента.</p>
+<p>Проект выполнен в рамках лабораторной работы №10 по дисциплине <strong>«Программирование на Python»</strong> студентами:
+* Ломаченко Ян Станиславович (505115)
+* Богун Андрей Витальевич (505199)
+* Шеберстов Арсений Алексеевич (501992)</p>
+<h2 id="_1">Тема</h2>
+<p>Разработка ML-сервиса для предсказания одобрения ипотеки.</p>
+<h2 id="_2">Цель работы</h2>
+<p>Освоить полный цикл разработки прикладного ML-сервиса:</p>
+<ul>
+<li>обработка данных;</li>
+<li>обучение и сравнение моделей машинного обучения;</li>
+<li>сериализация обученной модели;</li>
+<li>разработка API на FastAPI;</li>
+<li>разработка пользовательского интерфейса;</li>
+<li>интеграция frontend, backend и ML Pipeline;</li>
+<li>тестирование, линтинг и CI.</li>
+</ul>
+<hr />
+<h1 id="_3">Описание проекта</h1>
+<p><strong>Loan Approval Service</strong> — это консультирующий ML-сервис, который предсказывает, будет ли ипотечная заявка клиента одобрена или отклонена.</p>
+<p>Сервис принимает анкетные данные клиента, передаёт их в обученную ML-модель и возвращает:</p>
+<ul>
+<li>статус заявки;</li>
+<li>числовой код класса;</li>
+<li>вероятность одобрения.</li>
+</ul>
+<p>Также сервис поддерживает пакетную обработку CSV-файлов и расчёт ROC-AUC, если в CSV присутствует целевая колонка <code>loan_status</code>.</p>
+<hr />
+<h1 id="_4">Основной функционал</h1>
+<p>В проекте реализовано:</p>
+<ul>
+<li>загрузка обученной модели в формате <code>.pkl</code> / <code>.joblib</code>;</li>
+<li>предсказание по одной или нескольким заявкам;</li>
+<li>обработка CSV-файла;</li>
+<li>расчёт ROC-AUC при наличии целевой переменной;</li>
+<li>сохранение полного CSV с предсказаниями;</li>
+<li>скачивание результата обработки CSV;</li>
+<li>Swagger-документация API;</li>
+<li>современный frontend-интерфейс;</li>
+<li>backend-тесты;</li>
+<li>backend-линтинг через Ruff;</li>
+<li>frontend-линтинг через ESLint;</li>
+<li>CI-сценарий SourceCraft.</li>
+</ul>
+<hr />
+<h1 id="_5">Стек технологий</h1>
+<h2 id="backend">Backend</h2>
+<ul>
+<li>Python 3.13</li>
+<li>FastAPI</li>
+<li>Uvicorn</li>
+<li>Pydantic</li>
+<li>Pandas</li>
+<li>Scikit-learn</li>
+<li>Joblib</li>
+<li>Pytest</li>
+<li>Ruff</li>
+</ul>
+<h2 id="frontend">Frontend</h2>
+<ul>
+<li>HTML</li>
+<li>CSS</li>
+<li>JavaScript</li>
+<li>ESLint</li>
+</ul>
+<h2 id="ml">ML</h2>
+<ul>
+<li>Scikit-learn</li>
+<li>Pandas</li>
+<li>Joblib</li>
+<li>sklearn Pipeline</li>
+<li>ColumnTransformer</li>
+<li>StandardScaler</li>
+<li>OneHotEncoder</li>
+<li>SelectKBest</li>
+<li>GradientBoostingClassifier</li>
+</ul>
+<h2 id="ci">CI</h2>
+<ul>
+<li>SourceCraft CI</li>
+<li>
+<p>Docker images:</p>
+</li>
+<li>
+<p><code>python:3.13</code></p>
+</li>
+<li><code>node:22</code></li>
+</ul>
+<hr />
+<h1 id="_6">Структура проекта</h1>
+<pre><code class="language-text">loan-approval-service/
+├── backend/
+│   ├── __init__.py
+│   ├── app/
+│   │   ├── __init__.py
+│   │   ├── main.py
+│   │   ├── model_service.py
+│   │   └── schemas.py
+│   ├── models/
+│   │   └── model.pkl
+│   ├── predictions/
+│   │   └── predicted_loan_data.csv
+│   ├── tests/
+│   │   ├── __init__.py
+│   │   ├── test_api.py
+│   │   └── test_model.py
+│   └── requirements.txt
+├── data/
+│   └── loan_data.csv
+├── frontend/
+│   ├── index.html
+│   ├── script.js
+│   └── style.css
+├── ml/
+│   ├── __init__.py
+│   ├── predict.py
+│   ├── preprocess.py
+│   └── train.py
+├── .sourcecraft/
+│   └── ci.yaml
+├── .gitignore
+├── eslint.config.js
+├── package.json
+├── package-lock.json
+├── pyproject.toml
+└── README.md
+</code></pre>
+<hr />
+<h1 id="_7">Данные</h1>
+<p>Для обучения используется датасет:</p>
+<pre><code class="language-text">data/loan_data.csv
+</code></pre>
+<p>Целевая переменная:</p>
+<pre><code class="language-text">loan_status
+</code></pre>
+<p>Значения целевой переменной:</p>
+<pre><code class="language-text">0 — отказ в выдаче ипотеки
+1 — одобрение ипотеки
+</code></pre>
+<hr />
+<h1 id="_8">Входные признаки модели</h1>
+<p>Модель принимает сырые, не предобработанные данные клиента.</p>
+<p>Используемые признаки:</p>
+<table>
+<thead>
+<tr>
+<th>Признак</th>
+<th style="text-align: right;">Тип</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>person_age</code></td>
+<td style="text-align: right;">float</td>
+<td>Возраст клиента</td>
+</tr>
+<tr>
+<td><code>person_gender</code></td>
+<td style="text-align: right;">string</td>
+<td>Пол клиента</td>
+</tr>
+<tr>
+<td><code>person_education</code></td>
+<td style="text-align: right;">string</td>
+<td>Уровень образования</td>
+</tr>
+<tr>
+<td><code>person_income</code></td>
+<td style="text-align: right;">float</td>
+<td>Доход клиента</td>
+</tr>
+<tr>
+<td><code>person_emp_exp</code></td>
+<td style="text-align: right;">float</td>
+<td>Опыт работы</td>
+</tr>
+<tr>
+<td><code>person_home_ownership</code></td>
+<td style="text-align: right;">string</td>
+<td>Тип владения жильём</td>
+</tr>
+<tr>
+<td><code>loan_amnt</code></td>
+<td style="text-align: right;">float</td>
+<td>Сумма кредита</td>
+</tr>
+<tr>
+<td><code>loan_intent</code></td>
+<td style="text-align: right;">string</td>
+<td>Цель кредита</td>
+</tr>
+<tr>
+<td><code>loan_int_rate</code></td>
+<td style="text-align: right;">float</td>
+<td>Процентная ставка</td>
+</tr>
+<tr>
+<td><code>loan_percent_income</code></td>
+<td style="text-align: right;">float</td>
+<td>Доля кредита от дохода</td>
+</tr>
+<tr>
+<td><code>cb_person_cred_hist_length</code></td>
+<td style="text-align: right;">float</td>
+<td>Длина кредитной истории</td>
+</tr>
+<tr>
+<td><code>credit_score</code></td>
+<td style="text-align: right;">int</td>
+<td>Кредитный рейтинг</td>
+</tr>
+<tr>
+<td><code>previous_loan_defaults_on_file</code></td>
+<td style="text-align: right;">string</td>
+<td>Были ли дефолты по кредитам</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="ml-">ML-часть</h1>
+<h2 id="_9">Постановка задачи</h2>
+<p>Задача машинного обучения — бинарная классификация:</p>
+<pre><code class="language-text">0 — отказ
+1 — одобрение
+</code></pre>
+<p>Основная метрика качества:</p>
+<pre><code class="language-text">ROC-AUC
+</code></pre>
+<p>ROC-AUC показывает способность модели различать положительный и отрицательный классы. Чем ближе значение к <code>1.0</code>, тем лучше качество классификации.</p>
+<hr />
+<h1 id="_10">Сравнение моделей</h1>
+<p>Было обучено и сравнено три алгоритма классификации.</p>
+<table>
+<thead>
+<tr>
+<th>Модель</th>
+<th style="text-align: right;">ROC-AUC на тесте</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Logistic Regression</td>
+<td style="text-align: right;">0.8512</td>
+</tr>
+<tr>
+<td>Random Forest</td>
+<td style="text-align: right;">0.9683</td>
+</tr>
+<tr>
+<td>Gradient Boosting</td>
+<td style="text-align: right;">0.9727</td>
+</tr>
+</tbody>
+</table>
+<p>Параметры моделей:</p>
+<pre><code class="language-python"># Logistic Regression
+LogisticRegression(max_iter=1000, random_state=42)
+
+# Random Forest
+RandomForestClassifier(n_estimators=100, random_state=42)
+
+# Gradient Boosting
+GradientBoostingClassifier(n_estimators=100, random_state=42)
+</code></pre>
+<p>Все модели обучались на одинаковых данных после предобработки и отбора признаков.</p>
+<hr />
+<h1 id="_11">Итоговая модель</h1>
+<p>Итоговая модель:</p>
+<pre><code class="language-text">GradientBoostingClassifier
+</code></pre>
+<p>Качество модели:</p>
+<pre><code class="language-text">ROC-AUC на тестовой выборке: 0.9727
+ROC-AUC на 5-fold cross-validation: 0.9701 ± 0.0023
+</code></pre>
+<p>В текущем локальном запуске скрипта <code>ml/train.py</code> после корректного разделения train/test было получено близкое значение:</p>
+<pre><code class="language-text">ROC-AUC на тесте: 0.9714
+</code></pre>
+<p>Модель демонстрирует высокое качество, что объясняется наличием сильных признаков:</p>
+<ul>
+<li><code>credit_score</code>;</li>
+<li><code>loan_percent_income</code>;</li>
+<li><code>person_income</code>;</li>
+<li><code>loan_int_rate</code>;</li>
+<li><code>person_emp_exp</code>.</li>
+</ul>
+<hr />
+<h1 id="_12">Предобработка данных</h1>
+<p>Вся предобработка встроена в единый <code>sklearn.Pipeline</code>.</p>
+<p>Это важно, потому что backend может передавать в модель сырые данные клиента, а все преобразования выполняются внутри Pipeline.</p>
+<h2 id="1">1. Очистка данных</h2>
+<p>Удаляются аномальные значения:</p>
+<pre><code class="language-python">df = df[(df[&quot;person_age&quot;] &lt;= 100) &amp; (df[&quot;person_age&quot;] &gt;= 18)]
+df = df[(df[&quot;person_emp_exp&quot;] &lt;= 80) | (df[&quot;person_emp_exp&quot;].isna())]
+df = df[df[&quot;cb_person_cred_hist_length&quot;] &lt;= 80]
+</code></pre>
+<p>Используемые ограничения:</p>
+<ul>
+<li><code>person_age</code>: от 18 до 100 лет;</li>
+<li><code>person_emp_exp</code>: не более 80 лет;</li>
+<li><code>cb_person_cred_hist_length</code>: не более 80 лет.</li>
+</ul>
+<p>Пропуски в данных отсутствовали, поэтому отдельное заполнение пропусков не потребовалось.</p>
+<h2 id="2">2. Разделение признаков</h2>
+<p>Числовые признаки:</p>
+<pre><code class="language-text">person_age
+person_income
+person_emp_exp
+loan_amnt
+loan_int_rate
+loan_percent_income
+cb_person_cred_hist_length
+credit_score
+</code></pre>
+<p>Категориальные признаки:</p>
+<pre><code class="language-text">person_gender
+person_education
+person_home_ownership
+loan_intent
+previous_loan_defaults_on_file
+</code></pre>
+<h2 id="3">3. Масштабирование числовых признаков</h2>
+<p>Для числовых признаков используется:</p>
+<pre><code class="language-python">StandardScaler()
+</code></pre>
+<p>Он нормализует данные к среднему <code>0</code> и дисперсии <code>1</code>.</p>
+<h2 id="4">4. Кодирование категориальных признаков</h2>
+<p>Для категориальных признаков используется:</p>
+<pre><code class="language-python">OneHotEncoder(drop=&quot;first&quot;, handle_unknown=&quot;ignore&quot;)
+</code></pre>
+<p>Параметры:</p>
+<ul>
+<li><code>drop="first"</code> — удаляет первый уровень категории для уменьшения мультиколлинеарности;</li>
+<li><code>handle_unknown="ignore"</code> — позволяет безопасно обрабатывать неизвестные категории при предсказании.</li>
+</ul>
+<h2 id="5">5. Отбор признаков</h2>
+<p>Используется:</p>
+<pre><code class="language-python">SelectKBest(f_classif, k=20)
+</code></pre>
+<p>Из всех признаков после one-hot кодирования выбираются 20 наиболее информативных.</p>
+<h2 id="6-pipeline">6. Полный Pipeline</h2>
+<pre><code class="language-python">Pipeline(
+    steps=[
+        (
+            &quot;preprocessor&quot;,
+            ColumnTransformer(
+                [
+                    (&quot;num&quot;, StandardScaler(), numerical_cols),
+                    (
+                        &quot;cat&quot;,
+                        OneHotEncoder(drop=&quot;first&quot;, handle_unknown=&quot;ignore&quot;),
+                        categorical_cols,
+                    ),
+                ]
+            ),
+        ),
+        (&quot;selector&quot;, SelectKBest(f_classif, k=20)),
+        (
+            &quot;classifier&quot;,
+            GradientBoostingClassifier(
+                n_estimators=100,
+                random_state=42,
+            ),
+        ),
+    ]
+)
+</code></pre>
+<hr />
+<h1 id="_13">Сохранение модели</h1>
+<p>Модель сериализуется через <code>joblib</code>.</p>
+<p>Файл модели для backend:</p>
+<pre><code class="language-text">backend/models/model.pkl
+</code></pre>
+<p>Пример загрузки:</p>
+<pre><code class="language-python">import joblib
+
+model = joblib.load(&quot;backend/models/model.pkl&quot;)
+</code></pre>
+<p>Backend также поддерживает загрузку модели через endpoint:</p>
+<pre><code class="language-text">POST /upload-model
+</code></pre>
+<p>При загрузке модель сохраняется как:</p>
+<pre><code class="language-text">backend/models/model.pkl
+</code></pre>
+<hr />
+<h1 id="_14">Обучение модели</h1>
+<p>Для повторного обучения модели используется скрипт:</p>
+<pre><code class="language-text">ml/train.py
+</code></pre>
+<p>Запуск из корня проекта:</p>
+<pre><code class="language-bash">python ml/train.py
+</code></pre>
+<p>После запуска модель обучается на датасете:</p>
+<pre><code class="language-text">data/loan_data.csv
+</code></pre>
+<p>и сохраняется в:</p>
+<pre><code class="language-text">backend/models/model.pkl
+</code></pre>
+<p>Пример вывода:</p>
+<pre><code class="language-text">ROC-AUC на тесте: 0.9714
+Модель сохранена в .../backend/models/model.pkl
+</code></pre>
+<hr />
+<h1 id="backend_1">Backend</h1>
+<p>Backend реализован на FastAPI.</p>
+<p>Основной файл:</p>
+<pre><code class="language-text">backend/app/main.py
+</code></pre>
+<p>Файл работы с моделью:</p>
+<pre><code class="language-text">backend/app/model_service.py
+</code></pre>
+<p>Файл схем данных:</p>
+<pre><code class="language-text">backend/app/schemas.py
+</code></pre>
+<hr />
+<h1 id="api-endpoints">API endpoints</h1>
+<h2 id="get"><code>GET /</code></h2>
+<p>Возвращает frontend-приложение.</p>
+<p>Адрес:</p>
+<pre><code class="language-text">http://127.0.0.1:8000/
+</code></pre>
+<hr />
+<h2 id="get-health"><code>GET /health</code></h2>
+<p>Проверка состояния сервиса.</p>
+<p>Пример ответа:</p>
+<pre><code class="language-json">{
+  &quot;status&quot;: &quot;ok&quot;,
+  &quot;model_loaded&quot;: true
+}
+</code></pre>
+<hr />
+<h2 id="post-upload-model"><code>POST /upload-model</code></h2>
+<p>Загрузка модели в формате <code>.pkl</code> или <code>.joblib</code>.</p>
+<p>Принимает:</p>
+<pre><code class="language-text">multipart/form-data
+file: model.pkl
+</code></pre>
+<p>Пример ответа:</p>
+<pre><code class="language-json">{
+  &quot;status&quot;: &quot;success&quot;,
+  &quot;message&quot;: &quot;Model uploaded and loaded successfully&quot;
+}
+</code></pre>
+<hr />
+<h2 id="post-predict"><code>POST /predict</code></h2>
+<p>Получение предсказания по одной или нескольким заявкам.</p>
+<p>Пример запроса:</p>
+<pre><code class="language-json">{
+  &quot;records&quot;: [
+    {
+      &quot;person_age&quot;: 35,
+      &quot;person_gender&quot;: &quot;male&quot;,
+      &quot;person_education&quot;: &quot;Bachelor&quot;,
+      &quot;person_income&quot;: 75000,
+      &quot;person_emp_exp&quot;: 5,
+      &quot;person_home_ownership&quot;: &quot;RENT&quot;,
+      &quot;loan_amnt&quot;: 15000,
+      &quot;loan_intent&quot;: &quot;EDUCATION&quot;,
+      &quot;loan_int_rate&quot;: 11.5,
+      &quot;loan_percent_income&quot;: 0.2,
+      &quot;cb_person_cred_hist_length&quot;: 6,
+      &quot;credit_score&quot;: 720,
+      &quot;previous_loan_defaults_on_file&quot;: &quot;No&quot;
+    }
+  ]
+}
+</code></pre>
+<p>Пример ответа:</p>
+<pre><code class="language-json">{
+  &quot;predictions&quot;: [
+    {
+      &quot;input_data&quot;: {
+        &quot;person_age&quot;: 35,
+        &quot;person_gender&quot;: &quot;male&quot;,
+        &quot;person_education&quot;: &quot;Bachelor&quot;,
+        &quot;person_income&quot;: 75000,
+        &quot;person_emp_exp&quot;: 5,
+        &quot;person_home_ownership&quot;: &quot;RENT&quot;,
+        &quot;loan_amnt&quot;: 15000,
+        &quot;loan_intent&quot;: &quot;EDUCATION&quot;,
+        &quot;loan_int_rate&quot;: 11.5,
+        &quot;loan_percent_income&quot;: 0.2,
+        &quot;cb_person_cred_hist_length&quot;: 6,
+        &quot;credit_score&quot;: 720,
+        &quot;previous_loan_defaults_on_file&quot;: &quot;No&quot;
+      },
+      &quot;loan_status&quot;: &quot;отказ&quot;,
+      &quot;loan_status_code&quot;: 0,
+      &quot;approval_probability&quot;: 0.15647665058728605
+    }
+  ]
+}
+</code></pre>
+<hr />
+<h2 id="post-predict-from-csv"><code>POST /predict-from-csv</code></h2>
+<p>Обработка CSV-файла.</p>
+<p>Принимает:</p>
+<pre><code class="language-text">multipart/form-data
+file: loan_data.csv
+</code></pre>
+<p>CSV может содержать колонку <code>loan_status</code> или не содержать её.</p>
+<p>Если колонка <code>loan_status</code> есть, backend дополнительно считает ROC-AUC.</p>
+<p>Пример ответа:</p>
+<pre><code class="language-json">{
+  &quot;roc_auc&quot;: 0.9727,
+  &quot;rows_count&quot;: 45000,
+  &quot;preview_rows_count&quot;: 20,
+  &quot;data_preview&quot;: [
+    {
+      &quot;person_age&quot;: 35,
+      &quot;person_income&quot;: 75000,
+      &quot;loan_amnt&quot;: 15000,
+      &quot;predicted_loan_status_code&quot;: 0,
+      &quot;predicted_loan_status&quot;: &quot;отказ&quot;,
+      &quot;approval_probability&quot;: 0.1564
+    }
+  ],
+  &quot;download_url&quot;: &quot;/download-predictions&quot;
+}
+</code></pre>
+<p>Чтобы Swagger не зависал на большом датасете, API возвращает только первые 20 строк в <code>data_preview</code>.</p>
+<p>Полный датасет с предсказаниями сохраняется в файл:</p>
+<pre><code class="language-text">backend/predictions/predicted_loan_data.csv
+</code></pre>
+<hr />
+<h2 id="get-download-predictions"><code>GET /download-predictions</code></h2>
+<p>Скачивание полного CSV-файла с предсказаниями.</p>
+<p>Адрес:</p>
+<pre><code class="language-text">http://127.0.0.1:8000/download-predictions
+</code></pre>
+<hr />
+<h1 id="frontend_1">Frontend</h1>
+<p>Frontend реализован на HTML, CSS и JavaScript.</p>
+<p>Файлы:</p>
+<pre><code class="language-text">frontend/index.html
+frontend/style.css
+frontend/script.js
+</code></pre>
+<p>Frontend доступен по адресу:</p>
+<pre><code class="language-text">http://127.0.0.1:8000/
+</code></pre>
+<p>Frontend позволяет:</p>
+<ul>
+<li>загрузить <code>.pkl</code> / <code>.joblib</code> модель;</li>
+<li>ввести данные клиента;</li>
+<li>получить предсказание;</li>
+<li>увидеть вероятность одобрения;</li>
+<li>загрузить CSV-файл;</li>
+<li>получить ROC-AUC;</li>
+<li>скачать полный CSV с предсказаниями.</li>
+</ul>
+<p>Frontend раздаётся через FastAPI, поэтому отдельный frontend-сервер не требуется.</p>
+<hr />
+<h1 id="swagger">Swagger</h1>
+<p>Swagger-документация доступна по адресу:</p>
+<pre><code class="language-text">http://127.0.0.1:8000/docs
+</code></pre>
+<p>Через Swagger можно протестировать все endpoint’ы:</p>
+<pre><code class="language-text">GET /health
+POST /upload-model
+POST /predict
+POST /predict-from-csv
+GET /download-predictions
+</code></pre>
+<hr />
+<h1 id="_15">Установка и запуск</h1>
+<h2 id="1_1">1. Клонирование проекта</h2>
+<pre><code class="language-bash">git clone &lt;repository-url&gt;
+cd loan-approval-service
+</code></pre>
+<h2 id="2_1">2. Создание виртуального окружения</h2>
+<pre><code class="language-bash">python -m venv .venv
+</code></pre>
+<p>Активация на Windows:</p>
+<pre><code class="language-bash">.venv\Scripts\activate
+</code></pre>
+<p>Активация на Linux/macOS:</p>
+<pre><code class="language-bash">source .venv/bin/activate
+</code></pre>
+<h2 id="3-backend-">3. Установка backend-зависимостей</h2>
+<pre><code class="language-bash">pip install -r backend/requirements.txt
+</code></pre>
+<h2 id="4-frontend-">4. Установка frontend-зависимостей</h2>
+<pre><code class="language-bash">npm install
+</code></pre>
+<h2 id="5-backend-frontend">5. Запуск backend и frontend</h2>
+<pre><code class="language-bash">uvicorn backend.app.main:app --reload
+</code></pre>
+<p>После запуска:</p>
+<pre><code class="language-text">Frontend: http://127.0.0.1:8000/
+Swagger:  http://127.0.0.1:8000/docs
+</code></pre>
+<hr />
+<h1 id="_16">Проверка работы приложения</h1>
+<h2 id="_17">Сценарий демонстрации</h2>
+<ol>
+<li>Запустить backend:</li>
+</ol>
+<pre><code class="language-bash">uvicorn backend.app.main:app --reload
+</code></pre>
+<ol>
+<li>Открыть frontend:</li>
+</ol>
+<pre><code class="language-text">http://127.0.0.1:8000/
+</code></pre>
+<ol>
+<li>
+<p>Загрузить модель через интерфейс или Swagger.</p>
+</li>
+<li>
+<p>Заполнить форму клиента.</p>
+</li>
+<li>
+<p>Получить результат:</p>
+</li>
+</ol>
+<pre><code class="language-text">одобрено / отказ
+</code></pre>
+<ol>
+<li>
+<p>Загрузить CSV-файл.</p>
+</li>
+<li>
+<p>Получить ROC-AUC и preview строк.</p>
+</li>
+<li>
+<p>Скачать полный CSV с предсказаниями.</p>
+</li>
+<li>
+<p>Открыть Swagger:</p>
+</li>
+</ol>
+<pre><code class="language-text">http://127.0.0.1:8000/docs
+</code></pre>
+<hr />
+<h1 id="_18">Тестирование</h1>
+<p>Для backend используются тесты на <code>pytest</code>.</p>
+<p>Запуск:</p>
+<pre><code class="language-bash">PYTHONPATH=. pytest backend/tests
+</code></pre>
+<p>Для Windows PowerShell:</p>
+<pre><code class="language-powershell">$env:PYTHONPATH=&quot;.&quot;
+pytest backend/tests
+</code></pre>
+<p>Текущий результат:</p>
+<pre><code class="language-text">10 passed
+</code></pre>
+<p>Тесты проверяют:</p>
+<ul>
+<li><code>GET /health</code>;</li>
+<li>ошибку <code>/predict</code>, если модель не загружена;</li>
+<li>успешный <code>/predict</code>;</li>
+<li>загрузку модели;</li>
+<li>отказ при неправильном расширении модели;</li>
+<li>обработку CSV;</li>
+<li>отказ при неправильном расширении CSV;</li>
+<li>скачивание CSV с предсказаниями;</li>
+<li>работу функции предсказания из ML-модуля.</li>
+</ul>
+<hr />
+<h1 id="_19">Линтинг</h1>
+<h2 id="backend_2">Backend</h2>
+<p>Для backend используется Ruff.</p>
+<p>Проверка:</p>
+<pre><code class="language-bash">ruff check backend ml
+</code></pre>
+<p>Автоисправление:</p>
+<pre><code class="language-bash">ruff check backend ml --fix
+</code></pre>
+<p>Форматирование:</p>
+<pre><code class="language-bash">ruff format backend ml
+</code></pre>
+<h2 id="frontend_2">Frontend</h2>
+<p>Для frontend используется ESLint.</p>
+<p>Запуск:</p>
+<pre><code class="language-bash">npm run lint:frontend
+</code></pre>
+<hr />
+<h1 id="ci-sourcecraft">CI SourceCraft</h1>
+<p>CI-сценарий находится в файле:</p>
+<pre><code class="language-text">.sourcecraft/ci.yaml
+</code></pre>
+<p>CI запускается при:</p>
+<ul>
+<li>push в <code>main</code> или <code>master</code>;</li>
+<li>pull request в <code>main</code> или <code>master</code>.</li>
+</ul>
+<p>CI выполняет:</p>
+<ul>
+<li>установку Python-зависимостей;</li>
+<li>backend-линтинг через Ruff;</li>
+<li>backend-тесты через Pytest;</li>
+<li>установку Node-зависимостей;</li>
+<li>frontend-линтинг через ESLint.</li>
+</ul>
+<p>Основные команды CI:</p>
+<pre><code class="language-bash">PYTHONPATH=. ruff check backend ml
+PYTHONPATH=. pytest backend/tests
+npm ci
+npm run lint:frontend
+</code></pre>
+<hr />
+<h1 id="gitignore"><code>.gitignore</code></h1>
+<p>В проекте используется <code>.gitignore</code>, чтобы не добавлять в репозиторий временные и тяжёлые файлы:</p>
+<pre><code class="language-text">.venv/
+node_modules/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+backend/predictions/
+backend/models/model.pkl
+.idea/
+.vscode/
+</code></pre>
+<p><code>backend/models/model.pkl</code> игнорируется как runtime-копия модели, которая может быть загружена через API.</p>
+<hr />
+<h1 id="_20">Воспроизводимость</h1>
+<p>Для воспроизводимости используются фиксированные значения:</p>
+<pre><code class="language-python">random_state=42
+</code></pre>
+<p>Они применяются в:</p>
+<ul>
+<li><code>train_test_split</code>;</li>
+<li><code>LogisticRegression</code>;</li>
+<li><code>RandomForestClassifier</code>;</li>
+<li><code>GradientBoostingClassifier</code>.</li>
+</ul>
+<p>Также для воспроизводимости необходимо использовать зависимости из:</p>
+<pre><code class="language-text">backend/requirements.txt
+package.json
+package-lock.json
+</code></pre>
+<hr />
+<h1 id="_21">Обработка ошибок</h1>
+<p>Backend обрабатывает основные ошибки:</p>
+<ul>
+<li>модель не загружена;</li>
+<li>неверный формат файла модели;</li>
+<li>неверный формат CSV;</li>
+<li>отсутствующие признаки в данных;</li>
+<li>невозможность расчёта ROC-AUC;</li>
+<li>отсутствие файла с предсказаниями для скачивания.</li>
+</ul>
+<p>Пример ошибки, если модель не загружена:</p>
+<pre><code class="language-json">{
+  &quot;detail&quot;: &quot;Model is not loaded&quot;
+}
+</code></pre>
+<hr />
+<h1 id="_22">Роли участников</h1>
+<h2 id="ml-engineer">ML Engineer</h2>
+<p>Зона ответственности:</p>
+<ul>
+<li>анализ данных;</li>
+<li>очистка данных;</li>
+<li>предобработка признаков;</li>
+<li>обучение нескольких моделей;</li>
+<li>сравнение моделей по ROC-AUC;</li>
+<li>выбор итоговой модели;</li>
+<li>сохранение модели через joblib;</li>
+<li>подготовка ML Pipeline.</li>
+</ul>
+<h2 id="backend-frontend-developer">Backend / Frontend Developer</h2>
+<p>Зона ответственности:</p>
+<ul>
+<li>разработка FastAPI backend;</li>
+<li>
+<p>реализация endpoint’ов:</p>
+</li>
+<li>
+<p><code>/upload-model</code>;</p>
+</li>
+<li><code>/predict</code>;</li>
+<li><code>/predict-from-csv</code>;</li>
+<li><code>/download-predictions</code>;</li>
+<li>интеграция backend с ML Pipeline;</li>
+<li>обработка ошибок;</li>
+<li>разработка пользовательского интерфейса;</li>
+<li>подключение frontend к API;</li>
+<li>реализация загрузки модели;</li>
+<li>реализация формы клиента;</li>
+<li>реализация загрузки CSV;</li>
+<li>отображение результатов;</li>
+<li>настройка тестов;</li>
+<li>настройка backend/frontend линтинга;</li>
+<li>настройка SourceCraft CI.</li>
+</ul>
+<hr />
+<h1 id="_23">Итоговый результат</h1>
+<p>В результате работы разработано полноценное веб-приложение:</p>
+<ul>
+<li>обученная ML-модель сохранена в формате <code>.pkl</code>;</li>
+<li>модель встроена в FastAPI backend;</li>
+<li>API предоставляет все требуемые endpoint’ы;</li>
+<li>frontend позволяет работать с моделью без Swagger;</li>
+<li>CSV-файлы обрабатываются пакетно;</li>
+<li>результат можно скачать в виде CSV;</li>
+<li>добавлены тесты;</li>
+<li>добавлен линтинг backend и frontend;</li>
+<li>добавлен CI SourceCraft.</li>
+</ul>
+<p>Проект готов к демонстрации и сдаче.</p></p>
+    </article>
+</section>
+<!-- endblock -->
+                
+                
+            </main>
+
+            
+                    <!-- block preview -->
+<!-- endblock -->
+            
+
+            
+                    <!-- block footer -->
+<footer class="pt-4 my-md-5 pt-md-5 border-top" id="component-footer">
+    <div class="row">
+        <div class="col-12 col-md">
+                <!-- block copyright -->
+
+    <small class="d-block mb-3">
+        Made with
+        <a href="https://github.com/FernandoCelmer/mkdocs-simple-blog" target="_blank" rel="noopener">
+            Simple Blog for MkDocs
+        </a>
+    </small>
+
+<!-- endblock -->
+        </div>
+    </div>
+</footer>
+<!-- endblock -->
+            
+        </div>
+
+            <script src="../../../../assets/js/jquery-3.3.1.slim.min.js""></script>
+            <script src="../../../../assets/js/bootstrap.bundle.min.js""></script>
+            <script src="../../../../assets/js/main.min.js""></script>
+                <script src="../../../../search/main.js" defer></script>
+
+    </body>
+
+</html>
