@@ -7,6 +7,7 @@ nav:
   - Лабораторные работы:
       - 1 семестр: labs/index.md
       - 2 семестр: labs/index2.md
+      - 3 семестр: labs/index3.md
   - Контакты: contacts.md
 
 theme:

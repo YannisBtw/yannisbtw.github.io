@@ -1,4 +1,4 @@
-Здесь можно посмотреть все проекты лабораторные, сделанные за 1 семестр.
+Здесь можно посмотреть лабораторные, сделанные за 1 семестр.
 
 - [Python](https://github.com/YannisBtw/ITMO_Python)
 - [Task Tracker](https://github.com/YannisBtw/task_tracker)

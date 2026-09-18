@@ -1,7 +1,8 @@
-Здесь можно посмотреть все проекты лабораторные, сделанные за 2 семестр.
+Здесь можно посмотреть лабораторные, сделанные за 2 семестр.
 
 - [Python](https://github.com/YannisBtw/ITMO_Python-2.0)
-- [Репозиторий сайта](https://github.com/YannisBtw/yannisbtw.github.io)
+- [Репозиторий сайта (GitHub)](https://github.com/YannisBtw/yannisbtw.github.io)
+- [Репозиторий сайта (SourceCraft)](https://sourcecraft.dev/shadowkreys/shadowkreys-sourcecraft-site)
 
 
 ###### Python:
