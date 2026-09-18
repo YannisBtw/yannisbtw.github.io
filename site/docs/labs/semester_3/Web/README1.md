@@ -1,4 +1,4 @@
-# ITMO Student Management
+title: ITMO Student Management
 
 Frontend-приложение для управления данными студентов, разработанное на HTML, CSS и JavaScript в рамках лабораторной работы №1 по веб-программированию в ИТМО.
 
